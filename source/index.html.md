@@ -1,14 +1,10 @@
 ---
 title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+<!-- language_tabs: # must be one of https://git.io/vQNgJ
+  - javascript -->
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -17,7 +13,7 @@ includes:
 search: true
 ---
 
-# Introduction
+# Inleiding
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
@@ -25,35 +21,7 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
+# Voorwoord
 
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
@@ -65,175 +33,128 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Management samenvatting
 
-## Get All Kittens
+# Orientatie
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
+<!-- 
 Parameter | Default | Description
 --------- | ------- | -----------
 include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+available | true | If set to false, the result will include kittens that have already been adopted. -->
 
-<aside class="success">
+<!-- <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
-</aside>
+</aside> -->
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
+## Probleem + onderzoeksvraag
 
 This endpoint retrieves a specific kitten.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<!-- <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside> -->
 
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
+## Context
 
 This endpoint deletes a specific kitten.
 
-### HTTP Request
+###Lifely + Fresh Heroes
 
-`DELETE http://example.com/kittens/<ID>`
+###Data opkomst
 
-### URL Parameters
+###Veiligheid
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+##Stakeholders
 
+###Fresh Heroes
+
+####Product Owner
+####Developers
+
+###Lifely
+
+###Gebruikers
+
+####Studenten
+####Bedrijven
+
+##Productvisie
+
+##Aanpak
+
+#Onderzoek
+
+##Behoeften van Fresh Heroes
+
+###Interviews Barry & Pim
+###Rand voorwaaren van het project
+###Eisenlijst van MVP
+
+##Huidige situatie van Fresh heroes
+
+###Gebruikte technieken
+###Wat wordt er nu bij gehouden?
+###Waarom zelf gebruikersdata tracken
+
+##Bestaande oplossingen (concurrentie analyse)
+
+##Techniek
+
+###Intoductie
+
+###Events
+
+####Wat zijn events
+####Hoe gebruik je events
+####Implementatie van events
+####Datamodel events
+####Evaluatie na eerste deploy op events
+
+###Frontend techniek
+
+####Ophalen van data
+#####Waarom geen API
+#####Combinatie met Google Analytics
+#####Structuur laden + renderen
+
+####Keuze in datavisualisatie framework
+#####Concurrentieanalyse
+#####D3 basis uitleg
+#####Svg vs Canvas
+
+###Veiligheid
+
+##Datavisualisaite
+
+###Best practices
+###Moodboard/Inspiratie
+###Dashboard design
+###Keuzes op delen van data
+###Interactie
+###Grafiek keuze toelichting per data type
+
+#Validatie
+##Tussentijdse feedback
+##Lunch Presentatie
+##Feedback frenzy
+##Gebruikerstest
+
+#Eindproduct
+##Screencast
+##Schermentoelichting
+
+#Conclusie
+
+#Aanbevelingen
+
+##Analytics naar backend verplaatsen
+##(mogelijk) anonimiseren van user_id
+##Session gebruiken om de funnels en views toe te spitsen
+##Gebruikersovereenkomst aanpassen
+##Implementeren van KPI’s
+##Grafieken generaliseren/refactoren
+
+#Bijlagen
+
+#Bronnen
+
+#Termen
