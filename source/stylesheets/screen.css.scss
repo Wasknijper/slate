@@ -91,6 +91,10 @@ html, body {
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
+
+      &::placeholder {
+        color: #144235;
+      }
     }
 
     &:before {
@@ -206,7 +210,7 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: #fff;
+  color: #144235;
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
@@ -266,7 +270,7 @@ html, body {
   // half of the content always this background color.
   .dark-box {
     width: $examples-width;
-    background-color: $examples-bg;
+    background-color: #6C23B0;
     position: absolute;
     right: 0;
     top: 0;
