@@ -25,11 +25,11 @@ Lifely is een mediabureau dat zich specialiseert in het bouwen van webapplicatie
 
 In november 2017 is de eerste werknemer van Fresh Heroes aangenomen. Het uiteindelijke plan voor Fresh Heroes is om er een non-profit platform te maken dat wordt onderhouden door studenten voor studenten. Tijdens deze afstudeeropdracht is Lifely nog nauw betrokken bij Fresh Heroes en helpen zij ook mee met de ontwikkeling van het platform.
 
-Toen ik dit project begon had het een andere invulling. Ik zou A/B testen gaan implementeren en deze gebruiken om de gebruikers registratie te verbeteren. Dit was echter wel een grote opgave, maar hierdoor kwamen we wel bij het huidige probleem: de gebruikers data is slecht inzichtelijk. Dit bleek een stuk behapbaarder te zijn en heb ik samen met mijn afstudeerbegeleider besloten hier op te gaan focussen. Door middel van mijn eindproduct kan Fresh Heroen nieuwe inzichten verkrijgen in de gebruikers en hun gedrag op de website.
+Toen ik dit project begon had het een andere invulling. Ik zou A/B testen gaan implementeren en deze gebruiken om de gebruikersregistratie te verbeteren. Dit was echter wel een grote opgave, maar hierdoor kwamen we wel bij het huidige probleem: de gebruikersdata is slecht inzichtelijk. Dit bleek een stuk beter te realiseren en ik heb samen met mijn afstudeerbegeleider besloten hier op te gaan focussen. Door middel van mijn eindproduct krijgt Fresh Heroes nieuwe inzichten  in de gebruikers en hun gedrag op de website.
 
-Een van de knelpunten van dit project is het bouwen van de datavisualisaties. Het koste meer tijd dan ik had verwacht om de data die ik terugkreeg om te vormen zodat het bruikbaar was om een datavisualisatie mee te maken.
+Een van de knelpunten van dit project is het bouwen van de datavisualisaties. Het kostte meer tijd dan ik had verwacht om de data die ik terugkreeg om te vormen zodat het bruikbaar was om een datavisualisatie mee te maken.
 
-In dit rapport beschrijf ik het proces wat ik heb doorgelopen om tot mijn eindproduct te komen. In het eerste deel leg ik uit wat de situatie, context en probleemstelling is en hoe ik dit heb aangepakt. In het tweede deel ligt ik mijn onderzoek toe. Dit heb ik per onderwerp opgesplitst in de hoofdstukken Techniek, Gebruikersdata & Veiligheid en Datavisualisatie. Daarna volgen de hoofdstukken Validatie, Eindproduct, Conclusie en Aanbevelingen.
+In dit rapport beschrijf ik het proces dat ik heb doorgelopen om tot mijn eindproduct te komen. In het eerste deel leg ik uit wat de situatie, context en probleemstelling is en hoe ik dit heb aangepakt. In het tweede deel licht ik mijn onderzoek toe. Dit heb ik per onderwerp opgesplitst in de hoofdstukken Techniek, Gebruikersdata & Veiligheid en Datavisualisatie. Daarna volgen de hoofdstukken Validatie, Eindproduct, Conclusie en Aanbevelingen.
 
 
 # Management samenvatting
