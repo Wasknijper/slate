@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Business Intelligence Dashboard voor Fresh Heroes</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -296,7 +296,7 @@
               </ul>
           </li>
           <li>
-            <a href="#conclusie-2" class="toc-h1 toc-link" data-title="Conclusie">Conclusie</a>
+            <a href="#conclusie" class="toc-h1 toc-link" data-title="Conclusie">Conclusie</a>
           </li>
           <li>
             <a href="#aanbevelingen" class="toc-h1 toc-link" data-title="Aanbevelingen">Aanbevelingen</a>
@@ -329,6 +329,9 @@
                   </li>
                   <li>
                     <a href="#bijlage-2-nieuwe-datamodel" class="toc-h2 toc-link" data-title="Bijlage 2 - Nieuwe Datamodel">Bijlage 2 - Nieuwe Datamodel</a>
+                  </li>
+                  <li>
+                    <a href="#bijlage-3-concurrentieanalyse" class="toc-h2 toc-link" data-title="Bijlage 3 - Concurrentieanalyse">Bijlage 3 - Concurrentieanalyse</a>
                   </li>
               </ul>
           </li>
@@ -961,112 +964,316 @@ Afbeelding 19) Een diagram van het MVC-model.</p>
 <p>Ik heb bewust geen uitgebreid onderzoek gedaan naar de keuze van datavisualisatie frameworks. In het derde jaar van mijn opleiding heb ik les gehad in D3, dat staat voor Data Driven Documents. Ook bij Lifely heb ik meegeholpen aan een project waar ook gebruik gemaakt werd van D3.  Omdat ik hier al ervaring mee heb leek mij het de beste keuze om in de korte tijd van het project.</p>
 
 <p>Ook heb ik vertrouwen in mijn keuze omdat D3 ook door grote partijen als de New York Times (“Gallery · d3/d3 Wiki”, z.d.) wordt gebruikt om datavisualisaties te maken. D3 is ook een project dat actief onderhouden wordt, ondanks dat het al 6 jaar bestaat. Verder is er een actieve community en veel voorbeelden en uitleg waar ik uit kan putten als ik vast zit.</p>
-<h4 id='hoe-werkt-d3'>Hoe werkt D3?</h4>
-<p>Tba: Het toevoegen van elementen, Wat is een Data Join, Animaties, Interactie toevoegen</p>
+<h3 id='hoe-werkt-d3'>Hoe werkt D3?</h3>
+<p>D3 is een javascript framework waarmee je elementen kunt manipuleren op basis van data. Je koppelt de data aan de elementen, hierdoor kun je aan de hand van de data de elementen aanpassen. Zo kan je dezelfde data gebruiken om een barchart te maken, maar ook een cirkeldiagram.</p>
 
-<p>Bronnen: https://bost.ocks.org/mike/join/
-http://www.cagrimmett.com/til/2016/08/14/d3-introduction-notes.html
-http://chimera.labs.oreilly.com/books/1230000000345/index.html</p>
+<p>D3 heeft ook veel handige functies, zo kan aan de hand van je data uitrekenen hoe hoog je de bars in je bar chart moeten zijn en wat handige stappen zijn voor je assen. Hiervoor zijn de scale functies erg handig. De schaal (scale in het engels) is de manier waarop een abstracte waarde (bijvoorbeeld het aantal views op een pagina) wordt omgezet naar een visuele waarden, zoals de hoogte van een bar in een bar chart.</p>
+
+<p>Omdat D3 te groot is om helemaal te behandelen ligt ik vooral toe hoe we de data omzetten in elementen. Ik heb gekozen dit toe te lichten omdat ik hier in het begin het meeste moeite mee had.</p>
+<h4 id='data-toevoegen'>Data toevoegen</h4>
+<p>Een van de belangrijke principes in D3 is de data join. Hiermee kan je meerdere elementen in een keer maken, op basis van de data. Hierbij gelden wel wat andere principes. Normaal vertel jij via je code wat er moet gebeuren, maar bij een data join vertel je D3 wat je wilt. In het voorbeeld hieronder worden voor elk datapunt cirkels gemaakt:</p>
+<pre class="highlight javascript tab-javascript"><code> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">"circle"</span><span class="p">)</span>
+ <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+ <span class="p">.</span><span class="nx">enter</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="s2">"circle"</span><span class="p">)</span>
+   <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"cx"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="p">})</span>
+   <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"cy"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span> <span class="p">})</span>
+   <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"r"</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">);</span>
+</code></pre>
+<p><small>(code voorbeeld van Chuck Grimmett; we gaan er vanuit dat SVG leeg is)</small></p>
+
+<p>Met deze code zeggen we tegen d3 dat voor elk element in de data array er een cirkel toegevoegd moet worden. Eerst doen we een selectie op alle circle elementen, hieruit komt een lege selectie, omdat er nog niks staat in de svg. Daarna koppelen we deze selectie aan de data door middel van .data(data).</p>
+
+<p>Wanneer je data koppelt aan een selectie krijg je drie andere selecties terug: <em>enter</em> (datapunten die nog geen element heeft), <em>update</em> (elementen die al een datapunt hebben) of <em>exit</em> (elementen waar de datapunten niet meer van bestaat). De <code>.data</code> geeft altijd de update selectie terug, maar daarna kun je <code>.enter</code> of <code>.exit</code> aan roepen om de andere selecties aan te gebruiken.</p>
+
+<p><a href="images/onderzoek/image10.png"><img src="images/onderzoek/image10.png"/></a>
+<small>Afbeelding 21) Schema van een data join in d3. <em>Bron: (Grimmett, 2016)</em></small></p>
+
+<p>Bij het voorbeeld hebben we alleen een <em>enter</em> selectie, er bestonden namelijk nog geen elementen in de svg. Met <code>.enter().append(‘circle’)</code> voegen we voor elk element in deze selectie een circle toe. Deze kan daarna worden aangepast met <code>.attr</code>, zo kan je bepalen hoe dit element eruit ziet, of het een classname geven.</p>
 <h3 id='svg-of-canvas'>Svg of Canvas</h3>
-<p>Voordelen svg (makkelijke interactiviteit, veel voorbeelden)
-Voordelen canvas (sneller)
-Keuze: svg (vanwege interactiviteit)</p>
+<p>Bij D3 was er nog wel de keuze of ik SVG of Canvas ging gebruiken. Een SVG staat voor Scalable Vector Graphic en is vergelijkbaar met een HTML document. Wat SVG is voor een afbeelding is een HTML document voor tekst. Een SVG bestaat uit tekst (XML) en heeft een eigen DOM, waardoor je het makkelijk kunt doorzoeken.</p>
 
-<p>Bronnen: https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/
-https://msdn.microsoft.com/en-us/library/gg193983%28v=vs.85%29.aspx</p>
-<h2 id='gebruikersdata-en-veiligheid-2'>Gebruikersdata en veiligheid</h2><h3 id='de-huidige-situatie'>De huidige situatie</h3>
-<p>Bronnen: https://freshheroes.com/algemene-voorwaarden
-https://freshheroes.com/privacy-policy
-Interview Brian (tba wegens drukte bij Lifely)</p>
+<p>Canvas is een container voor een afbeelding, die volledig getekend wordt door JS. Het heeft geen DOM. Voor de gebruiker is het hetzelfde als een afbeelding; In browsers als Chrome en Firefox kun je het Canvas ook opslaan als afbeelding.</p>
+<h4 id='voordelen-svg'>Voordelen SVG</h4>
+<p>Omdat SVG een eigen DOM heeft kun je gemakkelijk interacties mee maken. Je kan op dezelfde manier Event Listeners op SVG-elementen plaatsen als op HTML-elementen. Bij Canvas kan dit niet, deze heeft geen dom, waardoor je de locatie van je elementen zelf moet bijhouden en vergelijken met waar het Event is gebeurd.</p>
+
+<p>Een ander voordeel van SVG in combinatie met D3 is dat D3 gebouwd is met SVG als basis. Hierdoor zijn veel voorbeelden gemaakt met SVG in plaats van Canvas en is het makkelijker hier hulp voor te vinden als ik problemen tegenkom.</p>
+<h4 id='voordelen-canvas'>Voordelen Canvas</h4>
+<p>Een groot voordeel van Canvas is dat het sneller is, omdat het geen DOM heeft. Bij veel elementen kan een SVG zwaar worden en de pagina langzamer maken. Vooral in combinatie met animaties of zoomen kan dit leiden tot schokkerige animates. Bij Canvas wordt dit alles uitgerekend in de Javascript. Dit kan wel blokkerend zijn voor de rest van je code wanneer je zware calculaties gebruikt, maar ik denk niet dat ik daar in mijn project mee te maken krijg.</p>
+<h4 id='keuze'>Keuze</h4>
+<p>Ik heb uiteindelijk voor SVG gekozen. Ik ga geen hele ingewikkelde datavisualisaties maken waarbij honderden elementen voorkomen. Wel wil ik gaan kijken naar interactie, wat makkelijker is met SVG.</p>
+<h2 id='gebruikersdata-en-veiligheid-2'>Gebruikersdata en veiligheid</h2>
+<p>In mijn project maak ik gebruik van gegevens van gebruikers, daarom leek het mij belangrijk te onderzoeken hoe het zit met de veiligheid en of dit wel overeenkomt met de wetgeving.</p>
+<h3 id='de-huidige-situatie'>De huidige situatie</h3>
+<p>Fresh Heroes heeft een privacy policy, waarin ze melden de volgende data op te slaan:</p>
+
+<ul>
+<li>Naam</li>
+<li>Telefoonnummer</li>
+<li>Address</li>
+<li>Geboortedatum</li>
+<li>Gebruikersnaam, wachtwoord en e-mailadres wanneer u zich registreert voor een</li>
+<li>Fresh Heroes account</li>
+<li>Profiel-informatie die u verstrekt via uw account</li>
+<li>Communicatie tussen Fresh Heroes en u (wij mogen u dienst-gerelateerde e-mails sturen)</li>
+<li>School &amp; opleiding</li>
+<li>Log file informatie</li>
+<li>Metadata (technische gegevens die worden geassocieerd met Gebruikers Inhoud)</li>
+</ul>
+
+<p>Ook wordt er gemeld dat er gebruik wordt gemaakt van Google Analytics, maar nergens wordt gemeld dat er ook data wordt gedeeld met Mixpanel.</p>
+
+<p>Toen Fresh Heroes gebouwd werd is er niet specifiek uitgegaan van veiligheidsstandaarden. Wel zijn er dingen meegenomen als het hashen van de wachtwoorden. Verder zijn er wel een aantal maatregelen genomen om er voor te zorgen dat de database en server goed beveiligd zijn.</p>
+
+<p>De database is afgesloten met een username en wachtwoord, ook is er alleen toegang tot de database via de server. Er is een firewall die alle andere connecties verbreekt als deze niet lokaal zijn.</p>
+
+<p>De server heeft geen root wachtwoord, maar gebruikt SSH (Secure Shell). SSH is een techniek om netwerken en verbindingen mee te beveiligen. Door middel van keys die worden gegenereerd kan het verkeer worden versleuteld en weer ontsleuteld. Dit is veiliger dan wachtwoorden omdat de sleutel niet wordt gestuurd naar de server. Ook draait de applicatie niet als root, maar heeft beperkte rechten.</p>
+
+<p>Er zijn wel nog mogelijkheden om binnen te komen via social engineering, als iemand zijn wachtwoord ergens laat slingeren of doorgeeft aan iemand anders kunnen derden ook de data van Fresh Heroes in zien. Wanneer mensen bij Lifely (en Fresh Heroes) komen werken krijgen we een aantal tips om dit te voorkomen. Zo wordt er verwacht dat je op je mac FileVault aanstaat, zodat je hard drive is versleuteld in het geval dat je laptop wordt gestolen of je deze verliest. Ook wordt er uitgelegd hoe we verantwoordelijk om moeten gaan met keys. Als de keys gedeeld moeten worden met andere developers gebruiken we daarvoor Keybase, daarmee kan je veilig berichten naar elkaar sturen.</p>
 <h3 id='de-wet'>De wet</h3>
-<p>Wat zijn persoonsgegevens, pseudo anoniem persoonsgegevens, anonieme gegevens
-Wat is big data &amp; profiling</p>
+<p>Op dit moment geldt de Wet Bescherming Persoonsgegevens, oftewel de WBP. Daar in staan een aantal belangrijke regels waar bedrijven zich aan moeten houden wanneer er om wordt gegaan met persoons gegevens. Persoonsgegevens zijn alle gegevens waarmee je kan achterhalen wie een persoon is. Bijvoorbeeld namen, adressen, telefoonnummers of foto’s.Tot 6 november 2017 was er de plicht om je aan te melden bij de Autoriteit Persoonsgegevens als je bedrijf persoonsgegevens verwerkt.</p>
+<h4 id='persoonsgegevens'>Persoonsgegevens</h4>
+<p>Er zijn verschillende gradaties in persoonsgegevens. Zo heb je de standaard persoonsgegevens, dit zijn gegevens waarmee je iemand direct kan achterhalen. Maar je hebt ook pseudo anonieme persoonsgegevens, dit zijn gegevens die een persoon wel uniek maken, maar waarmee je niet kan achterhalen wie deze persoon is zonder aanvulling. Een voorbeeld hiervan zijn gebruikers id’s. Zonder een email of een koppeling met gebruikersnaam valt er niet te achterhalen naar wie deze verwijst. Als laatste zijn er anonieme gegevens, dit zijn gegevens waarbij het niet meer mogelijk is om de persoon te identificeren.</p>
 
-<p>Onduidelijk wat er in de wet staat, valt dit onder gebruikers data of big data en profiling?</p>
+<p>Bij Fresh Heroes verzamelen we vooral pseudo anonieme data in events, maar er worden ook persoonsgegevens opgeslagen als emails, sollicitaties, vacatures, namen over stagebegeleiders. De meeste dingen zijn nodig om een service te kunnen leveren, als we een sollicitatie niet opslaan kunnen we deze niet doorsturen naar het bedrijf. Daarvoor hoeft niet expliciet toestemming gevraagd te worden omdat dit zelfsprekend is. Event data valt hier niet onder en volgens de wet moet de gebruiker toestemming geven om deze informatie op te slaan en voor welk doeleinde het wordt opgeslagen.</p>
+<h4 id='big-data-en-profiling'>Big Data en Profiling</h4>
+<p>Bij Big Data en Profiling worden veel gegevens opgeslagen over een langere periode conclusies te kunnen trekken en voorspellingen te kunnen doen. Hier zou je ook mijn project onder kunnen scharen, we verzamelen immers gebruikersdata om te kijken hoe het product draait. Of het ook profiling is vind ik lastig te zeggen, omdat dat het opdelen is van mensen in clusters wat nu niet wordt gedaan, maar wel mogelijk is met de data die wij verzamelen.</p>
+<h4 id='correctierecht'>Correctierecht</h4>
+<p>Het correctierecht betekent dat gebruikers recht hebben om hun data in te kunnen zien, verbeteren, aanvullen, verwijderen of afschermen. Dit mag wanneer de verzamelde informatie onjuist is, onvolledig of niet past bij het doel van de service of dienst. Per wet is een organisatie verplicht om binnen vier weken te antwoorden op een verzoek. Dit recht is bij Fresh Heroes ook opgenomen in de privacy policy, maar is (nog) geen mogelijkheid voor gebruikers om het tracken.</p>
+<h4 id='beveiligingsplicht'>Beveiligingsplicht</h4>
+<p>Er moet worden gezorgd dat alleen geautoriseerde mensen toegang hebben tot de data. Zowel organisatorisch als technisch. Alleen mensen die administrator zijn kunnen bij de event data, gebruikers kunnen wel bij hun eigen data en bij de data die de gebruiker kiest te publiceren (zoals een vacature of een bedrijfsprofiel). Er zijn al technische maatregelen genomen om de data te beveiliging, deze zijn beschreven in het hoofdstuk de huidige situatie.</p>
+<h4 id='algemene-verordening-gegevensbescherming'>Algemene Verordening Gegevensbescherming</h4>
+<p>In mei 2018 komen er nieuwe regels vanuit de Europese Unie. Daarbij blijven de bovenstaande dingen grotendeels gelden, maar er gaan ook een paar dingen veranderen:</p>
 
-<p>Afwachting van experts -&gt; emails
-Ik denk zelf persoonsgegevens, of pseudo anonieme persoonsgegevens vanwege user_id
-Aanpassen van privacy voorwaarden FH
-Mogelijkheid voor opt out opslaan gebruikers id</p>
-
-<p>Bronnen: https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/internet-telefoon-tv-en-post/cookies
-https://autoriteitpersoonsgegevens.nl/sites/default/files/downloads/rs/rs_20071211_persoonsgegevens_op_internet_definitief.pdf
-https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/internet-telefoon-tv-en-post/big-data-en-profiling
-http://www.iusmentis.com/maatschappij/privacy/persoonsgegevens/
-https://blog.iusmentis.com/2015/01/23/mag-mijn-werkgever-google-analytics-op-het-intranet-zetten/</p>
+<ul>
+<li>Geen meldingsplicht meer, wel een documentatieplicht</li>
+<li>Er moet duidelijk toestemming gevraagd worden aan de gebruiker en de gebruiker moet dit later kunnen aanpassen</li>
+<li>Mogelijk moeten bedrijven een Functionaris Gegevensbescherming aanstellen wanneer er op grote schaal persoonsgegevens worden verzameld (profiling) of als het onderdeel is van een overheidsinstelling</li>
+<li>De gebruiker mag eisen dat zijn data wordt verwijdert</li>
+<li>De gebruiker heeft recht op portabiliteit, dat betekent dat ze recht hebben om hun gegevens op te vragen in een standaard formaat</li>
+</ul>
 <h2 id='datavisualisaite'>Datavisualisaite</h2><h3 id='concurrentieanalyse'>Concurrentieanalyse</h3>
-<p>Samenvatting concurrentie analyse, link naar bijlagen</p>
-<h4 id='google-analytics-2'>Google Analytics</h4><h4 id='mixpanel'>Mixpanel</h4><h4 id='kissmetrics'>Kissmetrics</h4><h4 id='baremetrics'>Baremetrics</h4><h4 id='wootric'>Wootric</h4><h4 id='conclusie'>Conclusie</h4><h3 id='best-practices'>Best practices</h3>
-<p>Conclusies uit literatuuronderzoek, lijst met dingen waar op je moet letten:</p>
+<p>gebruikersdata of eventdata en gekeken naar hun interacties en design. Ik heb de volgende platformen onderzocht:</p>
 
-<p>Kwaliteit van informatie (less is a bore)
-Kleur
-Contrast
-Let op voor chart junk
-Bepaal een doel voor je datavisualisatie (doel mijn oplossing -&gt; informeren)</p>
+<ul>
+<li>Google Analytics</li>
+<li>Mixpanel</li>
+<li>Kissmetrics</li>
+<li>Baremetrics</li>
+<li>Wootric</li>
+</ul>
 
-<p>Bronnen: Information Visualization, Colin Ware
-Envisioning Information, Edward R. Tufte
-https://books.google.nl/books?id=N4NcDgAAQBAJ&amp;printsec=frontcover&amp;dq=Data+Visualization:+Representing+Information+on+Modern+Web&amp;hl=en&amp;sa=X&amp;ved=0ahUKEwjYhvycwpHYAhXKEVAKHaICDykQ6AEIJzAA#v=onepage&amp;q=Data%20Visualization%3A%20Representing%20Information%20on%20Modern%20Web&amp;f=false
-https://lisacharlotterost.github.io/2017/03/10/why-do-we-visualize-data/
-https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/gestalt-principles-of-form-perception
-https://www.eea.europa.eu/data-and-maps/daviz/learn-more/chart-dos-and-donts</p>
+<p>Hieruit ben ik tot de volgende conclusies gekomen:</p>
+
+<ul>
+<li>Hovers worden vooral gebruik om meer informatie te geven over een datapunt</li>
+<li>Kleuren in visualisaties worden gebruikt om onderscheid te maken tussen verschillende typen data</li>
+<li>Bij alle platformen kan je het datumbereik van de data aanpassen</li>
+<li>Veel data is zowel positief als negatief, door veel kan de gebruiker meer, maar kan de gebruiker ook makkelijker de weg kwijt raken</li>
+<li>De layout van de dashboards is vaak simpel</li>
+<li>Data in de dashboards zijn gecategoriseerd per pagina</li>
+</ul>
+
+<p>De gedetailleerde versie van mijn concurrentieanalyse kun je vinden in Bijlage 3.</p>
+<h3 id='best-practices'>Best practices</h3>
+<p>Ook heb ik onderzoek gedaan naar wat de best practices zijn voor het maken van een data visualisatie.</p>
+<h4 id='less-is-a-bore'>Less is a bore</h4>
+<p>In het boek Envisioning Information heeft Tufte het over de kwaliteit van je informatie. Bij veel ontwerpen wordt er gesproken over ‘Less is more’ maar volgens Tufte is het bij je informatie juist omgekeerd oftewel: Less is a bore. Hiermee bedoelt hij dat een simpele datavisualisatie niet betekent dat de informatie ook makkelijk te begrijpen is. Soms heb je iets meer context nodig om te begrijpen waar iets overgaat.</p>
+
+<p>Ook gaat het over de kwaliteit van je informatie, bij simpele informatie is er vaak maar een manier om ernaar te kijken. Dit betekent dat de designer al een keuze maakt in wat belangrijk is in de visualisatie. Volgens Tufte is dit niet aan de designer, maar aan de lezer. Door meer informatie in een visualisatie te stoppen kan de lezer zelf bepalen wat belangrijk is.</p>
+<h4 id='kleur-en-contrast'>Kleur en Contrast</h4>
+<p>In design zijn kleur en contrast erg belangrijk, dus ook bij het maken van een datavisualisatie. Door het gebruik van kleur kan je meerdere lagen aangeven in een datavisualisatie. Dat betekent dat je, bijvoorbeeld, meerdere categorieën in dezelfde visualisatie te zetten, in plaats hiervoor een nieuwe te maken. (Tufte, E. R. (1992). Envisioning Information. Graphics Press.)</p>
+
+<p>Contrast is belangrijk om dingen overzichtelijk te houden. Door dingen die belangrijk zijn dikker te maken zijn gebruikers eerder geneigd om daarnaar te kijken. (Ware, C. (2004). Information Visualization: Perception for Design. Elsevier.) Dit kan ik gebruiken om dingen die interessant zijn te belichten in mijn visualisaties.</p>
+<h4 id='kijk-uit-voor-chart-junk'>Kijk uit voor chart junk</h4>
+<p>In Tufte’s boek wordt ook het begrip chartjunk gebruikt. Dit komt neer op dingen die rond een visualisatie staan, maar niets toevoegen aan de visualisatie. Denk hierbij aan afbeeldingen of een illustratie om in de visualisatie zelf. Een ander voorbeeld hiervan is het gebruik van 3d in een visualisatie. Dit kan ervoor zorgen dat delen groter lijken dan ze eigenlijk zijn waardoor verwarring ontstaat:</p>
+
+<p><a href="images/onderzoek/image26.png"><img src="images/onderzoek/image26.png"/></a>
+<small>Afbeelding 22) Door het 3d effect lijkt de 19.5% groter dan de 21.2%  <em>Bron: (“Chart dos and don’ts”, 2016)</em></small></p>
+<h4 id='weet-het-doel-van-je-datavisualisatie'>Weet het doel van je datavisualisatie</h4>
+<p>Het verstandig om te weten wat je wilt bereiken met je datavisualisatie of wat je gebruiker er mee wilt bereiken. In de presentatie van Rost, Why Do We Visualize Data?, noemt ze drie redenen waarom mensen gebruik maken van visualisaties: </p>
+
+<ul>
+<li>Inspireren, hierbij gaat er vooral om de data mooi en interessant weer te geven</li>
+<li>Begrijpen, hierbij is het belangrijk dat de gebruiker de data kan interpreteren</li>
+<li>Impliceren, hierbij wordt de datavisualisatie gebruikt om een mening te ondersteunen</li>
+</ul>
+
+<p>Bij mijn datavisualisatie is Begrijpen de voornaamste reden. Rost legt verder nog uit wat belangrijke stappen zijn bij dit soort datavisualisatie:</p>
+
+<ol>
+<li>Begrijpen</li>
+<li>Uitleggen</li>
+<li>Onderzoeken</li>
+</ol>
+
+<p>Dit betekent dat je eerst zelf de data moet <em>Begrijpen</em> omdat je deze als ontwerpen anders niet kan gaan <em>Uitleggen</em> aan je gebruiker. Soms is er niet de mogelijkheid of de ruimte om alles uit te leggen aan de gebruiker, maar wil je je gebruikers de data kunnen laten <em>Onderzoeken</em>. Daarbij is het belangrijk dat je de gebruiker tools geeft om dit te doen. Een voorbeeld van dit soort visualisaties zijn dashboards.</p>
 <h3 id='dashboard-design'>Dashboard design</h3>
-<p>Ken je user, prioritiseer data, werk vanuit gebruikers doelen, verstop dingen die weinig belang hebben, testen</p>
+<p>Omdat mijn oplossing een onderdeel is van een bestaand dashboard vond ik het belangrijk om te kijken naar de principes van Dashboard Design.</p>
+<h4 id='werk-vanuit-gebruikers-doelen'>Werk vanuit gebruikers doelen</h4>
+<p>Een dashboard wordt vaak gebouwd om gebruikers inzichten te geven of om productiviteit te vergroten (O’Sullivan, 2016). Daarom is het belangrijk om goed onderzoek te doen naar je gebruiker of samen te werken met gebruikers. Ik doe dit ook in mijn project, als ik vragen heb kan ik gemakkelijk naar mijn gebruikers vragen wat zij willen of wat hun handig vinden.</p>
+<h4 id='prioritiseer-data'>Prioritiseer data</h4>
+<p>In zijn artikel Dashboard Design - Considerations and Best Practices legt de schrijver Subotin uit dat het prioriteren van data een belangrijk onderdeel is. Niet alles is even belangrijk en een bij een dashboard is het belangrijk om snel en gemakkelijk de belangrijkste dingen te laten zien.</p>
 
-<p>Bronnen: https://www.nngroup.com/articles/dashboards-preattentive/
-https://www.invisionapp.com/blog/designing-better-dashboards/
-https://www.toptal.com/designers/data-visualization/dashboard-design-best-practices</p>
+<p>Ook heeft Subotin het over het principe Progressive Disclosure. Dat betekent dat je dingen verstopt die minder belang hebben. Zo kan de gebruiker zelf bepalen wanneer ze dit willen zien. Een voorbeeld hiervan in een datavisualisatie is een detail van een datapunt die zichtbaar wordt wanneer je ergens overheen hovert.</p>
+<h4 id='testen-in-de-praktijk'>Testen in de praktijk</h4>
+<p>Een dashboard wordt vaak intensief gebruikt door gebruikers, waardoor het belangrijk is dat gebruikers er goed mee om kunnen gaan. Veel dingen kunnen door kleine testen al uitgefilterd worden. Maar het is belangrijk om ook te testen met echte data en een afgerond design. Vooral bij datavisualisaties is dit belangrijk, omdat je data nodig hebt om een goede visualisatie te maken.</p>
 <h3 id='categoriseren-van-data'>Categoriseren van data</h3>
-<p>Gedaan op basis van feedback Barry, graag dingen die bij elkaar horen op een pagina. Statistieken van de website algemene, informatie over gebruiker en vacatures en sollicitaties zijn de pagina’s geworden.</p>
+<p>Omdat het al snel duidelijk werd dat de wensen van mijn gebruikers niet op een pagina passen moest ik beslissen welke data bij elkaar hoort. In overleg met Barry zijn we tot de volgende pagina’s gekomen:</p>
+
+<ul>
+<li>Algemene statistieken van de website</li>
+<li>Informatie over gebruikers</li>
+<li>Vacatures en Sollicitaties</li>
+</ul>
 <h3 id='interactie'>Interactie</h3>
-<p>Alleen nuttige interactie, moet geen circus worden. Hulp voor gebruiker om te bepalen wat hij wilt zien. Kijk naar voorbeelden van NYT. Voorbeelden nuttige interactie:
-Scrollen voor meer data
-Data bereik kunnen aanpassen
-Zoeken
-Progressive disclosure (van uit dashboard design)</p>
+<p>Mijn oplossing is een webapplicatie en op het web is interactie erg belangrijk. Maar omdat het belangrijk is datavisualisaties simpel te houden wil ik alleen nuttige interactie toevoegen. Daarvoor heb ik gekeken naar de voorbeelden in mijn concurrentie onderzoek maar ook naar de datavisualisaties van de New York Times. Hieruit heb ik de volgende nuttige interacties gehaald:</p>
 
-<p>Bronnen: https://www.nngroup.com/articles/progressive-disclosure/
-https://www.nytimes.com/interactive/2014/upshot/buy-rent-calculator.html</p>
+<ul>
+<li>Scrollen voor meer data, de <a href="https://www.nytimes.com/interactive/2014/upshot/buy-rent-calculator.html">Buy Rent Calculator</a> is hier een mooi voorbeeld van</li>
+<li>Data bereik aan kunnen passen, bijvoorbeeld een datepicker om het datumbereik aan te passen</li>
+<li>Zoeken</li>
+<li>Progressive Disclosure, details zien door middel van hovers over een datapunt</li>
+</ul>
 <h3 id='grafiek-keuze'>Grafiek keuze</h3>
-<p>Uitleg over verschillende soorten data. Categories, Tijd gebonden, vergelijkend, ect. (link naar lijst van Datavis catalogue). Uitleg keuzes voor alle grafieken op huidige oplossing:</p>
+<p>In datavisualisaties zijn veel verschillende soorten data. Om een goede visualisatie te kunnen maken moet ik eerst weten welke soorten en zijn. In het boek Information Visualisation wordt data opgesplitst in entiteiten en relaties. Een entiteit is een object. Dit kan een ding zijn, zoals een view, maar ook groepen van dingen zoals een soort vacature. Een relatie is de structuur tussen entiteiten, oftewel de manier waarop ze bij elkaar horen.</p>
 
-<p>Unieke pageviews per week
-Sessies per dag
-Page views voor {pagina} per dag
-Gebruikers per soort
-Aanmeldingen per type
-Actieve vacatures per categorie
-Nieuwe vacatures per categorie
-Views en sollicitaties per categorie
-Registratie funnel
-Sollicitatie funnel </p>
+<p>Entiteiten en relaties hebben attributen, dit zijn eigenschappen zoals hoe vaak een vacature bekeken is. Simpelweg hebben attributen 4 soorten data: nominaal, ordinaal, interval en ratio. Nominaal staat voor woorden en labels, zoals ‘Nieuwe Studenten’. Ordinaal is geordende data, zoals een lijst van hoog naar laag. Interval wordt vaak gebruikt voor tijd en het werkt goed om gaten te ontdekken tussen de waardes. Ratio is een numerieke verhouding tussen entiteiten. Vaak wordt hier 0 als basis gebruikt. Dit zijn de meeste numerieke waardes, een voorbeeld hiervan is het aantal views op een vacature.</p>
+<h4 id='grafiek-toelichting'>Grafiek toelichting</h4>
+<p>Om een goede keuze te kunnen maken per soort grafiek heb ik gebruik gemaakt van The Data Visualisation Catalogue. Dit een een website waarin een groot aantal datavisualisaties opgeslagen en je kunt filteren op het soort data wat je wilt weergeven. Per visualisatie ligt ik kort toe waarom ik voor deze vorm gekozen heb.</p>
+<h5 id='unieke-pageviews-per-week'>Unieke pageviews per week</h5>
+<p><a href="images/onderzoek/image9.png"><img src="images/onderzoek/image9.png"/></a>
+<small>Afbeelding 23) Barchart voor unieke pageviews per week</small></p>
 
-<p>Bronnen: https://datavizcatalogue.com/index.html
-http://www.businessinsider.com/pie-charts-are-the-worst-2013-6?international=true&amp;r=US&amp;IR=T
-https://www.fusioncharts.com/blog/bar-charts-or-column-charts/</p>
+<p>Unieke pageviews per week is nominale data (de pagina’s) gecombineerd met ratio data. In een bar chart kun je duidelijk de verhoudingen zien tussen de verschillende ratio. Ik heb hier voor een horizontale versie gekozen omdat er dan meer ruimte is voor labels.</p>
+<h5 id='sessies-per-dag'>Sessies per dag</h5>
+<p><a href="images/onderzoek/image15.png"><img src="images/onderzoek/image15.png"/></a>
+<small>Afbeelding 24) Histogram voor aantal sessies per dag van deze week
+</small></p>
+
+<p>Sessies per dag een combinatie van interval data (de dagen van de week) en ratio data (het aantal sessies). Dit soort grafiek lijkt op een barchart, maar wordt officieel een histogram genoemd omdat het gebruikt maakt van interval in plaats van nominaal. (Ribecca, z.d.).</p>
+<h5 id='page-views-voor-bedrijfsjungle-per-dag'>Page views voor /bedrijfsjungle per dag</h5>
+<p><a href="images/onderzoek/image7.png"><img src="images/onderzoek/image7.png"/></a>
+<small>Afbeelding 25) Histogram voor het aantal unieke views voor een pagina per dag van deze week 
+</small></p>
+
+<p><a href="images/onderzoek/image6.png"><img src="images/onderzoek/image6.png"/></a>
+<small>Afbeelding 26) Line chart voor het aantal unieke views voor een pagina per dag van deze week
+</small></p>
+
+<p>Bij de datavisualisatie voor het aantal unieke view per dag voor een pagina (van deze week) was ik erg in twijfel of ik gebruik zou maken van een histogram of een line chart. Elke dag is opgedeeld per uur, zodat je kan zien wanneer er pieken in views zijn. Beide charts laten dit zien, dus uiteindelijk heb ik het aan mijn gebruikers gevraagd. Barry vond de hover met de histogram makkelijker, waardoor ik daarvoor gekozen heb.</p>
+
+<p><a href="images/onderzoek/image25.png"><img src="images/onderzoek/image25.png"/></a>
+<small>Afbeelding 27) Barry laat kort en bondig zijn voorkeur aan mij weten
+</small></p>
+<h5 id='gebruikers-per-soort'>Gebruikers per soort</h5>
+<p><a href="images/onderzoek/image20.png"><img src="images/onderzoek/image20.png"/></a>
+<small>Afbeelding 28) Donut chart voor het soort gebruikers en het aantal nieuwe gebruikers deze week
+</small></p>
+
+<p>Gebruikers per soort is ratio (het aantal gebruikers) en nominaal (het soort gebruikers). Ik heb gekozen voor een Donut chart met een samenvatting ernaast. Met een Donut chart kan de gebruiker snel zien wat de verhouding is tussen de twee soorten. Omdat de nieuwe gebruikers ook horen bij de oude gebruikers heb ik gekozen om de kleuren dicht bij elkaar te houden. </p>
+
+<p>Donut (en Pie) charts zijn redelijk controversieel voor datavisualisaties, omdat je er geen groot aantal categorieën in kan laten zien en dat mensen minder goed zijn in het vergelijken van oppervlakte. (Hickey, 2013) Toch heb ik gekozen voor een Donut Chart omdat het weinig categorieën zijn en je even snel kan zien hoe de verhoudingen liggen.</p>
+<h5 id='aanmeldingen-per-type'>Aanmeldingen per type</h5>
+<p><a href="images/onderzoek/image22.png"><img src="images/onderzoek/image22.png"/></a>
+<small>Afbeelding 29) Grouped bar chart voor het aantal aanmeldingen per type
+</small></p>
+
+<p>Aanmeldingen per type is een combinatie van nominaal (categorieën), interval (dagen) en nominaal (aantal aanmeldingen). Het is geen histogram omdat de horizontale data niet geheel opeenvolgend is. De lichtgroene bar is andere data dan de donkerdere bar, niet een gevolg op elkaar. Ik heb ervoor gekozen hier een grouped bar chart van te maken zodat de twee categorieën makkelijk vergeleken kunnen worden.</p>
+<h5 id='bekeken-vacatures-deze-week'>Bekeken vacatures deze week</h5>
+<p><a href="images/onderzoek/image23.png"><img src="images/onderzoek/image23.png"/></a>
+<small>Afbeelding 30) Top 10 lijst van bekeken vacatures deze week
+</small></p>
+
+<p>Voor bekeken vacatures deze week heb ik ervoor gekozen om geen visualisatie te maken. Er zijn te veel vacatures om hier een goede chart van te maken, dus heb ik in overleg ervoor gekozen een top 10 lijst te maken. Volgens de soorten data is dit ordinale data in combinatie met nominale data.</p>
+<h5 id='actieve-vacatures-per-categorie'>Actieve vacatures per categorie</h5>
+<p><a href="images/onderzoek/image14.png"><img src="images/onderzoek/image14.png"/></a>
+<small>Afbeelding 31) Top 10 lijst van bekeken vacatures deze week
+</small></p>
+
+<p>Net als bij Gebruikers per soort hebben we hier te maken met nominale data en en ratio data. Hier is een categorie bij gekomen omdat ik de kleuren van de categorieën consistent wil houden op de pagina. Ik heb hier ook voor een donut chart gekozen omdat het belangrijk is om te zien wat de belangrijkste categorieën zijn, niet precies hoeveel. Als de gebruiker toch wilt weten hoeveel het precies is kan de gebruiker over een sectie heen hoveren.</p>
+
+<p><a href="images/onderzoek/image8.png"><img src="images/onderzoek/image8.png"/></a>
+<small>Afbeelding 32) Voorbeeld van een hover over een sectie
+</small></p>
+<h5 id='nieuwe-vacatures-per-categorie'>Nieuwe vacatures per categorie</h5>
+<p><a href="images/onderzoek/image12.png"><img src="images/onderzoek/image12.png"/></a>
+<small>Afbeelding 33) Bar chart voor het aantal nieuwe vacatures deze week per categorie
+</small></p>
+
+<p>Nieuwe vacatures per categorie maakt gebruikt van nominale (categorieën) en ratio data. Ik heb voor een barchart gekozen zodat de categorieën makkelijk te vergelijken zijn. Ik heb te labels gedraaid zodat er genoeg ruimte is om ze te lezen.</p>
+<h5 id='views-en-sollicitaties-per-categorie'>Views en sollicitaties per categorie</h5>
+<p><a href="images/onderzoek/image17.png"><img src="images/onderzoek/image17.png"/></a>
+<small>Afbeelding 34) Combinatie grafiek over het aantal views per categorie en het aantal sollicitaties per categorie van deze week
+</small></p>
+
+<p>In views en sollicitaties per categorie wordt gebruik gemaakt van nominale (categorieën) en ratio data (aantal views en aantal sollicitaties). Ik heb heb er voor gekozen om de ratio’s te combineren in dezelfde chart. Zo kan de gebruiker niet alleen de views of sollicitaties vergelijken, maar ook kijken hoe de verhouding tussen views en sollicitaties is. </p>
+<h5 id='registratie-amp-sollicitatie-funnels'>Registratie &amp; Sollicitatie funnels</h5>
+<p><a href="images/onderzoek/image21.png"><img src="images/onderzoek/image21.png"/></a>
+<small>Afbeelding 35) Funnel visualisatie voor de registratie flow met data van deze week
+</small></p>
+
+<p><a href="images/onderzoek/image16.png"><img src="images/onderzoek/image16.png"/></a>
+<small>Afbeelding 36) Funnel visualisatie voor de sollicitatie flow met data van deze week
+</small></p>
+
+<p>Voor de funnel visualisaties heb ik geen vorm gekozen die voorkomt in Data Visualisation Catalogue. De funnel maakt gebruik van nominale data (de stappen), ordinale data (de volgorde van de stappen en ratio data (de aantallen en percentages). Ik gebruik de ratio data van percentages om de grote van de bars uit te rekenen, ze staan geordend volgens de ordinale data van de stappen volg order. Als laatste laat ik de nominale data terug komen als labels, zodat duidelijk is waar elke bar voor staat.</p>
+
+<p>Ik heb hiervoor gekozen omdat je aan de houdingen tussen de bars een idee krijgt wat het verschil is, maar mijn gebruikers vinden het ook fijn om te percentages te hebben. De visualisatie is hier meer terug ondersteuning van de tekst dan anders om.</p>
 <h1 id='validatie'>Validatie</h1><h2 id='tussentijdse-feedback'>Tussentijdse feedback</h2>
-<p>Vaak vraag ik feedback over een grafiek aan Barry over slack, dan krijg ik opmerkingen terug over wat hij beter vind. Bijv. Line vs. Histogram, waarvoor histogram gekozen is. Voornamelijk feedback over content, zoals soorten grafieken.</p>
-<h2 id='lunch-presentatie'>Lunch Presentatie</h2>
-<p>Tijdens lunch gepresenteerd aan collega’s. Weinig feedback uitgehaald, eerder op merkingen over techniek. Wel leuk om te laten zien waarmee ik bezig ben.</p>
-<h2 id='feedback-frenzy'>Feedback Frenzy</h2>
-<p>Advies over design en interactie:
-Kijk af van goede voorbeelden, bijv. Analytics
-Vraag hulp aan in house designers bij vormgeving en interactie</p>
-<h2 id='gebruikerstest'>Gebruikerstest</h2>
-<p>Nog geen tijd gehad om te plannen, plan volgen LUNA design principe: Locate, Understand, Act (Black, Luna, Lund, &amp; Walker, 2017). Wil Barry, Pim, Nick en Dirk gaan testen.</p>
-<h2 id='conclusies-uit-datavisualisatie'>Conclusies uit Datavisualisatie</h2>
-<p>Afspraak met Nick (tba). Nu al dingen duidelijk zoals: de growth categorie heeft het minste sollicitaties, niemand (0 events in 3 weken) gebruikt afstand filter</p>
-<h1 id='conclusie-2'>Conclusie</h1>
-<p>Samenvatting van alle conclusies, reacties van gebruikers en link naar eindproduct.</p>
+<p>Tijdens het bouwen van mijn oplossing vraag ik vaak feedback aan mijn collega’s. Voornamelijk aan Barry als ik vragen heb over mogelijke interacties omdat hij het meest gebruikt gaat maken van mijn oplossing. Meestal stuur ik een bericht over slack of doe een kleine demonstratie. Een voorbeeld hiervan was de keuze tussen histogram en line chart bij de <em>Pageviews voor /bedrijfsjungle per dag</em> visualisatie.</p>
 
+<p>Als ik vragen heb over de techniek vraag ik dat meestal aan mijn collega Rick. Hij heeft eerder in Fresh Heroes gewerkt, zowel aan de frontend als de backend. Vooral bij vragen over Laravel heeft hij mij veel verder geholpen. Verder heb ik ook hulp gevraagd aan Dirk bij merge conflicten en aan Peter bij een migratie die niet helemaal lekker liep.</p>
+<h2 id='lunch-presentatie'>Lunch Presentatie</h2>
+<p>Op 4 december heb ik voor mijn collega’s bij Lifely een demo gehouden van het dashboard. Het was vooral leuk om te laten zien waar ik mee bezig was, maar ik heb er geen nuttige feedback uitgehaald.</p>
+<h2 id='feedback-frenzy'>Feedback Frenzy</h2>
+<p>Tijdens de Feedback Frenzy op 23 november heb ik vooral feedback en tips gevraagd over hoe ik meer interactie kan toevoegen aan mijn visualisaties en wat ik kan doen om mijn design te verbeteren. Ik kreeg vooral tips om mij te laten inspireren door andere analytics tools en mij minder te focussen op design maar meer op de andere punten van mijn project. Een designer kan dan later nog een slag maken over mijn prototype. Als laatste kreeg ik de tip om voorlopige conclusies uit de data ook te verwerken in mijn verslag.</p>
+<h2 id='gebruikerstest'>Gebruikerstest</h2>
+<p>Op 9 en 10 januari heb ik mijn oplossing getest met Barry en Pim. Ik heb daarvoor het LUNA principe gebruikt dat werd beschreven in het boek Information Design: Research and Practice. LUNA staat voor:</p>
+
+<ul>
+<li>Locate, kunnen gebruikers de gewenste informatie makkelijk vinden?</li>
+<li>UNderstand, kunnen gebruikers de informatie begrijpen?</li>
+<li>Act, heeft de gebruiker iets aan de informatie?</li>
+</ul>
+
+<p>Tijdens mijn testen loop ik de drie pagina’s door en vraag ik om te beschrijven of ze zien,  doen en of ze iets missen.</p>
+<h3 id='barry-kraakman'>Barry Kraakman</h3>
+<p><em>Locate:</em> Informatie is makkelijk te vinden, fijn dat de pagina’s gecategoriseerd zijn. Mist nog wel de mogelijkheid om meer data in te kunnen zien door de datum aan te passen.</p>
+
+<p><em>Understand:</em> Geen opmerkingen over de visualisaties. Hij mist wel nog context bij de grafieken, vooral over wanneer de data geldt. Barry deed zelf de suggestie om het in de titel van een visualisatie te zetten. Doordat het niet goed is aangegeven is het lastig om te zien wat overzicht data is en wat data van deze week is. Als laatste had hij nog commentaar dat bij vergelijkingen het goed duidelijk moet zijn waarmee wordt vergeleken.</p>
+
+<p><em>Act:</em> Barry wil het liefst het eerst een tijdje uit proberen voor dat hij hier iets over zegt, maar het lijkt wel veel belovend.</p>
+<h3 id='pim-verlaan'>Pim Verlaan</h3>
+<p><em>Locate:</em> Pagina categorieen zijn prima. Hij mist ook nog de mogelijkheid om alle data in te kunnen zien. Verder zou hij het fijn vinden om lange termijn trends te kunnen analyseren. Dit is voor hem interessanter dan de dag tot dag operaties van Fresh Heroes. Verder had Pim nog een aantal suggesties voor grafieken die hij interessant zou vinden: </p>
+
+<ul>
+<li>Pageviews &amp; Bounce Rate</li>
+<li>Tijd op pagina</li>
+<li>Aantal pagina’s bezocht per bezoeker</li>
+<li>Vacature views van ingelogde bezoekers vs. niet ingelogd</li>
+<li>Welke vacature tags presteren het beste</li>
+</ul>
+
+<p><em>Understand:</em> De button animatie werkt afleidend, hij raad aan deze weg te halen op de pagina’s waar ik geen analytics gebruik of helemaal weg te halen als een gebruiker is ingelogd. Pim mist ook de context bij de grafieken, het is verwarrend dat totalen en data van deze week niet duidelijk aangegeven is. </p>
+
+<p><em>Act:</em> Pim kon wel al een aantal conclusies trekken uit de data visualisaties, maar wees er wel op dat het voor nu meer een tool is voor Barry en de korte termijn.</p>
+<h2 id='conclusies-uit-datavisualisatie'>Conclusies uit Datavisualisatie</h2>
+<p>Na mijn gebruikerstest met Pim hebben we ook de data doorgenomen die nu beschikbaar is in mijn oplossing. Hieruit hebben we de volgende conclusies getrokken:</p>
+
+<ul>
+<li>De distance filter is maar zeven keer gebruikt sinds de events live zijn gegaan op 21 november. Dit zou kunnen komen doordat veel vacatures in de regio Amsterdam zijn en gebruiker het daarom onnodig vinden om te filteren op afstand</li>
+<li>Er zijn minder sollicitaties te zien in de statistieken in vergelijking met wat Barry en Pim horen van bedrijven. Dit komt vooral omdat studenten niet solliciteren via het platform, maar bedrijven direct een email sturen.</li>
+<li>Er worden de laatste paar weken meer vacatures geplaatst</li>
+<li>Er zijn meer kleine bedrijven op Fresh Heroes dan grote bedrijven</li>
+</ul>
+<h1 id='conclusie'>Conclusie</h1>
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/6EbU-c_lYFk?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></p>
 <h1 id='aanbevelingen'>Aanbevelingen</h1>
-<p>Dit hoofdstuk gaat over mijn aanbevelingen over het product. Het zijn vooral technische verbeteringen, maar ik raad ook aan om na gebruik de interactie te evalueren en verbeteren.</p>
+<p>Dit hoofdstuk gaat over mijn aanbevelingen over het product. Het zijn vooral technische verbeteringen, maar ik raad ook aan om na gebruik de oplossing te evalueren en verbeteren.</p>
 <h2 id='google-analytics-naar-backend-verplaatsen'>Google Analytics naar backend verplaatsen</h2>
-<p>Nu wordt Google Analytics op de voorkant aangeroepen, verplaatsen naar de achterkant. Zo kunnen we makkelijk requests cashen, alle data op dezelfde plek, makkelijker bij te houden want alle code staat in dezelfde controller vs. 3 javascript bestanden, hoeft niet bij elke refresh opnieuw een request te versturen die kans heeft op falen. </p>
+<p>Op dit moment wordt Google Analytics aangeroepen in de voorkant van de applicatie, dit is zwaarder dan wanneer het door de server wordt geregeld. Ook kunnen we zo requests cashen waardoor ze niet elke keer opnieuw gedaan hoeven te worden. Verder zorgt het ook voor consistentie, alle data komt dan via de Controller. Als laatste hoeft er dan niet bij elke refresh nieuwe data worden opgehaald (door het cashen van requests).</p>
 
-<p>Package voorstel van Brian: <a href="https://github.com/spatie/laravel-analytics">https://github.com/spatie/laravel-analytics</a></p>
+<p>Mijn collega Bryan heeft hier voor een package voor gesteld, <a href="https://github.com/spatie/laravel-analytics">Laravel Analytics</a> door de webontwikkelaars van Spatie.</p>
 <h2 id='anonimiseren-van-user_id'>Anonimiseren van user_id</h2>
 <p>Vanwege de wet op persoonsgegeven moeten we overwegen user_id’s te anonimiseren bij events, of alleen op te slaan of de gebruiker is ingelogd en of het een bedrijf of student is.</p>
 
@@ -1074,17 +1281,133 @@ Vraag hulp aan in house designers bij vormgeving en interactie</p>
 
 <p>Nadelen is dat je niet kan achterhalen wie je ‘power’ users zijn en kan vergelijken waarin deze verschillen met de andere gebruikers. </p>
 <h2 id='session-gebruiken-om-de-funnels-en-views-toe-te-spitsen'>Session gebruiken om de funnels en views toe te spitsen</h2>
-<p>We slaan session_id’s op, maar deze worden nog niet gebruikt in de funnel datavisualisaties. Dit komt omdat dit veel tijd kost en ik hier (waarschijnlijk) niet genoeg tijd voor heb. Daarom heb ik er voor gekozen te laten zien hoe een funnel datavisualisatie er uitziet. In een volgende iteratie kan dit wel worden geïntegreerd zodat de data betrouwbaarder is.</p>
+<p>We slaan session_id’s op, maar deze worden nog niet gebruikt in de funnel datavisualisaties. Dit komt omdat dit veel tijd kost en ik in dit project niet genoeg tijd dit te implementeren. Daarom heb ik er voor gekozen te laten zien hoe een funnel datavisualisatie er uitziet, ook al klopt de data niet 100%. In een volgende iteratie kan dit wel worden geïntegreerd zodat de data betrouwbaarder is.</p>
 <h2 id='gebruikersovereenkomst-aanpassen'>Gebruikersovereenkomst aanpassen</h2>
-<p>In de huidige gebruikersovereenkomst en privacy voorwaarden wordt niet genoemt dat er ook gebruikersinteracties worden opgeslagen. Daarbij moet de gebruiker ook de mogelijkheid krijgen dit te weigeren, omdat het opslaan van gebruikers data niet direct nodig is voor het leveren van de diensten van Fresh Heroes (solliciteren en het plaatsen van vacatures). </p>
+<p>In de huidige gebruikersovereenkomst en privacy voorwaarden wordt niet genoemt dat er ook gebruikersinteracties worden opgeslagen. Daarbij moet de gebruiker ook de mogelijkheid krijgen dit te weigeren, omdat het opslaan van gebruikers data niet direct nodig is voor het leveren van de diensten van Fresh Heroes (solliciteren en het plaatsen van vacatures). Dit moet voor mei 2018 gebeuren om in lijn te zijn met de nieuwe wet.</p>
 <h2 id='implementeren-van-kpi-s'>Implementeren van KPI’s</h2>
 <p>Om de visualisaties bruikbaarder te maken zouden er KPI’s geïmplementeerd kunnen worden. Zo kunnen de gebruikers in één keer zien welke statistieken wel op schema liggen en welke niet. </p>
 <h2 id='grafieken-generaliseren-refactoren'>Grafieken generaliseren/refactoren</h2>
-<p>Op dit moment zijn alle grafieken specifiek gebouwd voor de data, maar een deel van de code lijkt erg op elkaar. Dit zou gegeneraliseerd kunnen worden, zodat er gemakkelijker verbeteringen kunnen worden gebouwd en de grafieken hergebruikt kunnen worden voor andere datavisualisaties.</p>
+<p>Op dit moment zijn alle grafieken specifiek gebouwd voor de data, maar een deel van de code lijkt erg op elkaar. Dit zou gegeneraliseerd kunnen worden. Hierdoor kan een andere developer makkelijker nieuwe visualisaties maken en verbeteringen aanbrengen. Ook zorgt dit voor herbruikbaarheid van visualisaties zodat ze opnieuw kunnen worden gebruikt met andere data.</p>
 <h1 id='bijlagen'>Bijlagen</h1><h2 id='bijlage-1-huidige-datamodel'>Bijlage 1 - Huidige Datamodel</h2>
 <p><a href="images/bijlae/huidig.png"><img src="images/bijlage/huidig.png"/></a></p>
 <h2 id='bijlage-2-nieuwe-datamodel'>Bijlage 2 - Nieuwe Datamodel</h2>
 <p><a href="images/bijlae/nieuw.png"><img src="images/bijlage/nieuw.png"/></a></p>
+<h2 id='bijlage-3-concurrentieanalyse'>Bijlage 3 - Concurrentieanalyse</h2><h3 id='google-analytics-2'>Google Analytics</h3>
+<p>Google Analytics is een van de bekende voorbeelden voor het verzamelen van gegevens over gebruikersgedrag en datavisualisaties. Het is een gratis platform, wat ook ontzettend krachtig is, waardoor het door veel websites en online services wordt gebruikt.</p>
+
+<p><a href="images/bijlage/image5.png"><img src="images/bijlage/image5.png"/></a>
+<small>Afbeelding 37) Screenshot van Google Analytics
+</small></p>
+<h4 id='interactie-amp-datavisualisaties'>Interactie &amp; Datavisualisaties</h4>
+<p>Er zijn veel kleine interacties die zorgen voor progressive disclosure, als je hover over grafieken krijg je duidelijk de cijfers te zien van het datapunt.</p>
+
+<p>Ook zijn er veel mogelijkheden op een pagina om meer informatie te krijgen. Er zijn veel knopjes om van data te switchen en tabellen onder visualisaties om te laten zien wat de data is.</p>
+
+<p>Er zijn wel veel mogelijkheden, dit komt ook doordat Google Analytics een grote tool is die voor veel dingen gebruikt kan worden. Niet alle data die er op staat is even relevant voor Fresh Heroes.</p>
+
+<p><a href="images/bijlage/image9.png"><img src="images/bijlage/image9.png"/></a>
+<small>Afbeelding 38) Sorteer en grafiek opties
+</small></p>
+
+<p><a href="images/bijlage/image9.png"><img src="images/bijlage/image9.png"/></a>
+<small>Afbeelding 39) voorbeeld van een mouse over
+</small></p>
+<h4 id='design'>Design</h4>
+<p>Dat Google Analytics een van de grote systemen is is duidelijk te zien aan de zorg die gestoken is in de datavisualisaties, alleen het minimale wat nodig is wordt gebruikt zodat er geen ‘chartjunk’ is. Ze voldoen aan bijna alle best practices (zie hoofdstuk Datavis) van een goede datavisualisatie, behalve duidelijke doelen van een datavisualisatie maar dat lijkt mij ook lastig wanneer je deze moet ontwikkelen voor veel verschillende partijen.</p>
+<h3 id='mixpanel'>Mixpanel</h3>
+<p>Mixpanel is een een service waarmee je eventdata kunt opslaan en bekijken. Het is een gratis service, maar met limieten als je niet betaalt. Mixpanel wordt veel gebruikt omdat het makkelijk is voor niet technische mensen om te werken met de events. Je kunt bijvoorbeeld funnels later samenstellen, zodat je daar van te voren niet over na hoeft te denken.</p>
+
+<p><a href="images/bijlage/image10.png"><img src="images/bijlage/image10.png"/></a>
+<small>Afbeelding 40) Screenshot van Mixpanel
+</small></p>
+<h4 id='interactie-amp-datavisualisaties-2'>Interactie &amp; Datavisualisaties</h4>
+<p>Bij Mixpanel ligt de focus geheel op events, funnel en gebruikers. Er worden geen dingen bij gehouden als pageviews (tenzij je zelf een pageview event maakt). De standaard grafieken die ze gebruiken zijn line charts. Zelf vind ik dit soms lastig omdat het dan kan lijken of iets stijgt in een dag terwijl het één datapunt is voor één dag.</p>
+
+<p>Bij sommige grafieken is er een mogelijkheid om te switchen, maar niet bij alle grafieken is dat mogelijk, zoals bij het overzicht van al je events. Bij het hoveren over een datapunt krijg je een kleine popup waarin je detailinformatie ziet.</p>
+
+<p>Bij Mixpanel zitten de pagina’s verstopt achter twee klikken, je moet bijvoorbeeld eerst op User klikken en daarna kan je pas op ‘explore’ klikken, wat bij gratis gebruikers de enige optie is waarvoor je kunt kiezen is. Dat is dus extra interactie die eigenlijk onnodig is.  </p>
+
+<p><a href="images/bijlage/image6.png"><img src="images/bijlage/image6.png"/></a>
+<small>Afbeelding 41) Mogelijkheid sommige data punten uit te zetten
+</small></p>
+
+<p><a href="images/bijlage/image11.png"><img src="images/bijlage/image11.png"/></a>
+<small>Afbeelding 42) Mogelijkheid om de datum van de data aan te passen
+</small></p>
+
+<p><a href="images/bijlage/image3.png"><img src="images/bijlage/image3.png"/></a>
+<small>Afbeelding 43) Mogelijkheid om je data te filteren
+</small></p>
+<h4 id='design-2'>Design</h4>
+<p>Mixpanel legt de focus meer op één of twee datavisualisaties dan meerdere kleine. Ze gebruiken vooral klein om verschil te leggen tussen de soorten data. Voorspellingen worden gedaan met een stippellijn, wat een gebruikelijk patroon is. De datavisualisaties van de grafieken zijn rustig, alles wat onnodig is is weggelaten. Bij Mixpanel is wel snel al duidelijk wat het doel is van een datavisualisatie, vooral omdat er minder mogelijkheden zijn.</p>
+<h3 id='kissmetrics'>Kissmetrics</h3>
+<p>Kissmetrics is een systeem om gebruikersgedrag te meten. Een van de belangrijkste functies is het maken van ‘populations’ van je gebruikers, wat een andere benaming is voor segmenteren. Andere belangrijke functies zijn het maken van campagnes (voornamelijk email campagnes) en inzage in gebruikersgedrag. Kissmetrics is niet gratis.</p>
+
+<p><a href="images/bijlage/image17.png"><img src="images/bijlage/image17.png"/></a>
+<small>Afbeelding 44) Screenshot van Kissmetrics
+</small></p>
+<h4 id='interactie-amp-datavisualisaties-3'>Interactie &amp; Datavisualisaties</h4>
+<p>Kissmetrics gebruikt vooral datavisualisaties als ondersteuning voor de data. Zo is het overzicht vooral een samenvatting van een hoop nummers. Dit geldt voor alle overzichtspagina&#39;s, pas wanneer je op een detail komt krijg je een grafiek te zien. Het merendeel van de applicatie bestaat uit tabellen met steunkleuren.</p>
+
+<p>Bij hovers heb je de mogelijkheid om naar de ‘population’ daarvan te kijken, bijv. Welke users een bepaalde actie hebben uitgevoerd. Als er meer informatie over is heb je de mogelijkheid daarnaar door te klikken.</p>
+
+<p>Verder zijn er filter mogelijkheden en zijn er vaste opties om van tijd te kunnen switchen.</p>
+
+<p><a href="images/bijlage/image14.png"><img src="images/bijlage/image14.png"/></a>
+<small>Afbeelding 45) Een detailview
+</small></p>
+
+<p><a href="images/bijlage/image4.png"><img src="images/bijlage/image4.png"/></a>
+<small>Afbeelding 46) Een samenvatting van een funnel
+</small></p>
+<h4 id='design-3'>Design</h4>
+<p>Het design is vooral gefocussed op tabellen en gebruikt vooral kleur om aan te geven hoe de statistieken vergelijken (groen voor beter, rood voor slechter). In de datavisualisaties worden kleuren vooral gebruikt om verschillende soorten data aan te geven.</p>
+<h3 id='baremetrics'>Baremetrics</h3>
+<p>Baremetrics is een analytics systeem wat vooral gefocussed is op bedrijven die abonnementen verkopen. Het houd vooral bij hoeveel geld er binnenkomt en wat je gebruikers opleveren. Ook hebben ze een Forecast gedeelte, waar je kan op basis van je data voorspellingen kan doen. Baremetrics is een betaalde service.</p>
+
+<p><a href="images/bijlage/image15.png"><img src="images/bijlage/image15.png"/></a>
+<small>Afbeelding 47) Screenshot van Baremetrics
+</small></p>
+<h4 id='interactie-amp-datavisualisaties-4'>Interactie &amp; Datavisualisaties</h4>
+<p>Op de overzichtspagina heb je een overzicht van alle statistieken die worden bijgehouden, wanneer je er op klikt ga je naar het desbetreffende dashboard. Bij de grafieken is er een mogelijkheid om de schaal van dag te veranderen naar maand of jaar. Ook kun je de grafieken met een paar knoppen veranderen naar een vergelijking of om een trendlijn uit te rekenen.</p>
+
+<p>Alle hovers zijn geanimeerd, wat in het begin leuk is, maar bij mij al snel irritant begon te werken. De hovers zijn vooral om meer details te geven of de mogelijkheid om een annotatie te plaatsen bij een datum. Bij een piechart kun je door te hoveren de verborgen percentages laten zien (voor de delen die te klein zijn om nummers te laten zien).</p>
+
+<p>Bij forecasts kun je je eigen data gebruiken om voorspellingen te doen. Je kunt je verwachte percentages aanpassen om te kijken hoe dit uitmaakt bij in de voorspelling.</p>
+
+<p><a href="images/bijlage/image16.png"><img src="images/bijlage/image16.png"/></a>
+<small>Afbeelding 48) Mogelijkheid om de data in het grafiek aan te passen of iets toe te voegen
+</small></p>
+
+<p><a href="images/bijlage/image12.png"><img src="images/bijlage/image12.png"/></a>
+<small>Afbeelding 48) Een forecast over de inkomsten
+</small></p>
+
+<p><a href="images/bijlage/image13.png"><img src="images/bijlage/image13.png"/></a>
+<small>Afbeelding 49) Input mogelijkheden bij een forecast
+</small></p>
+<h4 id='design-4'>Design</h4>
+<p>Baremetrics maakt gebruik van kleuren om aan te geven of het goed of slecht is of als labels voor de data. Bijna alles is geanimeerd, wat leuk is voor demo’s, maar snel irritant kan worden bij dingen als hovers.  </p>
+<h3 id='wootric'>Wootric</h3>
+<p>Wootric is een systeem om bij te houden hoe tevreden gebruikers zijn. In tegenstelling tot veel andere services geeft het ook de mogelijkheid om commentaar in te zien van je klanten. Wootric is een betaalde service.</p>
+
+<p><a href="images/bijlage/image8.png"><img src="images/bijlage/image8.png"/></a>
+<small>Afbeelding 50) Screenshot van Wootric
+</small></p>
+<h4 id='interactie-amp-datavisualisaties-5'>Interactie &amp; Datavisualisaties</h4>
+<p>De mogelijkheid om de data te kunnen segmenteren en filteren staat altijd aan de linkerkant, waardoor ik het eerst door de war haalde met een menu. Deze past alle data aan die op de pagina staat, zowel tabellen als grafieken. Als er meerdere open geklapt staan kun je niet meer makkelijk zijn wat er aan staat doordat alles naar beneden zakt.</p>
+
+<p>Verder is er ook de mogelijkheid om de datum van de data aan te passen met datepickers. Hovers op datavisualisaties geven meer informatie over het datapunt. Niet alle hovers zijn even makkelijk te bekijken of weer terug in te klappen. De hover op de users pagina blijft openstaan totdat je rond 50px vanaf bent, en in sommige grafieken is de lijn om over te hoveren heel dun waardoor het lastig is om het open te klappen.  </p>
+
+<p><a href="images/bijlage/image1.png"><img src="images/bijlage/image1.png"/></a>
+<small>Afbeelding 51) Mogelijkheid om start- en einddatum aan te passen
+</small></p>
+
+<p><a href="images/bijlage/image7.png"><img src="images/bijlage/image7.png"/></a>
+<small>Afbeelding 52) Detail bij mouse over in een datavisualisatie
+</small></p>
+<h4 id='design-5'>Design</h4>
+<p>Ik vind het design van Wootric een onaf gevoel hebben op sommige pagina’s, zoals de snapshot pagina. Ik vind het veel weg hebben van een standaard Bootstrap design. De kleuren in de datavisualisaties worden gebruikt om de kwaliteit van de gebruikers of hun reacties aan te geven. Verder worden kleuren ook gebruikt om te laten zien of de trend positief of negatief is, groen voor positief en rood voor negatief.</p>
 <h1 id='bronnen'>Bronnen</h1>
 <ul>
 <li>Advanced Use Cases | Analytics Reporting API v4. (z.d.). Geraadpleegd 17 december 2017, van <a href="https://developers.google.com/analytics/devguides/reporting/core/v4/advanced">https://developers.google.com/analytics/devguides/reporting/core/v4/advanced</a></li>
@@ -1096,8 +1419,10 @@ Vraag hulp aan in house designers bij vormgeving en interactie</p>
 <li>Big data en profiling. (z.d.). Geraadpleegd 17 december 2017, van <a href="https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/internet-telefoon-tv-en-post/big-data-en-profiling">https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/internet-telefoon-tv-en-post/big-data-en-profiling</a></li>
 <li>Black, A., Luna, P., Lund, O., &amp; Walker, S. (2017). Information Design: Research and Practice. Taylor &amp; Francis.</li>
 <li>Bostock, M. (2012, mei 2). Thinking with Joins. Geraadpleegd 17 december 2017, van <a href="https://bost.ocks.org/mike/join/">https://bost.ocks.org/mike/join/</a></li>
+<li>Bostock, M. (2015, december 28). Introducing d3-scale. Geraadpleegd 10 januari 2018, van <a href="https://medium.com/@mbostock/introducing-d3-scale-61980c51545f">https://medium.com/@mbostock/introducing-d3-scale-61980c51545f</a></li>
 <li>Bostock, M., Carter, S., &amp; Tse, A. (2014, mei 21). Is It Better to Rent or Buy? The New York Times. Geraadpleegd van <a href="https://www.nytimes.com/interactive/2014/upshot/buy-rent-calculator.html">https://www.nytimes.com/interactive/2014/upshot/buy-rent-calculator.html</a></li>
 <li>Brody, M. (2015, juli 15). How to drive UX with AJAX. Geraadpleegd 17 december 2017, van <a href="https://www.webdesignerdepot.com/2015/07/how-to-drive-ux-with-ajax/">https://www.webdesignerdepot.com/2015/07/how-to-drive-ux-with-ajax/</a></li>
+<li>Canvas API. (z.d.). Geraadpleegd 10 januari 2018, van <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API</a></li>
 <li>Chart dos and don’ts. (2016, maart 21). [Page]. Geraadpleegd 17 december 2017, van <a href="https://www.eea.europa.eu/data-and-maps/daviz/learn-more/chart-dos-and-donts">https://www.eea.europa.eu/data-and-maps/daviz/learn-more/chart-dos-and-donts</a></li>
 <li>Choudhury, S. (2013, juni 6). Choosing the right chart type: Bar charts vs Column charts - FusionBrew. Geraadpleegd 17 december 2017, van <a href="https://www.fusioncharts.com/blog/bar-charts-or-column-charts/">https://www.fusioncharts.com/blog/bar-charts-or-column-charts/</a></li>
 <li>Cookies. (z.d.). Geraadpleegd 17 december 2017, van <a href="https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/internet-telefoon-tv-en-post/cookies">https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/internet-telefoon-tv-en-post/cookies</a></li>
@@ -1116,6 +1441,7 @@ Vraag hulp aan in house designers bij vormgeving en interactie</p>
 <li>Hickey, W. (2013, juni 17). The Worst Chart In The World. Geraadpleegd 17 december 2017, van <a href="http://www.businessinsider.com/pie-charts-are-the-worst-2013-6">http://www.businessinsider.com/pie-charts-are-the-worst-2013-6</a></li>
 <li>Hopkins, N. (2017, september 25). Deloitte hit by cyber-attack revealing clients’ secret emails. The Guardian. Geraadpleegd van <a href="http://www.theguardian.com/business/2017/sep/25/deloitte-hit-by-cyber-attack-revealing-clients-secret-emails">http://www.theguardian.com/business/2017/sep/25/deloitte-hit-by-cyber-attack-revealing-clients-secret-emails</a></li>
 <li>Introduction to events. (z.d.). Geraadpleegd 17 december 2017, van <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events</a></li>
+<li>Keybase. (z.d.). Geraadpleegd 11 januari 2018, van <a href="https://keybase.io/">https://keybase.io/</a></li>
 <li>Kirk, A., Timms, S., Rininsland, Ǯdrew, &amp; Teller, S. (2016). Data Visualization: Representing Information on Modern Web. Packt Publishing Ltd.</li>
 <li>Kissmetrics | Behavioral analytics and engagement platform. (z.d.). Geraadpleegd 17 december 2017, van <a href="https://www.kissmetrics.com/">https://www.kissmetrics.com/</a></li>
 <li>Kulche, P. (z.d.). Privacy op internet | Consumentenbond. Geraadpleegd 17 december 2017, van <a href="https://www.consumentenbond.nl/internet-privacy">https://www.consumentenbond.nl/internet-privacy</a></li>
@@ -1141,10 +1467,12 @@ Vraag hulp aan in house designers bij vormgeving en interactie</p>
 <li>rs_20071211_persoonsgegevens_op_internet_definitief.pdf. (z.d.). Geraadpleegd van <a href="https://autoriteitpersoonsgegevens.nl/sites/default/files/downloads/rs/rs_20071211_persoonsgegevens_op_internet_definitief.pdf">https://autoriteitpersoonsgegevens.nl/sites/default/files/downloads/rs/rs_20071211_persoonsgegevens_op_internet_definitief.pdf</a></li>
 <li>Soegaard, M. (z.d.). Gestalt principles of form perception. Geraadpleegd 17 december 2017, van <a href="https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/gestalt-principles-of-form-perception">https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/gestalt-principles-of-form-perception</a></li>
 <li>Subotin, S. (z.d.). Dashboard Design - Considerations and Best Practices. Geraadpleegd 17 december 2017, van <a href="https://www.toptal.com/designers/data-visualization/dashboard-design-best-practices">https://www.toptal.com/designers/data-visualization/dashboard-design-best-practices</a></li>
+<li>SVG. (z.d.). Geraadpleegd 10 januari 2018, van <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">https://developer.mozilla.org/en-US/docs/Web/SVG</a></li>
 <li>SVG vs canvas: how to choose (Windows). (z.d.). Geraadpleegd 17 december 2017, van <a href="https://msdn.microsoft.com/en-us/library/gg193983%28v=vs.85%29.aspx">https://msdn.microsoft.com/en-us/library/gg193983%28v=vs.85%29.aspx</a></li>
 <li>The Gestalt Principles. (z.d.). Geraadpleegd 17 december 2017, van <a href="http://graphicdesign.spokanefalls.edu/tutorials/process/gestaltprinciples/gestaltprinc.htm">http://graphicdesign.spokanefalls.edu/tutorials/process/gestaltprinciples/gestaltprinc.htm</a></li>
 <li>Tufte, E. R. (1992). Envisioning Information. Graphics Press.</li>
 <li>Ware, C. (2004). Information Visualization: Perception for Design. Elsevier.</li>
+<li>Why is using an SSH key more secure than using passwords? - Information Security Stack Exchange. (z.d.). Geraadpleegd 11 januari 2018, van <a href="https://security.stackexchange.com/questions/69407/why-is-using-an-ssh-key-more-secure-than-using-passwords">https://security.stackexchange.com/questions/69407/why-is-using-an-ssh-key-more-secure-than-using-passwords</a></li>
 <li>Wootric | In-App Web &amp; Mobile, Email, SMS Net Promoter Score, CSAT, CES Survey Software, Text &amp; Sentiment Analytics. (z.d.). Geraadpleegd 17 december 2017, van <a href="https://www.wootric.com/">https://www.wootric.com/</a></li>
 <li>XenitXTD. (2014, oktober 15). New to Laravel,MVC and need a little clarity on MVC | Laravel.io. Geraadpleegd 17 december 2017, van <a href="https://laravel.io/forum/10-15-2014-new-to-laravelmvc-and-need-a-little-clarity-on-mvc">https://laravel.io/forum/10-15-2014-new-to-laravelmvc-and-need-a-little-clarity-on-mvc</a></li>
 </ul>
