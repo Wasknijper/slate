@@ -174,9 +174,6 @@ Door te kijken naar de aantallen van deze tabellen in bepaalde periodes kunnen a
 [<img src="images/orientatie/image16.png"/>](images/orientatie/image16.png)
 <small>Afbeelding 13) De drie belangrijkste (bestaande) datatabelen in project</small>
 
-####Veiligheid
-TBA - Wachten op interview my Bryan… 
-
 ###Gebruikersdata en Veiligheid
 Een groot deel van dit project gaat over het verzamelen van data en dit gebruiken om een product te verbeteren. Gebruikersdata kan positief gebruikt worden (zoals bij het verbeteren van producten), maar de angst bestaat dat deze data misbruikt kan worden en gebruikers kunnen schaden. Een voorbeeld hiervan zijn datalekken bij sites. Laatst nog in Amerika bij Equifax, waarbij de data van zo’n 143 miljoen gebruikers buit was gemaakt door hackers[(Ng, 2017)](#cnet). Ook moet in Nederland is dit een probleem. Rond 25 september 2017 was er bekend gemaakt dat hackers sinds november 2016 toegang hadden tot admin accounts en het mailsysteem van Deltaloid (Hopkins, 2017).
 
