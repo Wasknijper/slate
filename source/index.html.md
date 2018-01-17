@@ -1224,10 +1224,10 @@ Ik vind het design van Wootric een onaf gevoel hebben op sommige pagina’s, zoa
 
 <table class="table table-bordered table-hover table-condensed">
 <tbody><tr>
-<td> **Commit**</td>
-<td> **Author**</td>
-<td> **Date**</td>
-<td> **Description**</td>
+<td> <strong>Commit</strong></td>
+<td> <strong>Author</strong></td>
+<td> <strong>Date</strong></td>
+<td> <strong>Description</strong></td>
 </tr>
 <tr>
 <td>e907e8ba</td>
