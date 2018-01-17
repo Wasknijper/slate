@@ -1222,47 +1222,260 @@ Ik vind het design van Wootric een onaf gevoel hebben op sommige pagina’s, zoa
 
 ##Bijlage 4: Commit historie
 
-- e907e8ba, Maaike, 2018-01-17 13:48:55 +0100, fix(events): small fixes for graphs
-- 94cf5510, Maaike, 2017-12-08 17:12:35 +0100, feat(admin-events): bar orientation, events layout, final small fixes (sorry nick)
-- e822e6df, Maaike, 2017-12-07 11:32:54 +0100, feat(admin-events): sort data in barcharts, remove console.logs
-- c1d2f3c8, Maaike, 2017-12-07 10:45:25 +0100, fix(admin-events): fix registration funnel text alignment
-- 75248e3e, Maaike, 2017-12-07 10:39:57 +0100, fix(adminEvents): fix text stroke in funnels, small graph fixes
-- c9f9b617, Maaike, 2017-12-07 01:04:39 +0100, feat(admin-events): add chart for vacancy views + applications
-- d85a3304, Maaike, 2017-12-06 18:10:11 +0100, feat(admin-events): add barchart for vacancy views per category and funnel per category
-- e0ae3322, Maaike, 2017-12-06 14:56:27 +0100, refactor(admin-events): make category colors the same for future graphs
-- 0e7fe62b, Maaike, 2017-12-06 14:55:42 +0100, feat(admin-events): use category_id's to make vacancies placed data
-- 54817d54, Maaike, 2017-12-01 18:42:01 +0100, feat(events): migration to add category_id to vacancy events
-- edb595fa, Maaike, 2017-12-01 17:41:43 +0100, feat(admin-events): add graph to vacancy events and prepare for next graph
-- 473a4a83, Maaike, 2017-11-30 17:52:25 +0100, feat(admin-events): add page for vacancy events
-- 2b9088fb, Maaike, 2017-11-30 17:52:10 +0100, feat(admin-events): change graph order on user events page
-- 535ae4b9, Maaike, 2017-11-30 16:54:12 +0100, feat(admin-events): add registration funnel
-- 06986864, Maaike, 2017-11-30 16:51:46 +0100, feat(admin-events): add lines to bar charts, add legend to register by type chart
-- 44176b25, Maaike, 2017-11-30 10:15:15 +0100, feat(bisdashboard): add user analytics page
-- 2865bfc7, Maaike, 2017-11-24 17:58:20 +0100, refactor(admin-events): seperate google api requests
-- 74618533, Maaike, 2017-11-24 17:27:46 +0100, refactor(admin-events): clean up
-- 97a5dfc0, Maaike, 2017-11-24 16:59:26 +0100, feat(admin-events): add legend to pie chart
-- 4ad26547, Maaike, 2017-11-24 16:25:01 +0100, feat(admin-events): move seperating and sorting vacancy view events to server
-- 6032b9b6, Maaike, 2017-11-24 15:14:23 +0100, feat(admin-events): add pie chart for users, add most viewed vacancy list
-- 69912a56, Maaike, 2017-11-22 19:36:30 +0100, feat(admin-events): move to styling to css, add tooltip
-- 52bc29e3, Maaike, 2017-11-22 19:24:34 +0100, feat(admin-events): grouped barchart
-- 9b202c44, Maaike, 2017-11-22 12:15:01 +0100, feat(admin-events): remove query getter, render each chart of response
-- 588bf7d2, Maaike, 2017-11-17 17:00:28 +0100, refactor(admin-events): WIP allow multiple queries
-- 6019ebc0, Maaike, 2017-11-17 16:24:08 +0100, refactor(admin-events): make render bar chart reuseable for different queries
-- a6a4cc0d, Maaike, 2017-11-17 16:23:06 +0100, feat(admin-events): move sign in button on succesful sign in
-- f434a028, Maaike, 2017-11-15 18:22:58 +0100, feat(admin-events): page view grapgh
-- a2482b2e, Maaike, 2017-11-15 12:16:38 +0100, feat(admin-events): barry, favorite vacancy event and include d3 js
-- 2b03a991, Maaike Hek, 2017-11-03 16:22:30 +0100, feat(admin-events): working google reporting api, login button for google analytics, function to get queries by name
-- 668e9f36, Maaike Hek, 2017-11-02 10:39:01 +0100, feat(admin-events): add controller, view and js for events page
-- 0c504fc9, Maaike, 2017-11-21 10:07:26 +0100, Merge branch 'develop' into MD1.20.0
-- 850a15a4, Maaike, 2017-11-21 10:05:24 +0100, Merge branch 'MD1.19.1' into develop
-- 5da09e94, Maaike, 2017-11-21 10:04:15 +0100, feat(analytics-events): remove fields, rename fields, add session_id
-- d0b79f4e, Maaike, 2017-11-13 16:06:49 +0100, Merge branch 'ft-events' into develop
-- cfb6aa6b, Maaike Hek, 2017-11-02 10:38:13 +0100, feat(analyticsEvents): add fired_at field for correct dates
-- e01ec054, Maaike, 2017-10-27 16:44:37 +0200, feat(events): add events to places with mixpanel events
-- d86786e4, Maaike, 2017-10-27 14:41:09 +0200, feat(events): WIP add events to palces with mixpanel events
-- 35e92882, Maaike, 2017-10-13 17:02:30 +0200, feat(analytics-events): add event listener for analytics events
-- 8e752038, Maaike, 2017-10-13 17:01:04 +0200, feat(events): add analytics events
-- 5d15297c, Maaike, 2017-10-13 11:23:29 +0200, fix(routes): alignment fix 🙀
+<table class="table table-bordered table-hover table-condensed">
+<tbody><tr>
+<td> **Commit**</td>
+<td> **Author**</td>
+<td> **Date**</td>
+<td> **Description**</td>
+</tr>
+<tr>
+<td>e907e8ba</td>
+<td> Maaike</td>
+<td> 2018-01-17 13:48:55 +0100</td>
+<td>fix(events): small fixes for graphs</td>
+</tr>
+<tr>
+<td>94cf5510</td>
+<td> Maaike</td>
+<td> 2017-12-08 17:12:35 +0100</td>
+<td>feat(admin-events): bar orientation, events layout, final small fixes (sorry nick)</td>
+</tr>
+<tr>
+<td>e822e6df</td>
+<td> Maaike</td>
+<td> 2017-12-07 11:32:54 +0100</td>
+<td>feat(admin-events): sort data in barcharts, remove console.logs</td>
+</tr>
+<tr>
+<td>c1d2f3c8</td>
+<td> Maaike</td>
+<td> 2017-12-07 10:45:25 +0100</td>
+<td>fix(admin-events): fix registration funnel text alignment</td>
+</tr>
+<tr>
+<td>75248e3e</td>
+<td> Maaike</td>
+<td> 2017-12-07 10:39:57 +0100</td>
+<td>fix(adminEvents): fix text stroke in funnels, small graph fixes</td>
+</tr>
+<tr>
+<td>c9f9b617</td>
+<td> Maaike</td>
+<td> 2017-12-07 01:04:39 +0100</td>
+<td>feat(admin-events): add chart for vacancy views + applications</td>
+</tr>
+<tr>
+<td>d85a3304</td>
+<td> Maaike</td>
+<td> 2017-12-06 18:10:11 +0100</td>
+<td>feat(admin-events): add barchart for vacancy views per category and funnel per category</td>
+</tr>
+<tr>
+<td>e0ae3322</td>
+<td> Maaike</td>
+<td> 2017-12-06 14:56:27 +0100</td>
+<td>refactor(admin-events): make category colors the same for future graphs</td>
+</tr>
+<tr>
+<td>0e7fe62b</td>
+<td> Maaike</td>
+<td> 2017-12-06 14:55:42 +0100</td>
+<td>feat(admin-events): use category_id's to make vacancies placed data</td>
+</tr>
+<tr>
+<td>54817d54</td>
+<td> Maaike</td>
+<td> 2017-12-01 18:42:01 +0100</td>
+<td>feat(events): migration to add category_id to vacancy events</td>
+</tr>
+<tr>
+<td>edb595fa</td>
+<td> Maaike</td>
+<td> 2017-12-01 17:41:43 +0100</td>
+<td>feat(admin-events): add graph to vacancy events and prepare for next graph</td>
+</tr>
+<tr>
+<td>473a4a83</td>
+<td> Maaike</td>
+<td> 2017-11-30 17:52:25 +0100</td>
+<td>feat(admin-events): add page for vacancy events</td>
+</tr>
+<tr>
+<td>2b9088fb</td>
+<td> Maaike</td>
+<td> 2017-11-30 17:52:10 +0100</td>
+<td>feat(admin-events): change graph order on user events page</td>
+</tr>
+<tr>
+<td>535ae4b9</td>
+<td> Maaike</td>
+<td> 2017-11-30 16:54:12 +0100</td>
+<td>feat(admin-events): add registration funnel</td>
+</tr>
+<tr>
+<td>06986864</td>
+<td> Maaike</td>
+<td> 2017-11-30 16:51:46 +0100</td>
+<td>feat(admin-events): add lines to bar charts, add legend to register by type chart</td>
+</tr>
+<tr>
+<td>44176b25</td>
+<td> Maaike</td>
+<td> 2017-11-30 10:15:15 +0100</td>
+<td>feat(bisdashboard): add user analytics page</td>
+</tr>
+<tr>
+<td>2865bfc7</td>
+<td> Maaike</td>
+<td> 2017-11-24 17:58:20 +0100</td>
+<td>refactor(admin-events): seperate google api requests</td>
+</tr>
+<tr>
+<td>74618533</td>
+<td> Maaike</td>
+<td> 2017-11-24 17:27:46 +0100</td>
+<td>refactor(admin-events): clean up</td>
+</tr>
+<tr>
+<td>97a5dfc0</td>
+<td> Maaike</td>
+<td> 2017-11-24 16:59:26 +0100</td>
+<td>feat(admin-events): add legend to pie chart</td>
+</tr>
+<tr>
+<td>4ad26547</td>
+<td> Maaike</td>
+<td> 2017-11-24 16:25:01 +0100</td>
+<td>feat(admin-events): move seperating and sorting vacancy view events to server</td>
+</tr>
+<tr>
+<td>6032b9b6</td>
+<td> Maaike</td>
+<td> 2017-11-24 15:14:23 +0100</td>
+<td>feat(admin-events): add pie chart for users, add most viewed vacancy list</td>
+</tr>
+<tr>
+<td>69912a56</td>
+<td> Maaike</td>
+<td> 2017-11-22 19:36:30 +0100</td>
+<td>feat(admin-events): move to styling to css, add tooltip</td>
+</tr>
+<tr>
+<td>52bc29e3</td>
+<td> Maaike</td>
+<td> 2017-11-22 19:24:34 +0100</td>
+<td>feat(admin-events): grouped barchart</td>
+</tr>
+<tr>
+<td>9b202c44</td>
+<td> Maaike</td>
+<td> 2017-11-22 12:15:01 +0100</td>
+<td>feat(admin-events): remove query getter, render each chart of response</td>
+</tr>
+<tr>
+<td>588bf7d2</td>
+<td> Maaike</td>
+<td> 2017-11-17 17:00:28 +0100</td>
+<td>refactor(admin-events): WIP allow multiple queries</td>
+</tr>
+<tr>
+<td>6019ebc0</td>
+<td> Maaike</td>
+<td> 2017-11-17 16:24:08 +0100</td>
+<td>refactor(admin-events): make render bar chart reuseable for different queries</td>
+</tr>
+<tr>
+<td>a6a4cc0d</td>
+<td> Maaike</td>
+<td> 2017-11-17 16:23:06 +0100</td>
+<td>feat(admin-events): move sign in button on succesful sign in</td>
+</tr>
+<tr>
+<td>f434a028</td>
+<td> Maaike</td>
+<td> 2017-11-15 18:22:58 +0100</td>
+<td>feat(admin-events): page view grapgh</td>
+</tr>
+<tr>
+<td>a2482b2e</td>
+<td> Maaike</td>
+<td> 2017-11-15 12:16:38 +0100</td>
+<td>feat(admin-events): barry, favorite vacancy event and include d3 js</td>
+</tr>
+<tr>
+<td>2b03a991</td>
+<td> Maaike Hek</td>
+<td> 2017-11-03 16:22:30 +0100</td>
+<td>feat(admin-events): working google reporting api, login button for google analytics, function to get queries by name</td>
+</tr>
+<tr>
+<td>668e9f36</td>
+<td> Maaike Hek</td>
+<td> 2017-11-02 10:39:01 +0100</td>
+<td>feat(admin-events): add controller, view and js for events page</td>
+</tr>
+<tr>
+<td>0c504fc9</td>
+<td> Maaike</td>
+<td> 2017-11-21 10:07:26 +0100</td>
+<td>Merge branch 'develop' into MD1.20.0</td>
+</tr>
+<tr>
+<td>850a15a4</td>
+<td> Maaike</td>
+<td> 2017-11-21 10:05:24 +0100</td>
+<td>Merge branch 'MD1.19.1' into develop</td>
+</tr>
+<tr>
+<td>5da09e94</td>
+<td> Maaike</td>
+<td> 2017-11-21 10:04:15 +0100</td>
+<td>feat(analytics-events): remove fields, rename fields, add session_id</td>
+</tr>
+<tr>
+<td>d0b79f4e</td>
+<td> Maaike</td>
+<td> 2017-11-13 16:06:49 +0100</td>
+<td>Merge branch 'ft-events' into develop</td>
+</tr>
+<tr>
+<td>cfb6aa6b</td>
+<td> Maaike Hek</td>
+<td> 2017-11-02 10:38:13 +0100</td>
+<td>feat(analyticsEvents): add fired_at field for correct dates</td>
+</tr>
+<tr>
+<td>e01ec054</td>
+<td> Maaike</td>
+<td> 2017-10-27 16:44:37 +0200</td>
+<td>feat(events): add events to places with mixpanel events</td>
+</tr>
+<tr>
+<td>d86786e4</td>
+<td> Maaike</td>
+<td> 2017-10-27 14:41:09 +0200</td>
+<td>feat(events): WIP add events to palces with mixpanel events</td>
+</tr>
+<tr>
+<td>35e92882</td>
+<td> Maaike</td>
+<td> 2017-10-13 17:02:30 +0200</td>
+<td>feat(analytics-events): add event listener for analytics events</td>
+</tr>
+<tr>
+<td>8e752038</td>
+<td> Maaike</td>
+<td> 2017-10-13 17:01:04 +0200</td>
+<td>feat(events): add analytics events</td>
+</tr>
+<tr>
+<td>5d15297c</td>
+<td> Maaike</td>
+<td> 2017-10-13 11:23:29 +0200</td>
+<td>fix(routes): alignment fix 🙀</td>
+</tr>
+</tbody></table>
 
 #Bronnen
 - Advanced Use Cases | Analytics Reporting API v4. (z.d.). Geraadpleegd 17 december 2017, van <https://developers.google.com/analytics/devguides/reporting/core/v4/advanced>
