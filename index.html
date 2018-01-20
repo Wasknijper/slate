@@ -331,10 +331,16 @@
                     <a href="#bijlage-2-nieuwe-datamodel" class="toc-h2 toc-link" data-title="Bijlage 2 - Nieuwe Datamodel">Bijlage 2 - Nieuwe Datamodel</a>
                   </li>
                   <li>
-                    <a href="#bijlage-3-concurrentieanalyse" class="toc-h2 toc-link" data-title="Bijlage 3 - Concurrentieanalyse">Bijlage 3 - Concurrentieanalyse</a>
+                    <a href="#bijlage-3-vollegdige-code-van-nieuwe-vacature-per-categorie-visualisatie" class="toc-h2 toc-link" data-title="Bijlage 3 - Vollegdige code van Nieuwe vacature per categorie visualisatie">Bijlage 3 - Vollegdige code van Nieuwe vacature per categorie visualisatie</a>
                   </li>
                   <li>
-                    <a href="#bijlage-4-commit-historie" class="toc-h2 toc-link" data-title="Bijlage 4 - Commit historie">Bijlage 4 - Commit historie</a>
+                    <a href="#bijlage-4-voorbeeld-data-voor-nieuwe-vacature-per-categorie-visualisatie" class="toc-h2 toc-link" data-title="Bijlage 4 - Voorbeeld data voor Nieuwe vacature per categorie visualisatie">Bijlage 4 - Voorbeeld data voor Nieuwe vacature per categorie visualisatie</a>
+                  </li>
+                  <li>
+                    <a href="#bijlage-5-concurrentieanalyse" class="toc-h2 toc-link" data-title="Bijlage 5 - Concurrentieanalyse">Bijlage 5 - Concurrentieanalyse</a>
+                  </li>
+                  <li>
+                    <a href="#bijlage-6-commit-historie" class="toc-h2 toc-link" data-title="Bijlage 6 - Commit historie">Bijlage 6 - Commit historie</a>
                   </li>
               </ul>
           </li>
@@ -1002,20 +1008,20 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 
 <p><a name="d3-hoe"></a></p>
 <h3 id='hoe-maak-je-datavisualisatie-met-d3'>Hoe maak je datavisualisatie met D3</h3>
-<p>Om wat meer duidelijkheid te geven hoe dit werkt in de praktijk licht ik een van de datavisualisaties toe. Ik heb ervoor gekozen om een simpele bar chart door te lopen, de Nieuwe vacatures per categorie grafiek. Ik heb de code opgesplitst voor de toelichting. De volledige code is te vinden in Bijage X. </p>
+<p>Om wat meer duidelijkheid te geven hoe dit werkt in de praktijk licht ik een van de datavisualisaties toe. Ik heb ervoor gekozen om een simpele bar chart door te lopen, de Nieuwe vacatures per categorie grafiek. Ik heb de code opgesplitst voor de toelichting. De volledige code is te vinden in Bijage 3. </p>
 
 <p>De bar chart wordt gemaakt in een functie die <code>renderNewVacanciesPerCategory</code> heet. Als eerst maak ik een paar variabelen. Daarin geef ik aan hoeveel marge ik rond de grafiek wil hebben en hoe groot deze moet zijn:</p>
 <pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">renderNewVacanciesPerCategory</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-<span class="kr">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">right</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="na">bottom</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
-    <span class="na">left</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
-<span class="p">};</span>
+    <span class="kr">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">right</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="na">bottom</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
+        <span class="na">left</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+    <span class="p">};</span>
 
-<span class="kr">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mi">450</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">;</span> <span class="c1">// resultaat: 400</span>
-<span class="kr">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span> <span class="c1">// resultaat: 230</span>
+    <span class="kr">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mi">450</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">;</span> <span class="c1">// resultaat: 400</span>
+    <span class="kr">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span> <span class="c1">// resultaat: 230</span>
 </code></pre>
-<p>Daarna worden de data gesorteerd, van de meeste nieuwe vacatures per categorie tot de minste. Een voorbeeld van de data is te vinden in Bijlage X.</p>
+<p>Daarna worden de data gesorteerd, van de meeste nieuwe vacatures per categorie tot de minste. Een voorbeeld van de data is te vinden in Bijlage 4.</p>
 <pre class="highlight javascript tab-javascript"><code>   <span class="nx">data</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">created</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">created</span><span class="p">);</span>
 </code></pre>
 <p>Vervolgens geven we aan welke schalen de willen hebben. Er zijn schalen voor verschillende soorten data, deze bar chart gebruikt de <code>scaleLinear</code> voor de y-as (het aantal vacatures) en <code>scaleBand</code> voor de x-as (categorieën).  Deze passen bij de nominale data en ratio data van dit grafiek, meer over de soorten data is te vinden in het hoofdstuk Grafiek Keuze. Voor de kleuren wordt <code>scaleOrdinal</code> gebruikt om de kleuren in de <code>.range</code> aan de categorieën te koppelen.</p>
@@ -1385,7 +1391,108 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p><a href="images/bijlae/huidig.png"><img src="images/bijlage/huidig.png"/></a></p>
 <h2 id='bijlage-2-nieuwe-datamodel'>Bijlage 2 - Nieuwe Datamodel</h2>
 <p><a href="images/bijlae/nieuw.png"><img src="images/bijlage/nieuw.png"/></a></p>
-<h2 id='bijlage-3-concurrentieanalyse'>Bijlage 3 - Concurrentieanalyse</h2><h3 id='google-analytics-2'>Google Analytics</h3>
+<h2 id='bijlage-3-vollegdige-code-van-nieuwe-vacature-per-categorie-visualisatie'>Bijlage 3 - Vollegdige code van Nieuwe vacature per categorie visualisatie</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">renderNewVacanciesPerCategory</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">right</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="na">bottom</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
+        <span class="na">left</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="kr">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mi">450</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">;</span> <span class="c1">// resultaat: 400</span>
+    <span class="kr">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span> <span class="c1">// resultaat: 230</span>
+
+    <span class="nx">data</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">created</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">created</span><span class="p">);</span>
+
+    <span class="kr">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">]).</span><span class="nx">padding</span><span class="p">(</span><span class="mf">0.2</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+    <span class="kr">const</span> <span class="nx">categoryColors</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleOrdinal</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="s1">'#3DDBB1'</span><span class="p">,</span> <span class="s1">'#6C23B0'</span><span class="p">,</span> <span class="s1">'#EF47A1'</span><span class="p">,</span> <span class="s1">'#2B9CEC'</span><span class="p">,</span> <span class="s1">'#288F73'</span><span class="p">,</span> <span class="s1">'#F2F050'</span><span class="p">,</span> <span class="s1">'#FF7700'</span><span class="p">]);</span>
+
+    <span class="nx">x</span><span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span> <span class="o">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">));</span>
+    <span class="nx">y</span><span class="p">.</span><span class="nx">domain</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">created</span><span class="p">)]).</span><span class="nx">nice</span><span class="p">();</span>
+
+    <span class="kr">const</span> <span class="nx">title</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'h2'</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">graph</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">'ss-graph--newVacanciesPerCategory'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+
+    <span class="nx">title</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'Nieuwe vacatures per categorie'</span><span class="p">;</span>
+    <span class="nx">graph</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
+
+    <span class="nx">svg</span>
+        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'g'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span> <span class="s1">'ss-graph__grid ss-graph__grid--y'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'opacity'</span><span class="p">,</span> <span class="s2">`0.15`</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">y</span><span class="p">).</span><span class="nx">ticks</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">).</span><span class="nx">tickFormat</span><span class="p">(</span><span class="s1">''</span><span class="p">).</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">));</span>
+
+    <span class="nx">svg</span>
+        <span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">'.bar'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'rect'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span> <span class="s1">'ss-graph__bar'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'x'</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'width'</span><span class="p">,</span> <span class="nx">x</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'y'</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">created</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'height'</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">y</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">created</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">'fill'</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=&gt;</span> <span class="nx">categoryColors</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">))</span>
+            <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'mouseover'</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">nodes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">i</span><span class="p">]).</span><span class="nx">classed</span><span class="p">(</span><span class="s1">'active'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'mouseout'</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">nodes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">i</span><span class="p">]).</span><span class="nx">classed</span><span class="p">(</span><span class="s1">'active'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">});</span>
+<span class="p">};</span>
+</code></pre><h2 id='bijlage-4-voorbeeld-data-voor-nieuwe-vacature-per-categorie-visualisatie'>Bijlage 4 - Voorbeeld data voor Nieuwe vacature per categorie visualisatie</h2><pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Development"</span><span class="p">,</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"applicationViews"</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">1380</span><span class="p">,</span>
+        <span class="s2">"created"</span><span class="p">:</span> <span class="mi">6</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Content"</span><span class="p">,</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"applicationViews"</span><span class="p">:</span> <span class="mi">57</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">1056</span><span class="p">,</span>
+        <span class="s2">"created"</span><span class="p">:</span> <span class="mi">3</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Design"</span><span class="p">,</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">"applicationViews"</span><span class="p">:</span> <span class="mi">39</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">1046</span><span class="p">,</span>
+        <span class="s2">"created"</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Business"</span><span class="p">,</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"applicationViews"</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">335</span><span class="p">,</span>
+        <span class="s2">"created"</span><span class="p">:</span> <span class="mi">4</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Motion"</span><span class="p">,</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"applicationViews"</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">222</span><span class="p">,</span>
+        <span class="s2">"created"</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Growth"</span><span class="p">,</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"applicationViews"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+        <span class="s2">"created"</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Totaal"</span><span class="p">,</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">"applicationViews"</span><span class="p">:</span> <span class="mi">167</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">4189</span><span class="p">,</span>
+        <span class="s2">"created"</span><span class="p">:</span> <span class="mi">13</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre><h2 id='bijlage-5-concurrentieanalyse'>Bijlage 5 - Concurrentieanalyse</h2><h3 id='google-analytics-2'>Google Analytics</h3>
 <p>Google Analytics is een van de bekende voorbeelden voor het verzamelen van gegevens over gebruikersgedrag en datavisualisaties. Het is een gratis platform, dat ontzettend krachtig is, waardoor het door veel websites en online services wordt gebruikt.</p>
 
 <p><a href="images/bijlage/image5.png"><img src="images/bijlage/image5.png"/></a>
@@ -1501,7 +1608,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 </small></p>
 <h4 id='design-5'>Design</h4>
 <p>Ik vind het design van Wootric op sommige pagina’s onaf ogen, zoals bijvoorbeeld de snapshot pagina. Ik vind het veel weg hebben van een standaard Bootstrap design. De kleuren in de datavisualisaties worden gebruikt om de kwaliteit van de gebruikers of hun reacties aan te geven. Verder worden kleuren ook gebruikt om te laten zien of de trend positief of negatief is, nl. groen voor positief en rood voor negatief.</p>
-<h2 id='bijlage-4-commit-historie'>Bijlage 4 - Commit historie</h2>
+<h2 id='bijlage-6-commit-historie'>Bijlage 6 - Commit historie</h2>
 <table class="table table-bordered table-hover table-condensed">
 <tbody><tr>
 <td> <strong>Commit</strong></td>
