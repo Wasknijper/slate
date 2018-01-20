@@ -43,7 +43,7 @@ Ik heb onderzoek gedaan naar datavisualisaties, de wensen van mijn gebruikers en
 
 Ik doe veel deskresearch, met name op het gebied van datavisualisaties, daaruit komen dan belangrijke punten over wat een goede datavisualisatie nodig heeft.
 Ook bekijk ik naar bestaande dashboards en sla ik degene die mij inspireren op om zo een overzicht te krijgen naar verschillende mogelijkheden.
-Verder vraag ik vaak aan mijn gebruikers wat zij verwachten en vooral wat ze zouden willen bereiken meet de oplossing. In een later stadium ga ik mijn gemaakte oplossing testen bij mijn gebruikers om deze resultaten te verwerken in het product
+Verder vraag ik vaak aan mijn gebruikers wat zij verwachten en vooral wat ze zouden willen bereiken met de oplossing. In een later stadium ga ik mijn gemaakte oplossing testen bij mijn gebruikers om deze resultaten te verwerken in het product.
 Als laatste heb ik ook onderzoek gedaan naar de privacy van het opslaan van gebruikersdata, gekeken of Fresh Heroes zich houdt aan de wet en wat ze kunnen doen om de privacy voor hun gebruikers te verbeteren.
 
 *Resultaten:* Aan de hand van mijn onderzoek heb ik een benchmarking gemaakt van de deskresearch naar bestaande oplossingen en waar deze te kort schieten. Ook heb ik voor mijn datavisualisatie richtlijnen opgesteld waaraan deze moet voldoen.
@@ -108,7 +108,7 @@ Ik heb de hoofdvraag verdeeld in meerdere deelvragen, samen geven deze antwoord 
 
 ##Context
 ###Huidige situatie
-Fresh Heroes is een al draaiende website, bij mijn opdracht is het niet de bedoeling dat ik de huidige website drastisch verander. Daarom is het belangrijk dde huidige situatie vast te stellen.
+Fresh Heroes is een al draaiende website, bij mijn opdracht is het niet de bedoeling dat ik de huidige website drastisch verander. Daarom is het belangrijk de huidige situatie vast te stellen.
 
 ####Product
 Fresh Heroes is een website waarop bedrijven stages kunnen plaatsen en waarop studenten kunnen solliciteren. Hieronder volgens een paar screenshots om een indruk te geven van de website. Om een betere indruk van de website te krijgen, kan deze link worden gebruikt: [Fresh Heroes](https://freshheroes.com/).
@@ -134,7 +134,7 @@ Fresh Heroes is een website waarop bedrijven stages kunnen plaatsen en waarop st
 
 
 *Admin gebruikers*<br/>
-Gebruikers met admin rechten (dit zijn uitsluitend medewerkers van Fresh Heroes of Lifely), is er ook nog het admin gedeelte. In dit gedeelte komt ook mijn product te staan.
+Voor gebruikers met admin rechten (dit zijn uitsluitend medewerkers van Fresh Heroes of Lifely), is er ook nog het admin gedeelte. In dit gedeelte komt ook mijn product te staan.
 
 In de huidige situatie is de volgende data inzichtelijk voor administratoren:
 - Hoeveel bedrijven en studenten zijn geregistreerd
@@ -173,7 +173,7 @@ Er wordt er al veel data bijgehouden in Fresh Heroes. Een overzicht van het huid
 Door te kijken naar de aantallen van deze tabellen in bepaalde periodes kunnen al interessante conclusies getrokken worden. Denk hierbij bijvoorbeeld aan welke vacatures het interessantste zijn, hoeveel vacatures een bedrijf plaatst en wanneer of op welk type vacature gebruikers het meest solliciteren. 
 
 [<img src="images/orientatie/image16.png"/>](images/orientatie/image16.png)
-<small>Afbeelding 13) De drie belangrijkste (bestaande) datatabelen in project</small>
+<small>Afbeelding 13) De drie belangrijkste (bestaande) datatabellen in project</small>
 
 ###Gebruikersdata en Veiligheid
 Een groot deel van dit project gaat over het verzamelen van data om een product te verbeteren. Gebruikersdata kunnen positief gebruikt worden (zoals bij het verbeteren van producten), maar de angst bestaat dat deze data misbruikt kan worden en gebruikers kunnen schaden. Een voorbeeld hiervan zijn datalekken bij sites. Laatst nog in Amerika bij Equifax, waarbij de data van zo’n 143 miljoen gebruikers buit was gemaakt door hackers[(Ng, 2017)](#cnet). Ook in Nederland is dit een probleem. Rond 25 september 2017 werd bekend gemaakt dat hackers sinds november 2016 toegang hadden tot admin accounts en het mailsysteem van Deltalloyd (Hopkins, 2017).
@@ -217,7 +217,7 @@ In zijn werk merkt hij vaak dat hij data mist om potentiële klanten te overtuig
 
 Ook is een groot knelpunt dat de data van Mixpanel maar 60 dagen beschikbaar is, waardoor deze niet genoeg informatie levert als Barry een plan probeert te maken voor de lange termijn. 
 
-Als wil hij de belangrijkste informatie op dezelfde plek zien, zodat hij minder hoeft op te zoeken, daarmee minder tijd kwijt is en dus eficiënter kan werken. 
+Hij wilt de belangrijkste informatie op dezelfde plek zien, zodat hij minder hoeft op te zoeken, daarmee minder tijd kwijt is en dus efficiënter kan werken. 
 
 De belangrijkste data die hij mist is informatie over vacatures en sollicitaties, zodat hij bedrijven kan helpen met de timing van hun vacatures. Daarnaast is het versturen van emails niet gebruiksvriendelijk en vraagt hij zich af of dat ook versimpelt kan worden, maar dat heeft minder hoge prioriteit. 
 
@@ -243,7 +243,7 @@ Om verwarring te voorkomen gebruik ik voor de gebruikers van Fresh Heroes ‘use
 
 ####Must Have
 - De gebruiker wil snel informatie kunnen aflezen
-- De gebruiker willn zo ver mogelijk terug kunnen kijken in de data
+- De gebruiker wil zo ver mogelijk terug kunnen kijken in de data
 - De gebruiker wil kunnen zien of er gebruikersacties zijn die niet zijn uitgevoerd
 - De gebruiker wil processen inzichtelijker krijgen (Bijvoorbeeld: hoeveel mensen komen op de registratiepagina en hoeveel ronden een registratie af)
     - Registratie funnel (pagina bezoek -> registreren -> account activeren)
@@ -284,7 +284,7 @@ Om verwarring te voorkomen gebruik ik voor de gebruikers van Fresh Heroes ‘use
 In dit hoofdstuk beschrijf ik de technische onderdelen van mijn project en wat ik gedaan heb om deze te realiseren.
 
 ###Events
-Na het opstellen van mijn user requirements list werd het duidelijk dat het belangrijk was dat ik al vroeg begon met de ontwikkeling. Veel van de data mijn gebruikers willen zien werd niet opgeslagen of kon niet worden geëxporteerd uit Mixpanel. Uit mijn literatuuronderzoek werd aangeraden om vooral te werken met echte data, maar die was niet aanwezig. Daarom werd het maken van events en deze lanceren op de website een prioriteit.
+Na het opstellen van mijn user requirements list werd het duidelijk dat het belangrijk was dat ik al vroeg begon met de ontwikkeling. Veel van de data die mijn gebruikers willen zien werd niet opgeslagen of kon niet worden geëxporteerd uit Mixpanel. Uit mijn literatuuronderzoek werd aangeraden om vooral te werken met echte data, maar die was niet aanwezig. Daarom werd het maken van events en deze lanceren op de website een prioriteit.
 
 ####Wat zijn events
 Wanneer ik het heb over een event heb ik het over een gebeurtenis die wordt vastgelegd zodat de programmeur er iets mee kan, bijvoorbeeld opslaan in een database (“Introduction to events”, z.d.). Simpel gezegd is een event alles wat de gebruiker bewust doet, van het klikken op een knop tot het solliciteren op een vacature.
@@ -298,7 +298,7 @@ Handy stelt zelf alternatieven voor zoals business intelligence tools als Mode e
 
 Ook bij gebruik van de pro versie van Mixpanel kan je de event data maar van een jaar terug zien. Eén van de belangrijke user requirements is de mogelijkheid zo ver mogelijk terug te kijken in de eventdata waardoor dit geen optie is en het uiteindelijk beter is om het zelf bij te houden.
 
-Er zijn ook mensen die hier anders over denken. Tomi Mester is er voorstander van dat bedrijven al redelijk snel overgaan op het vergaren van eigen data. Hij noemt zelfs drie problemen waar men tegenaan kan lopen indien er 3e partijen gebruikt voor het vergaren van data in zijn blog post “When and why to build your own data tools?” (Mester, 2017). Deze zijn:
+Er zijn ook mensen die hier anders over denken. Tomi Mester is er voorstander van dat bedrijven al redelijk snel overgaan op het vergaren van eigen data. Hij noemt zelfs drie problemen waar men tegenaan kan lopen indien er 3e partijen gebruikt worden voor het vergaren van data in zijn blog post “When and why to build your own data tools?” (Mester, 2017). Deze zijn:
 
 - **Probleem 1:** Je kan niet alle verbindingen leggen
 - **Probleem 2:** Je kan moeilijk dingen voorspellen
@@ -306,11 +306,11 @@ Er zijn ook mensen die hier anders over denken. Tomi Mester is er voorstander va
 
 Bij Fresh Heroes ligt het probleem voor al bij probleem één en twee. Probleem drie speelt op dit moment nog geen grote rol omdat we een klein aantal derde partijen gebruiken die alle drie andere dingen bijhouden.
 
-Het eerste probleem ontstaat doordat de data die je nodig hebt bij verschillende partijen staat. Het combineren van verschillende services is lastig omdat je afhankelijk bent van hoe zij de data aanleveren. Sommige sites leveren niet eens de mogelijkheid data te exporteren zonder dat er voor wordt betaalt. Indien je je eigen data bijhoudt heb je deze problemen niet, je hebt volledige controle over wat je bijhoudt en hoe je dat doet.
+Het eerste probleem ontstaat doordat de data die je nodig hebt bij verschillende partijen staat. Het combineren van verschillende services is lastig omdat je afhankelijk bent van hoe zij de data aanleveren. Sommige sites leveren niet eens de mogelijkheid data te exporteren zonder dat er voor wordt betaald. Indien je je eigen data bijhoudt heb je deze problemen niet, je hebt volledige controle over wat je bijhoudt en hoe je dat doet.
 
 Probleem twee ligt in het verlengde daarvan, vooral als je het houdt bij de gratis versies van deze producten. Om een goede voorspelling te kunnen doen is veel data nodig, over een zo lang mogelijke tijd. Gratis versies zijn vaak gelimiteerd in de beschikbaarheid van de data.
 
-Bij Fresh Heroes is dit vooral een probleem, er kunnen geen stage periodes met elkaar worden vergelijken als je maar 60 dagen terug kan kijken. Een korte stage is 10 en een lange stage 20 weken. Met de gratis versie van Mixpanel kan niet de gehele stageperiode worden ingezien. Daardoor kunnen geen goede voorspellingen worden gedaan met de huidige data. Wanneer Fresh Heroes deze data zelf opslaat kan er net zo ver worden teruggekeken als dat wenselijk is.
+Bij Fresh Heroes is dit vooral een probleem, er kunnen geen stage periodes met elkaar worden vergeleken als je maar 60 dagen terug kan kijken. Een korte stage is 10 en een lange stage 20 weken. Met de gratis versie van Mixpanel kan niet de gehele stageperiode worden ingezien. Daardoor kunnen geen goede voorspellingen worden gedaan met de huidige data. Wanneer Fresh Heroes deze data zelf opslaat kan er net zo ver worden teruggekeken als wenselijk is.
 
 ####Data Model van Events
 
@@ -344,6 +344,7 @@ Events in Laravel werken met Listeners. Deze doen wat de naam impliceert, ze lui
 Het event waar mijn Listener naar luistert heet AnalyticsEventFired. Hierin worden de velden die een event ontvangt, opgeslagen en doorgegeven aan de Listener. Een AnalyticsEventFired heeft een naam, metadata en een user. Indien er geen metadata wordt meegegeven, wordt dit opgeslagen als een lege array en als er geen user wordt meegegeven is dit `null`.
 
 ```php
+<?php
 class AnalyticsEventFired
 {
     use SerializesModels;
@@ -372,6 +373,7 @@ class AnalyticsEventFired
 De listener heet SaveAnalyticsEvent. Deze luistert of het event AnalyticsEventFired is afgevuurd:
 
 ```php
+<?php
 class SaveAnalyticsEvent implements ShouldQueue {
 
     public function handle(AnalyticsEventFired $event)
@@ -394,11 +396,12 @@ class SaveAnalyticsEvent implements ShouldQueue {
 
 Zodra dat gebeurt maakt hij een nieuw AnalyticsEvent aan, vult deze met de data die hij meekrijgt van het event en slaat hem op. Dat is de enige functie.
 
-Om een event af te vuren moet het worden aangeroepen op plekken waar iets interessant gebeurt, bijvoorbeeld het bekijken van een vacature of een sollicitatie.
+Om een event af te vuren moet het worden aangeroepen op plekken waar iets interessants gebeurt, bijvoorbeeld het bekijken van een vacature of een sollicitatie.
 
 Zo roep je in Laravel een event aan:
 
 ```php
+<?php
 event(new AnalyticsEventFired('vacancy.view', [
     'route' => 'vacancy.view',
     'vacancy_id' => $vacancy->id,
@@ -414,10 +417,9 @@ Technisch gezien zouden we ook event direct kunnen opslaan, maar er is voor geko
 
 - Een event is onafhankelijk van zijn listeners. Een event zegt alleen maar dat er iets gebeurt is met wat extra informatie. Het geeft de mogelijkheid meerdere dingen uit te voeren zonder deze handmatig aan te roepen. Als er ooit besloten wordt om de tellingen van events op te slaan kan er nog een listener gemaakt worden die naar hetzelfde event luistert. Dit hoeft alleen maar op één plek te worden toegevoegd en niet op elke plek waar een event wordt aangeroepen.
 
-- Als er een error optreed in het event blijft de rest van de code gewoon door draaien. Dit is fijn voor de user, omdat het voor hun weinig uitmaakt of het event slaagt of niet 
+- Als er een error optreedt in het event blijft de rest van de code gewoon door draaien. Dit is fijn voor de user, omdat het voor hun weinig uitmaakt of het event slaagt of niet 
 
 - Het is netter, een event is een observatie van een actie terwijl een functie een actie is 
-<!-- gebeurt pas nadat iets gebeurt is terwijl een functie aangeeft dat iets op het punt staat te gebeuren -->
 
 - Het is erg makkelijk om events te queuen, dat betekent dat ze niet direct worden uitgevoerd, maar pas later. Dit is beter voor de gebruikers omdat ze minder lang hoeven te wachten. 
 
@@ -710,9 +712,9 @@ dimensions: [
     }
 ]
 ```
-Als jdit wordt toegevoed aan de query voor pageviews, krijg je het aantal unieke pageviews per pagina van de website.
+Als dit wordt toegevoed aan de query voor pageviews, krijg je het aantal unieke pageviews per pagina van de website.
 
-Zo kunnen meerdere dingen worden toegevoegd zoals het aantal resultaten dat terug komen of de resultaten kunnen al vast worden geordend. Een complete lijst van mogelijkheden is te vinden in de documentatie van de Reporting API bij [Creating a report](https://developers.google.com/analytics/devguides/reporting/core/v4/basics) and [Advanced use cases](https://developers.google.com/analytics/devguides/reporting/core/v4/advanced).
+Zo kunnen meerdere dingen worden toegevoegd zoals het aantal resultaten dat terugkomen of de resultaten kunnen al vast worden geordend. Een complete lijst van mogelijkheden is te vinden in de documentatie van de Reporting API bij [Creating a report](https://developers.google.com/analytics/devguides/reporting/core/v4/basics) and [Advanced use cases](https://developers.google.com/analytics/devguides/reporting/core/v4/advanced).
 
 ###Keuze voor D3
 Ik heb bewust geen uitgebreid onderzoek gedaan naar de keuze van datavisualisatie frameworks. In het derde jaar van mijn opleiding heb ik les gehad in D3, dat staat voor Data Driven Documents. Ook bij Lifely heb ik meegewerkt aan een project waar ook gebruik gemaakt werd van D3.  Omdat ik hier al ervaring mee heb leek mij het de beste keuze om in de korte tijd van het project.
@@ -725,28 +727,6 @@ D3 is een Javascript framework waarmee elementen worden gemanipuleerd op basis v
 D3 heeft ook veel handige functies, zo kan aan de hand van de data worden uitgerekend hoe hoog de staven in je staafdiagram moeten zijn en wat handige stappen zijn voor de assen. Hiervoor zijn de scale functies erg handig. De schaal (scale in het engels) is de manier waarop een abstracte waarde (bijvoorbeeld het aantal views op een pagina) wordt omgezet naar een visuele waarden, zoals de hoogte van een staaf in een staafdiagram.
 
 Omdat D3 te groot is om helemaal te behandelen licht ik vooral toe hoe we de data omzetten in elementen. Ik heb er voor gekozen dit toe te lichten omdat ik hier in het begin het meeste moeite mee had.
-
-####Data toevoegen
-Een van de belangrijke principes in D3 is de data join. Hiermee kunnen meerdere elementen in een keer worden gemaakt, op basis van de data. Hierbij gelden wel andere principes dan normaal. Normaal wordt de code verteld wat er moet gebeuren, maar bij een data join vertel je D3 wat je wilt. In het voorbeeld hieronder worden voor elk datapunt cirkels gemaakt:
-
-```javascript
- svg.selectAll("circle")
- .data(data)
- .enter().append("circle")
-   .attr("cx", function(d) { return d.x; })
-   .attr("cy", function(d) { return d.y; })
-   .attr("r", 2.5);
-```
-<small>(code voorbeeld van Chuck Grimmett; we gaan er vanuit dat SVG leeg is)</small>
-
-Met deze code zeggen wordt tegen D3 gezegd dat er voor elk element in de data array een `circle` toegevoegd moet worden. Eerst wordt een selectie gedaan op alle `circle` elementen. Hieruit komt een lege selectie, omdat er nog niks staat in de SVG. Daarna wordt deze selectie aan de data koppeld door middel van `.data(data)`.
-
-Wanneer data aan een selectie wordt gekoppeld krijg je drie andere selecties terug: *enter* (datapunten die nog geen element heeft), *update* (elementen die al een datapunt hebben) of *exit* (elementen waar de datapunten niet meer van bestaat). De `.data` geeft altijd de update selectie terug, maar daarna kan `.enter()` of `.exit()` worden aangeroepen om de andere selecties te gebruiken.
-
-[<img src="images/onderzoek/image10.png"/>](images/onderzoek/image10.png)
-<small>Afbeelding 21) Schema van een data join in d3. *Bron: (Grimmett, 2016)*</small>
-
-Bij het voorbeeld is er alleen een *enter* selectie, er bestonden namelijk nog geen elementen in de SVG. Met `.enter().append(‘circle’)` wordt er voor elk element in deze selectie een circle toegevoegd. Deze kan daarna worden aangepast met `.attr`, zodat kan worden bepaald hoe dit element eruit ziet of om het een classname te geven.
 
 ###SVG of Canvas
 Bij D3 was er nog wel de keuze of ik SVG of Canvas ging gebruiken. Een SVG staat voor Scalable Vector Graphic en is vergelijkbaar met een HTML document. Wat SVG is voor een afbeelding is een HTML document voor tekst. Een SVG bestaat uit tekst (XML) en heeft een eigen DOM, waardoor het makkelijk kan worden doorzocht.
@@ -766,6 +746,30 @@ Een groot voordeel van Canvas is dat het sneller is, omdat het geen DOM heeft. B
 ####Keuze
 Ik heb uiteindelijk voor SVG gekozen. Ik ga geen hele ingewikkelde datavisualisaties maken waarbij honderden elementen voorkomen. Wel wil ik gaan kijken naar interactie, wat makkelijker is met SVG.
 
+###Hoe maak je datavisualisatie met D3
+
+####Data join
+Een van de belangrijke principes in D3 is de data join. Hiermee kunnen meerdere elementen in een keer worden gemaakt, op basis van de data. Hierbij gelden wel andere principes dan normaal. Meestal selecteer je elementen die al bestaan, of maak je elementen die nog niet bestaan en deze daarna manipuleren aan de hand van de data. Met D3 kan je eerst een lege selectie maken en deze later vullen aan de hand van data.
+
+```javascript
+ svg.selectAll("circle")
+ .data(data)
+ .enter().append("circle")
+   .attr("cx", function(d) { return d.x; })
+   .attr("cy", function(d) { return d.y; })
+   .attr("r", 2.5);
+```
+<small>(code voorbeeld van Chuck Grimmett; we gaan er vanuit dat SVG leeg is)</small>
+
+Met deze code wordt tegen D3 gezegd dat er voor elk element in de data array een `circle` toegevoegd moet worden. Eerst wordt een selectie gedaan op alle `circle` elementen. Hieruit komt een lege selectie, omdat er nog niks staat in de SVG. Daarna wordt deze selectie aan de data koppeld door middel van `.data(data)`.
+
+Wanneer data aan een selectie wordt gekoppeld krijg je drie andere selecties terug: *enter* (datapunten die nog geen element heeft), *update* (elementen die al een datapunt hebben) of *exit* (elementen waar de datapunten niet meer van bestaat). De `.data` geeft altijd de update selectie terug, maar daarna kan `.enter()` of `.exit()` worden aangeroepen om de andere selecties te gebruiken.
+
+[<img src="images/onderzoek/image10.png"/>](images/onderzoek/image10.png)
+<small>Afbeelding 21) Schema van een data join in d3. *Bron: (Grimmett, 2016)*</small>
+
+Bij het voorbeeld is er alleen een *enter* selectie, er bestonden namelijk nog geen elementen in de SVG. Met `.enter().append(‘circle’)` wordt er voor elk element in deze selectie een circle toegevoegd. Deze kan daarna worden aangepast met `.attr`, zodat kan worden bepaald hoe dit element eruit ziet of om het een classname te geven.
+
 ##Gebruikersdata en veiligheid
 In mijn project maak ik gebruik van gegevens van gebruikers, daarom leek het mij belangrijk te onderzoeken hoe het zit met de veiligheid en of dit wel overeenkomt met de wetgeving.
 
@@ -774,10 +778,9 @@ Fresh Heroes heeft een privacy policy, waarin ze melden de volgende data op te s
 
 - Naam
 - Telefoonnummer
-- Addres
+- Adres
 - Geboortedatum
-- Gebruikersnaam, wachtwoord en e-mailadres wanneer u zich registreert voor een
-- Fresh Heroes account
+- Gebruikersnaam, wachtwoord en e-mailadres wanneer u zich registreert voor een Fresh Heroes account
 - Profiel-informatie die u verstrekt via uw account
 - Communicatie tussen Fresh Heroes en u (wij mogen u dienst-gerelateerde e-mails sturen)
 - School & opleiding
@@ -817,7 +820,7 @@ In mei 2018 komen er nieuwe regels vanuit de Europese Unie. Daarbij blijven de b
 - Geen meldingsplicht meer, wel een documentatieplicht
 - Er moet duidelijk toestemming gevraagd worden aan de gebruiker en de gebruiker moet dit later kunnen aanpassen
 - Mogelijk moeten bedrijven een Functionaris Gegevensbescherming aanstellen wanneer er op grote schaal persoonsgegevens worden verzameld (profiling) of als het onderdeel is van een overheidsinstelling
-- De gebruiker mag eisen dat zijn data wordt verwijdert
+- De gebruiker mag eisen dat zijn data wordt verwijderd
 - De gebruiker heeft recht op portabiliteit, dat betekent dat ze recht hebben om hun gegevens op te vragen in een standaard formaat
 
 ##Datavisualisaite
@@ -1068,7 +1071,7 @@ Op dit moment wordt Google Analytics aangeroepen in de voorkant van de applicati
 Bryan heeft hiervoor een voorstel gedaan, [Laravel Analytics](https://github.com/spatie/laravel-analytics) door de webontwikkelaars van Spatie. Met deze package wordt het ophalen van analytics data versimpeld.
 
 ##Anonimiseren van user_id
-<!-- Nog overleg, verbeteringen zijn niet waar -->
+<!--- Nog overleg, verbeteringen zijn niet waar -->
 Vanwege de wet op persoonsgegeven moeten we overwegen user_id’s te anonimiseren bij events, of alleen op te slaan of de gebruiker is ingelogd en of het een bedrijf of student is.
 
 Voordelen is dat dit minder privacy inbreuk is en dus minder data kan lekken als er ooit een data lek komt. 
