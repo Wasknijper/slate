@@ -1013,6 +1013,10 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <h3 id='hoe-maak-je-datavisualisatie-met-d3'>Hoe maak je datavisualisatie met D3</h3>
 <p>Om wat meer duidelijkheid te geven hoe dit werkt in de praktijk licht ik een van de datavisualisaties toe. Ik heb ervoor gekozen om een simpele bar chart door te lopen, de Nieuwe vacatures per categorie grafiek. Ik heb de code opgesplitst voor de toelichting. De volledige code is te vinden in Bijage 3. </p>
 
+<p><a href="images/onderzoek/image12.png"><img src="images/onderzoek/image12.png"/></a>
+<small>Afbeelding 21) Het resultaat van de code die wordt beschreven in dit hoofdstuk
+</small></p>
+
 <p>De bar chart wordt gemaakt in een functie die <code>renderNewVacanciesPerCategory</code> heet. Als eerst maak ik een paar variabelen. Daarin geef ik aan hoeveel marge ik rond de grafiek wil hebben en hoe groot deze moet zijn:</p>
 <pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">renderNewVacanciesPerCategory</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span>
@@ -1099,7 +1103,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Wanneer data aan een selectie wordt gekoppeld krijg je drie andere selecties terug: <em>enter</em> (datapunten die nog geen element heeft), <em>update</em> (elementen die al een datapunt hebben) of <em>exit</em> (elementen waar de datapunten niet meer van bestaat). De <code>.data</code> geeft altijd de update selectie terug, maar daarna kan <code>.enter()</code> of <code>.exit()</code> worden aangeroepen om de andere selecties te gebruiken.</p>
 
 <p><a href="images/onderzoek/image10.png"><img src="images/onderzoek/image10.png"/></a>
-<small>Afbeelding 21) Schema van een data join in d3. <em>Bron: (Grimmett, 2016)</em></small></p>
+<small>Afbeelding 22) Schema van een data join in d3. <em>Bron: (Grimmett, 2016)</em></small></p>
 
 <p>Bij het voorbeeld is er alleen een <em>enter</em> selectie, er bestonden namelijk nog geen elementen in de SVG. Met <code>.enter().append(‘circle’)</code> wordt er voor elk element in deze selectie een circle toegevoegd. Deze kan daarna worden aangepast met <code>.attr</code>, zodat kan worden bepaald hoe dit element eruit ziet of om het een classname te geven.</p>
 <h2 id='gebruikersdata-en-veiligheid-2'>Gebruikersdata en veiligheid</h2>
@@ -1188,7 +1192,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>In Tufte’s boek wordt ook het begrip chartjunk gebruikt. Dit komt neer op dingen die rond een visualisatie staan, maar niets toevoegen aan de visualisatie. Denk hierbij aan afbeeldingen of een illustratie om in de visualisatie zelf. Een ander voorbeeld hiervan is het gebruik van 3d in een visualisatie. Dit kan ervoor zorgen dat delen groter lijken dan ze eigenlijk zijn waardoor verwarring ontstaat:</p>
 
 <p><a href="images/onderzoek/image26.png"><img src="images/onderzoek/image26.png"/></a>
-<small>Afbeelding 22) Door het 3d effect lijkt de 19.5% groter dan de 21.2%  <em>Bron: (“Chart dos and don’ts”, 2016)</em></small></p>
+<small>Afbeelding 23) Door het 3d effect lijkt de 19.5% groter dan de 21.2%  <em>Bron: (“Chart dos and don’ts”, 2016)</em></small></p>
 <h4 id='weet-het-doel-van-je-datavisualisatie'>Weet het doel van je datavisualisatie</h4>
 <p>Het is verstandig om te weten wat je wilt bereiken met je datavisualisatie of wat de gebruiker er mee wilt bereiken. In de presentatie van Rost, Why Do We Visualize Data?, noemt ze drie redenen waarom mensen gebruik maken van visualisaties: </p>
 
@@ -1242,32 +1246,32 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Om een goede keuze te kunnen maken per soort grafiek heb ik gebruik gemaakt van The Data Visualisation Catalogue. Dit een website waarin een groot aantal datavisualisaties is opgeslagen en waarin kan worden gefilterd op het soort data wat je wilt weergeven. Per visualisatie ligt ik kort toe waarom ik voor deze vorm gekozen heb.</p>
 <h5 id='unieke-pageviews-per-week'>Unieke pageviews per week</h5>
 <p><a href="images/onderzoek/image9.png"><img src="images/onderzoek/image9.png"/></a>
-<small>Afbeelding 23) Bar chart voor unieke pageviews per week</small></p>
+<small>Afbeelding 24) Bar chart voor unieke pageviews per week</small></p>
 
 <p>Unieke pageviews per week is nominale data (de pagina’s) gecombineerd met ratio data. In een bar chart kun zijn duidelijk de verhoudingen te zien tussen de verschillende ratio. Ik heb hier voor een horizontale versie gekozen omdat er dan meer ruimte is voor labels.</p>
 <h5 id='sessies-per-dag'>Sessies per dag</h5>
 <p><a href="images/onderzoek/image15.png"><img src="images/onderzoek/image15.png"/></a>
-<small>Afbeelding 24) Histogram voor aantal sessies per dag van deze week
+<small>Afbeelding 25) Histogram voor aantal sessies per dag van deze week
 </small></p>
 
 <p>Sessies per dag een combinatie van interval data (de dagen van de week) en ratio data (het aantal sessies). Dit soort grafiek lijkt op een bar chart, maar wordt officieel een histogram genoemd omdat het gebruikt maakt van interval in plaats van nominaal. (Ribecca, z.d.).</p>
 <h5 id='page-views-voor-bedrijfsjungle-per-dag'>Page views voor /bedrijfsjungle per dag</h5>
 <p><a href="images/onderzoek/image7.png"><img src="images/onderzoek/image7.png"/></a>
-<small>Afbeelding 25) Histogram voor het aantal unieke views voor een pagina per dag van deze week 
+<small>Afbeelding 26) Histogram voor het aantal unieke views voor een pagina per dag van deze week 
 </small></p>
 
 <p><a href="images/onderzoek/image6.png"><img src="images/onderzoek/image6.png"/></a>
-<small>Afbeelding 26) Line chart voor het aantal unieke views voor een pagina per dag van deze week
+<small>Afbeelding 27) Line chart voor het aantal unieke views voor een pagina per dag van deze week
 </small></p>
 
 <p>Bij de datavisualisatie voor het aantal unieke view per dag voor een pagina (van deze week) twijfelde of ik gebruik zou maken van een histogram of een line chart. Elke dag is opgedeeld per uur, zodat je kan zien wanneer er pieken in views zijn. Beide charts laten dit zien, dus uiteindelijk heb ik het aan mijn gebruikers gevraagd. Barry vond de hover met de histogram makkelijker, waardoor ik daarvoor gekozen heb.</p>
 
 <p><a href="images/onderzoek/image25.png"><img src="images/onderzoek/image25.png" style="max-width: 240px;"/></a>
-<small>Afbeelding 27) Barry laat kort en bondig zijn voorkeur aan mij weten
+<small>Afbeelding 28) Barry laat kort en bondig zijn voorkeur aan mij weten
 </small></p>
 <h5 id='gebruikers-per-soort'>Gebruikers per soort</h5>
 <p><a href="images/onderzoek/image20.png"><img src="images/onderzoek/image20.png"/></a>
-<small>Afbeelding 28) Donut chart voor het soort gebruikers en het aantal nieuwe gebruikers deze week
+<small>Afbeelding 29) Donut chart voor het soort gebruikers en het aantal nieuwe gebruikers deze week
 </small></p>
 
 <p>Gebruikers per soort is ratio (het aantal gebruikers) en nominaal (het soort gebruikers). Ik heb gekozen voor een Donut chart met een samenvatting ernaast. Met een Donut chart kan de gebruiker snel zien wat de verhouding is tussen de twee soorten. Omdat de nieuwe gebruikers ook horen bij de oude gebruikers heb ik gekozen om de kleuren dicht bij elkaar te houden. </p>
@@ -1275,45 +1279,45 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Donut (en Pie) charts zijn redelijk controversieel voor datavisualisaties, omdat er geen groot aantal categorieën in kan worden laten gezien en dat mensen minder goed zijn in het vergelijken van oppervlakte. (Hickey, 2013) Toch heb ik gekozen voor een Donut Chart omdat het weinig categorieën zijn en je even snel kan zien hoe de verhoudingen liggen.</p>
 <h5 id='aanmeldingen-per-type'>Aanmeldingen per type</h5>
 <p><a href="images/onderzoek/image22.png"><img src="images/onderzoek/image22.png"/></a>
-<small>Afbeelding 29) Grouped bar chart voor het aantal aanmeldingen per type
+<small>Afbeelding 30) Grouped bar chart voor het aantal aanmeldingen per type
 </small></p>
 
 <p>Aanmeldingen per type is een combinatie van nominaal (categorieën), interval (dagen) en nominaal (aantal aanmeldingen). Het is geen histogram omdat de horizontale data niet geheel opeenvolgend is. De lichtgroene bar is andere data dan de donkerdere bar, niet een gevolg op elkaar. Ik heb ervoor gekozen hier een grouped bar chart van te maken zodat de twee categorieën makkelijk vergeleken kunnen worden.</p>
 <h5 id='bekeken-vacatures-deze-week'>Bekeken vacatures deze week</h5>
 <p><a href="images/onderzoek/image23.png"><img src="images/onderzoek/image23.png" style="max-width: 400px;"/></a>
-<small>Afbeelding 30) Top 10 lijst van bekeken vacatures deze week
+<small>Afbeelding 31) Top 10 lijst van bekeken vacatures deze week
 </small></p>
 
 <p>Voor bekeken vacatures deze week heb ik ervoor gekozen om geen visualisatie te maken. Er zijn te veel vacatures om hier een goede chart van te maken, dus heb ik er in overleg voor gekozen een top 10 lijst te maken. Volgens de soorten data is dit ordinale data in combinatie met nominale data.</p>
 <h5 id='actieve-vacatures-per-categorie'>Actieve vacatures per categorie</h5>
 <p><a href="images/onderzoek/image14.png"><img src="images/onderzoek/image14.png" style="max-width: 410px;"/></a>
-<small>Afbeelding 31) Top 10 lijst van bekeken vacatures deze week
+<small>Afbeelding 32) Top 10 lijst van bekeken vacatures deze week
 </small></p>
 
 <p>Net als bij Gebruikers per soort hebben we hier te maken met nominale data en en ratio data. Hier is een categorie bijgekomen omdat ik de kleuren van de categorieën consistent wil houden op de pagina. Ik heb hier ook voor een donut chart gekozen omdat het belangrijk is om te zien wat de belangrijkste categorieën zijn, niet precies hoeveel. Als de gebruiker toch wilt weten hoeveel het precies, is kan de gebruiker over een sectie heen hoveren.</p>
 
 <p><a href="images/onderzoek/image8.png"><img src="images/onderzoek/image8.png style="max-width: 180px;""/></a>
-<small>Afbeelding 32) Voorbeeld van een hover over een sectie
+<small>Afbeelding 33) Voorbeeld van een hover over een sectie
 </small></p>
 <h5 id='nieuwe-vacatures-per-categorie'>Nieuwe vacatures per categorie</h5>
 <p><a href="images/onderzoek/image12.png"><img src="images/onderzoek/image12.png"/></a>
-<small>Afbeelding 33) Bar chart voor het aantal nieuwe vacatures deze week per categorie
+<small>Afbeelding 34) Bar chart voor het aantal nieuwe vacatures deze week per categorie
 </small></p>
 
 <p>Nieuwe vacatures per categorie maakt gebruikt van nominale (categorieën) en ratio data. Ik heb voor een bar chart gekozen zodat de categorieën makkelijk te vergelijken zijn. Ik heb te labels gedraaid zodat er genoeg ruimte is om ze te lezen.</p>
 <h5 id='views-en-sollicitaties-per-categorie'>Views en sollicitaties per categorie</h5>
 <p><a href="images/onderzoek/image17.png"><img src="images/onderzoek/image17.png"/></a>
-<small>Afbeelding 34) Combinatie grafiek over het aantal views per categorie en het aantal sollicitaties per categorie van deze week
+<small>Afbeelding 35) Combinatie grafiek over het aantal views per categorie en het aantal sollicitaties per categorie van deze week
 </small></p>
 
 <p>In views en sollicitaties per categorie wordt gebruik gemaakt van nominale (categorieën) en ratio data (aantal views en aantal sollicitaties). Ik heb er voor gekozen om de ratio’s te combineren in dezelfde chart. Zo kan de gebruiker niet alleen de views of sollicitaties vergelijken, maar ook kijken hoe de verhouding tussen views en sollicitaties is. </p>
 <h5 id='registratie-amp-sollicitatie-funnels'>Registratie &amp; Sollicitatie funnels</h5>
 <p><a href="images/onderzoek/image21.png"><img src="images/onderzoek/image21.png" style="max-width: 320px;"/></a>
-<small>Afbeelding 35) Funnel visualisatie voor de registratie flow met data van deze week
+<small>Afbeelding 36) Funnel visualisatie voor de registratie flow met data van deze week
 </small></p>
 
 <p><a href="images/onderzoek/image16.png"><img src="images/onderzoek/image16.png" style="max-width: 320px;"/></a>
-<small>Afbeelding 36) Funnel visualisatie voor de sollicitatie flow met data van deze week
+<small>Afbeelding 37) Funnel visualisatie voor de sollicitatie flow met data van deze week
 </small></p>
 
 <p>Voor de funnel visualisaties heb ik geen vorm gekozen die voorkomt in Data Visualisation Catalogue. De funnel maakt gebruik van nominale data (de stappen), ordinale data (de volgorde van de stappen en ratio data (de aantallen en percentages). Ik gebruik de ratio data van percentages om de grootte van de bars uit te rekenen, ze staan geordend volgens de ordinale data van de stappen volgorde. Als laatste laat ik de nominale data terug komen als labels, zodat duidelijk is waar elke bar voor staat.</p>
@@ -1499,7 +1503,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Google Analytics is een van de bekende voorbeelden voor het verzamelen van gegevens over gebruikersgedrag en datavisualisaties. Het is een gratis platform, dat ontzettend krachtig is, waardoor het door veel websites en online services wordt gebruikt.</p>
 
 <p><a href="images/bijlage/image5.png"><img src="images/bijlage/image5.png"/></a>
-<small>Afbeelding 37) Screenshot van Google Analytics
+<small>Afbeelding 38) Screenshot van Google Analytics
 </small></p>
 <h4 id='interactie-amp-datavisualisaties'>Interactie &amp; Datavisualisaties</h4>
 <p>Er zijn veel kleine interacties die zorgen voor progressive disclosure. Als je hovert over grafieken krijg je duidelijk de cijfers te zien van het datapunt.</p>
@@ -1509,11 +1513,11 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Er zijn wel veel mogelijkheden, dit komt ook doordat Google Analytics een grote tool is die voor veel dingen gebruikt kan worden. Niet alle data die er op staat is even relevant voor Fresh Heroes.</p>
 
 <p><a href="images/bijlage/image9.png"><img src="images/bijlage/image9.png"/></a>
-<small>Afbeelding 38) Sorteer en grafiek opties
+<small>Afbeelding 39) Sorteer en grafiek opties
 </small></p>
 
 <p><a href="images/bijlage/image9.png"><img src="images/bijlage/image9.png"/></a>
-<small>Afbeelding 39) voorbeeld van een mouse over
+<small>Afbeelding 40) voorbeeld van een mouse over
 </small></p>
 <h4 id='design'>Design</h4>
 <p>Dat Google Analytics één van de grote systemen is, is duidelijk te zien aan de zorg die gestoken is in de datavisualisaties; alleen het minimale dat nodig is wordt gebruikt zodat er geen ‘chartjunk’ is. Ze voldoen aan bijna alle best practices (zie hoofdstuk Datavisualisatie) van een goede datavisualisatie, behalve duidelijke doelen van een datavisualisatie maar dat lijkt mij ook lastig omdat deze moet worden ontwikkeld voor veel verschillende partijen.</p>
@@ -1521,7 +1525,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Mixpanel is een service waarmee je eventdata kunt opslaan en bekijken. Het is een gratis service, maar met limieten als je niet betaalt. Mixpanel wordt veel gebruikt omdat het makkelijk is voor niet technische mensen om te werken met de events. Je kunt bijvoorbeeld funnels later samenstellen, zodat je daar van te voren niet over na hoeft te denken.</p>
 
 <p><a href="images/bijlage/image10.png"><img src="images/bijlage/image10.png"/></a>
-<small>Afbeelding 40) Screenshot van Mixpanel
+<small>Afbeelding 41) Screenshot van Mixpanel
 </small></p>
 <h4 id='interactie-amp-datavisualisaties-2'>Interactie &amp; Datavisualisaties</h4>
 <p>Bij Mixpanel ligt de focus geheel op events, funnel en gebruikers. Er worden geen dingen bij gehouden zoals pageviews (tenzij je zelf een pageview event maakt). De standaard grafieken die worden gebruikt zijn line charts. Zelf vind ik dit soms lastig omdat het dan kan lijken of iets stijgt in een dag terwijl het één datapunt is voor één dag.</p>
@@ -1531,15 +1535,15 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Bij Mixpanel zitten de pagina’s verstopt achter twee klikken, je moet bijvoorbeeld eerst op User klikken en daarna kan je pas op ‘explore’ klikken, wat bij gratis gebruikers de enige optie is waarvoor je kunt kiezen. Dat is dus extra interactie die eigenlijk onnodig is.  </p>
 
 <p><a href="images/bijlage/image6.png"><img src="images/bijlage/image6.png"/></a>
-<small>Afbeelding 41) Mogelijkheid sommige data punten uit te zetten
+<small>Afbeelding 42) Mogelijkheid sommige data punten uit te zetten
 </small></p>
 
 <p><a href="images/bijlage/image11.png"><img src="images/bijlage/image11.png"/></a>
-<small>Afbeelding 42) Mogelijkheid om de datum van de data aan te passen
+<small>Afbeelding 43) Mogelijkheid om de datum van de data aan te passen
 </small></p>
 
 <p><a href="images/bijlage/image3.png"><img src="images/bijlage/image3.png"/></a>
-<small>Afbeelding 43) Mogelijkheid om je data te filteren
+<small>Afbeelding 44) Mogelijkheid om je data te filteren
 </small></p>
 <h4 id='design-2'>Design</h4>
 <p>Mixpanel legt de focus meer op één of twee datavisualisaties dan meerdere kleine. Ze gebruiken vooral klein om verschil te leggen tussen de soorten data. Voorspellingen worden gedaan met een stippellijn, wat een gebruikelijk patroon is. De datavisualisaties van de grafieken zijn rustig, alles wat onnodig is, is weggelaten. Bij Mixpanel is wel snel al duidelijk wat het doel is van een datavisualisatie, vooral dus omdat er minder mogelijkheden zijn.</p>
@@ -1547,7 +1551,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Kissmetrics is een systeem om gebruikersgedrag te meten. Eén van de belangrijkste functies is het maken van ‘populations’ van je gebruikers, wat een andere benaming is voor segmenteren. Andere belangrijke functies zijn het maken van campagnes (voornamelijk email campagnes) en inzage in gebruikersgedrag. Kissmetrics is niet gratis.</p>
 
 <p><a href="images/bijlage/image17.png"><img src="images/bijlage/image17.png"/></a>
-<small>Afbeelding 44) Screenshot van Kissmetrics
+<small>Afbeelding 45) Screenshot van Kissmetrics
 </small></p>
 <h4 id='interactie-amp-datavisualisaties-3'>Interactie &amp; Datavisualisaties</h4>
 <p>Kissmetrics gebruikt vooral datavisualisaties als ondersteuning voor de data. Zo is het overzicht vooral een samenvatting van een hoop nummers. Dit geldt voor alle overzichtspagina&#39;s; pas wanneer je op een detail komt krijg je een grafiek te zien. Het merendeel van de applicatie bestaat uit tabellen met steunkleuren.</p>
@@ -1557,11 +1561,11 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Verder zijn er filter mogelijkheden en zijn er vaste opties om van tijd te kunnen switchen.</p>
 
 <p><a href="images/bijlage/image14.png"><img src="images/bijlage/image14.png"/></a>
-<small>Afbeelding 45) Een detailview
+<small>Afbeelding 46) Een detailview
 </small></p>
 
 <p><a href="images/bijlage/image4.png"><img src="images/bijlage/image4.png"/></a>
-<small>Afbeelding 46) Een samenvatting van een funnel
+<small>Afbeelding 47) Een samenvatting van een funnel
 </small></p>
 <h4 id='design-3'>Design</h4>
 <p>Het design is vooral gefocust op tabellen en gebruikt vooral kleur om aan te geven hoe de statistieken vergelijken (groen voor beter, rood voor slechter). In de datavisualisaties worden kleuren vooral gebruikt om verschillende soorten data aan te geven.</p>
@@ -1569,7 +1573,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Baremetrics is een analytics systeem dat vooral gefocust is op bedrijven die abonnementen verkopen. Het houdt vooral bij hoeveel geld er binnenkomt en wat de gebruikers opleveren. Ook hebben ze een Forecast gedeelte, waar je kan op basis van je data, voorspellingen kan doen. Baremetrics is een betaalde service.</p>
 
 <p><a href="images/bijlage/image15.png"><img src="images/bijlage/image15.png"/></a>
-<small>Afbeelding 47) Screenshot van Baremetrics
+<small>Afbeelding 48) Screenshot van Baremetrics
 </small></p>
 <h4 id='interactie-amp-datavisualisaties-4'>Interactie &amp; Datavisualisaties</h4>
 <p>Op de overzichtspagina heb je een overzicht van alle statistieken die worden bijgehouden en wanneer je er op klikt ga je naar het desbetreffende dashboard. Bij de grafieken is er een mogelijkheid om de schaal van dag te veranderen naar maand of jaar. Ook kun je de grafieken met een paar knoppen veranderen naar een vergelijking of om een trendlijn uit te rekenen.</p>
@@ -1579,15 +1583,15 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Bij forecasts kun je de eigen data gebruiken om voorspellingen te doen. Je kunt de verwachte percentages aanpassen om te kijken hoe dit uitmaakt bij in de voorspelling.</p>
 
 <p><a href="images/bijlage/image16.png"><img src="images/bijlage/image16.png"/></a>
-<small>Afbeelding 48) Mogelijkheid om de data in de grafiek aan te passen of iets toe te voegen
+<small>Afbeelding 49) Mogelijkheid om de data in de grafiek aan te passen of iets toe te voegen
 </small></p>
 
 <p><a href="images/bijlage/image12.png"><img src="images/bijlage/image12.png"/></a>
-<small>Afbeelding 48) Een forecast over de inkomsten
+<small>Afbeelding 50) Een forecast over de inkomsten
 </small></p>
 
 <p><a href="images/bijlage/image13.png"><img src="images/bijlage/image13.png"/></a>
-<small>Afbeelding 49) Input mogelijkheden bij een forecast
+<small>Afbeelding 51) Input mogelijkheden bij een forecast
 </small></p>
 <h4 id='design-4'>Design</h4>
 <p>Baremetrics maakt gebruik van kleuren om aan te geven of het goed of slecht is of als labels voor de data. Bijna alles is geanimeerd, wat leuk is voor demo’s, maar snel irritant wordt bij hovers.  </p>
@@ -1595,7 +1599,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Wootric is een systeem om bij te houden hoe tevreden gebruikers zijn. In tegenstelling tot veel andere services geeft het ook de mogelijkheid om commentaar in te zien van je klanten. Wootric is een betaalde service.</p>
 
 <p><a href="images/bijlage/image8.png"><img src="images/bijlage/image8.png"/></a>
-<small>Afbeelding 50) Screenshot van Wootric
+<small>Afbeelding 52) Screenshot van Wootric
 </small></p>
 <h4 id='interactie-amp-datavisualisaties-5'>Interactie &amp; Datavisualisaties</h4>
 <p>De mogelijkheid om de data te kunnen segmenteren en filteren staat altijd aan de linkerkant, waardoor ik het eerst verwarde met een menu. Deze past alle data aan die op de pagina staat, zowel tabellen als grafieken. Als er meerdere open geklapt staan kun je niet meer makkelijk zien wat er aan staat doordat alles naar beneden zakt.</p>
@@ -1603,11 +1607,11 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>Verder is er ook de mogelijkheid om de datum van de data aan te passen met datepickers. Hovers op datavisualisaties geven meer informatie over het datapunt. Niet alle hovers zijn even makkelijk te bekijken of weer terug in te klappen. De hover op de users pagina blijft openstaan totdat je er zo&#39;n 50px vanaf bent. In sommige grafieken is de lijn om over te hoveren heel dun waardoor het lastig is om het open te klappen.  </p>
 
 <p><a href="images/bijlage/image1.png"><img src="images/bijlage/image1.png"/></a>
-<small>Afbeelding 51) Mogelijkheid om start- en einddatum aan te passen
+<small>Afbeelding 53) Mogelijkheid om start- en einddatum aan te passen
 </small></p>
 
 <p><a href="images/bijlage/image7.png"><img src="images/bijlage/image7.png"/></a>
-<small>Afbeelding 52) Detail bij mouse over in een datavisualisatie
+<small>Afbeelding 54) Detail bij mouse over in een datavisualisatie
 </small></p>
 <h4 id='design-5'>Design</h4>
 <p>Ik vind het design van Wootric op sommige pagina’s onaf ogen, zoals bijvoorbeeld de snapshot pagina. Ik vind het veel weg hebben van een standaard Bootstrap design. De kleuren in de datavisualisaties worden gebruikt om de kwaliteit van de gebruikers of hun reacties aan te geven. Verder worden kleuren ook gebruikt om te laten zien of de trend positief of negatief is, nl. groen voor positief en rood voor negatief.</p>
