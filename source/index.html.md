@@ -180,8 +180,6 @@ Een groot deel van dit project gaat over het verzamelen van data om een product 
 
 Over de privacy van het verzamelen van data wordt ook in de politiek veel gesproken. In februari 2017 heeft de tweede kamer de nieuwe Wet op de inlichtingen- en veiligheidsdiensten (ook wel de Sleepwet genoemd) aangenomen. In juli 2017 kwam deze ook door de eerste kamer (“Eerste Kamer der Staten-Generaal - Wet op de inlichtingen- en veiligheidsdiensten 2017 (34.588)”, z.d.), wat betekent dat vanaf januari 2018 de inlichtingendiensten veel meer data mogen gaan verzamelen, ook van mensen die bijv. in dezelfde straat wonen als de verdachte.
 
-**TBA: Wet AVG**
-
 Verder wordt er op het internet overal data verzameld. Een voorbeeld hiervan zijn de reclames van producten waarop jij net nog gezocht hebt. Dit gebeurt door middel van trackers en cookies die je ongevraagd binnen krijgt als je het internet gebruikt zonder adblockers en add-ons om deze trackers uitzetten.
 
 [<img src="images/orientatie/image15.png"/>](images/orientatie/image15.png)
@@ -474,7 +472,7 @@ Doordat de id’s van users worden opgeslagen in events werd wel duidelijk welke
 
 Rick wees mij erop dat je met Laravel gemakkelijk de HTTP Sessie kan opvragen en meegeven aan het event. Daardoor via de session id worden gekeken hoeveel unieke gebruikers een vacature bekijken.
 
-[<img src="images/onderzoek/image1.png"/>](images/onderzoek/image1.png)
+[<img src="images/onderzoek/image1.png" style="max-width: 160px;"/>](images/onderzoek/image1.png)
 <small>Afbeelding 18) De geupdate analytics_events tabel</small>
 
 *`Category_id` toevoegen aan de metadata van vacancy events*</br>
@@ -591,8 +589,8 @@ class EventsController extends Controller
 }
 ```
 
-[TBA: diagram van mvc]<br>
-Afbeelding 19) Een diagram van het MVC-model.
+[<img src="images/onderzoek/mvc.png" style="max-width: 410px;"/>](images/onderzoek/mvc.png)
+<small>Afbeelding 19) Een diagram van het MVC-model.</small>
 
 Voor mijn oplossing haal ik dus de event data op uit het Model in de Controller en geef ik die door aan de View. In de View kan ik deze weer meegeven aan het window object in een script tag. Vanuit daar kan ik het uitlezen in Javascript en gebruiken voor een visualisatie.
 
@@ -746,18 +744,114 @@ Een groot voordeel van Canvas is dat het sneller is, omdat het geen DOM heeft. B
 ####Keuze
 Ik heb uiteindelijk voor SVG gekozen. Ik ga geen hele ingewikkelde datavisualisaties maken waarbij honderden elementen voorkomen. Wel wil ik gaan kijken naar interactie, wat makkelijker is met SVG.
 
-###Hoe maak je datavisualisatie met D3
+<a name="d3-hoe"></a>
+###Hoe maak je datavisualisatie met D3 
+Om wat meer duidelijkheid te geven hoe dit werkt in de praktijk licht ik een van de datavisualisaties toe. Ik heb ervoor gekozen om een simpele bar chart door te lopen, de Nieuwe vacatures per categorie grafiek. Ik heb de code opgesplitst voor de toelichting. De volledige code is te vinden in Bijage 3. 
+
+De bar chart wordt gemaakt in een functie die `renderNewVacanciesPerCategory` heet. Als eerst maak ik een paar variabelen. Daarin geef ik aan hoeveel marge ik rond de grafiek wil hebben en hoe groot deze moet zijn:
+
+```javascript
+const renderNewVacanciesPerCategory = function(data) {
+    const margin = {
+        right: 10,
+        bottom: 70,
+        left: 40,
+    };
+
+    const width = 450 - margin.left - margin.right; // resultaat: 400
+    const height = 300 - margin.bottom; // resultaat: 230
+```
+
+Daarna worden de data gesorteerd, van de meeste nieuwe vacatures per categorie tot de minste. Een voorbeeld van de data is te vinden in Bijlage 4.
+
+```javascript
+   data.sort((a, b) => b.created - a.created);
+```
+
+Vervolgens geven we aan welke schalen de willen hebben. Er zijn schalen voor verschillende soorten data, deze bar chart gebruikt de `scaleLinear` voor de y-as (het aantal vacatures) en `scaleBand` voor de x-as (categorieën).  Deze passen bij de nominale data en ratio data van dit grafiek, meer over de soorten data is te vinden in het hoofdstuk Grafiek Keuze. Voor de kleuren wordt `scaleOrdinal` gebruikt om de kleuren in de `.range` aan de categorieën te koppelen.
+
+```javascript
+const x = d3.scaleBand().range([0, width]).padding(0.2);
+const y = d3.scaleLinear().range([height, 0]);
+const categoryColors = d3.scaleOrdinal()
+.range(['#3DDBB1', '#6C23B0', '#EF47A1', '#2B9CEC', '#288F73', '#F2F050', '#FF7700']);
+   
+x.domain(data.map(d => d.name));
+y.domain([0, d3.max(data, d => d.created)]).nice();
+```
+
+Een scale-functie zet een bestaande schaal (hier de minimale en maximale waarde van de data) om naar een schaal die bruikbaar is voor visualisaties op basis van de hoogte en breedte van de grafiek. Voor mijn grafiek betekent dat `x` uitrekent waar de bars komen te staan en hoe breed deze zijn aan de hand van het aantal categorieën. De `y` rekent uit wat de positie van de bars moet worden vanaf de bovenkant van de visualisatie.
+
+Daarna voeg ik een titel toe aan de grafiek:
+
+```javascript
+const title = document.createElement('h2');
+const graph = document.getElementsByClassName('ss-graph--newVacanciesPerCategory')[0];
+
+title.innerHTML = 'Nieuwe vacatures per categorie';
+graph.appendChild(title);
+```
+
+De volgende stap is het toevoegen van de hulp lijnen. Hiervoor wordt de d3 functie `axisLeft` gebruikt met de y-scale. Deze zet de schaal om in logische stappen voor de asses. 
+
+```javascript
+svg
+    .append('g')
+    .attr('class', 'ss-graph__grid ss-graph__grid--y')
+    .attr('opacity', `0.15`)
+    .call(d3.axisLeft(y).ticks(null, 's').tickFormat('').tickSize(-width));
+```
+
+De bars van de bar chart worden daarna uitgerekend. Als eerste maken we een selectie met `.selectAll`. Daarna kan de data eraan gekoppeld worden via `.data`. Met `.append` kunnen er rechthoeken gemaakt worden voor elk datapunt. Dit principe heet een data join en leg ik uit in het volgende gedeelte. 
+
+```javascript
+svg
+    .selectAll('.bar')
+    .data(data)
+    .enter()
+    .append('rect')
+```
+Nadat de rechthoeken zijn toegevoegd kunnen deze worden gestyled. Dit wordt gedaan door middel van `.attr` of `.style`. De eerste staat voor attributen, dan zijn dingen die direct op het element worden geplaatst, bijvoorbeeld: `<rect class=”ss-graph__bar bar” x=”0”>`. Hier zijn `class` en `x` attributen van `rect`. Bij `.style` worden de waardes toegevoegd aan het het `style` attribuut. Een voorbeeld hiervan is het meegeven van een `fill` in de `.style()`. Het resultaat ziet er dan zo uit: `<rect style=”fill: rgb(61, 219, 177);”>`.
+
+Om de hoogte, breedte en positie van de rechthoeken uit te rekenen moet de data gebruikt worden. D3 geeft de mogelijkheid een functie aan te roepen in plaats van een vaste waarde. De functie krijgt de volgende parameters mee: d (voor data), i (voor index, oftewel de huidige positie in de array) en nodes (de huidige groep elementen die gemaakt is). 
+
+De positie is verdeeld in x en y. De x positie wordt door de functie `x` uitgerekend aan de hand van de categorie. De `x` functie geeft dan de positie terug die bij deze categorie hoort. De y wordt op dezelfde manier uitgerekend, maar dan met het aantal vacatures als parameter. De breedte is voor elke bar hetzelfde, daarom hoeft er geen gebruik worden gemaakt van de data, maar kan `x.bandwidth` direct worden aangeroepen. De hoogte is wel verschillend. De `y` functie rekent niet uit hoe hoog hij moet zijn, maar alleen waar hij moet komen te staan. Dat betekent we de hoogte zelf nog moeten berekenen. Dit kan door de totale hoogte van de grafiek te nemen en de waarde uit `y` er vanaf te trekken.
+
+```javascript
+svg.
+    // ...de code van het vorige codeblok
+    .attr('class', 'ss-graph__bar')
+    .attr('x', d => x(d.name))
+    .attr('width', x.bandwidth())
+    .attr('y', d => y(d.created))
+    .attr('height', d => height - y(d.created))
+    .style('fill', d => categoryColors(d.name))
+```
+
+Als laatste kun je nog interactie toevoegen door gebruik van `.on`, hierin kan elk normaal javascript event mee worden gegeven. In het code voorbeeld er onder selecteer ik de huidige bar en toggle ik de class `active` op `mouseover` en `mouseout`.
+
+```javascript
+svg.
+	// ...de code van het vorige code block
+    .on('mouseover', (d, i, nodes) => {
+        d3.select(nodes[i]).classed('active', true);
+    })
+    .on('mouseout', (d, i, nodes) => {
+        d3.select(nodes[i]).classed('active', false);
+    });
+```
 
 ####Data join
 Een van de belangrijke principes in D3 is de data join. Hiermee kunnen meerdere elementen in een keer worden gemaakt, op basis van de data. Hierbij gelden wel andere principes dan normaal. Meestal selecteer je elementen die al bestaan, of maak je elementen die nog niet bestaan en deze daarna manipuleren aan de hand van de data. Met D3 kan je eerst een lege selectie maken en deze later vullen aan de hand van data.
 
 ```javascript
- svg.selectAll("circle")
- .data(data)
- .enter().append("circle")
-   .attr("cx", function(d) { return d.x; })
-   .attr("cy", function(d) { return d.y; })
-   .attr("r", 2.5);
+svg.selectAll("circle")
+.data(data)
+.enter()
+.append("circle")
+.attr("cx", function(d) { return d.x; })
+.attr("cy", function(d) { return d.y; })
+.attr("r", 2.5);
 ```
 <small>(code voorbeeld van Chuck Grimmett; we gaan er vanuit dat SVG leeg is)</small>
 
@@ -943,7 +1037,7 @@ Sessies per dag een combinatie van interval data (de dagen van de week) en ratio
 
 Bij de datavisualisatie voor het aantal unieke view per dag voor een pagina (van deze week) twijfelde of ik gebruik zou maken van een histogram of een line chart. Elke dag is opgedeeld per uur, zodat je kan zien wanneer er pieken in views zijn. Beide charts laten dit zien, dus uiteindelijk heb ik het aan mijn gebruikers gevraagd. Barry vond de hover met de histogram makkelijker, waardoor ik daarvoor gekozen heb.
 
-[<img src="images/onderzoek/image25.png"/>](images/onderzoek/image25.png)
+[<img src="images/onderzoek/image25.png" style="max-width: 240px;"/>](images/onderzoek/image25.png)
 <small>Afbeelding 27) Barry laat kort en bondig zijn voorkeur aan mij weten
 </small>
 
@@ -964,20 +1058,20 @@ Donut (en Pie) charts zijn redelijk controversieel voor datavisualisaties, omdat
 Aanmeldingen per type is een combinatie van nominaal (categorieën), interval (dagen) en nominaal (aantal aanmeldingen). Het is geen histogram omdat de horizontale data niet geheel opeenvolgend is. De lichtgroene bar is andere data dan de donkerdere bar, niet een gevolg op elkaar. Ik heb ervoor gekozen hier een grouped bar chart van te maken zodat de twee categorieën makkelijk vergeleken kunnen worden.
 
 #####Bekeken vacatures deze week
-[<img src="images/onderzoek/image23.png"/>](images/onderzoek/image23.png)
+[<img src="images/onderzoek/image23.png" style="max-width: 400px;"/>](images/onderzoek/image23.png)
 <small>Afbeelding 30) Top 10 lijst van bekeken vacatures deze week
 </small>
 
 Voor bekeken vacatures deze week heb ik ervoor gekozen om geen visualisatie te maken. Er zijn te veel vacatures om hier een goede chart van te maken, dus heb ik er in overleg voor gekozen een top 10 lijst te maken. Volgens de soorten data is dit ordinale data in combinatie met nominale data.
 
 #####Actieve vacatures per categorie
-[<img src="images/onderzoek/image14.png"/>](images/onderzoek/image14.png)
+[<img src="images/onderzoek/image14.png" style="max-width: 410px;"/>](images/onderzoek/image14.png)
 <small>Afbeelding 31) Top 10 lijst van bekeken vacatures deze week
 </small>
 
 Net als bij Gebruikers per soort hebben we hier te maken met nominale data en en ratio data. Hier is een categorie bijgekomen omdat ik de kleuren van de categorieën consistent wil houden op de pagina. Ik heb hier ook voor een donut chart gekozen omdat het belangrijk is om te zien wat de belangrijkste categorieën zijn, niet precies hoeveel. Als de gebruiker toch wilt weten hoeveel het precies, is kan de gebruiker over een sectie heen hoveren.
 
-[<img src="images/onderzoek/image8.png"/>](images/onderzoek/image8.png)
+[<img src="images/onderzoek/image8.png style="max-width: 180px;""/>](images/onderzoek/image8.png)
 <small>Afbeelding 32) Voorbeeld van een hover over een sectie
 </small>
 
@@ -996,11 +1090,11 @@ Nieuwe vacatures per categorie maakt gebruikt van nominale (categorieën) en rat
 In views en sollicitaties per categorie wordt gebruik gemaakt van nominale (categorieën) en ratio data (aantal views en aantal sollicitaties). Ik heb er voor gekozen om de ratio’s te combineren in dezelfde chart. Zo kan de gebruiker niet alleen de views of sollicitaties vergelijken, maar ook kijken hoe de verhouding tussen views en sollicitaties is. 
 
 #####Registratie & Sollicitatie funnels
-[<img src="images/onderzoek/image21.png"/>](images/onderzoek/image21.png)
+[<img src="images/onderzoek/image21.png" style="max-width: 320px;"/>](images/onderzoek/image21.png)
 <small>Afbeelding 35) Funnel visualisatie voor de registratie flow met data van deze week
 </small>
 
-[<img src="images/onderzoek/image16.png"/>](images/onderzoek/image16.png)
+[<img src="images/onderzoek/image16.png" style="max-width: 320px;"/>](images/onderzoek/image16.png)
 <small>Afbeelding 36) Funnel visualisatie voor de sollicitatie flow met data van deze week
 </small>
 
@@ -1098,7 +1192,116 @@ Op dit moment zijn alle grafieken specifiek gebouwd voor de data, maar een deel 
 ##Bijlage 2 - Nieuwe Datamodel
 [<img src="images/bijlage/nieuw.png"/>](images/bijlae/nieuw.png)
 
-##Bijlage 3 - Concurrentieanalyse
+##Bijlage 3 - Vollegdige code van Nieuwe vacature per categorie visualisatie
+```javascript
+const renderNewVacanciesPerCategory = function(data) {
+    const margin = {
+        right: 10,
+        bottom: 70,
+        left: 40,
+    };
+
+    const width = 450 - margin.left - margin.right; // resultaat: 400
+    const height = 300 - margin.bottom; // resultaat: 230
+
+    data.sort((a, b) => b.created - a.created);
+
+    const x = d3.scaleBand().range([0, width]).padding(0.2);
+    const y = d3.scaleLinear().range([height, 0]);
+    const categoryColors = d3.scaleOrdinal()
+    .range(['#3DDBB1', '#6C23B0', '#EF47A1', '#2B9CEC', '#288F73', '#F2F050', '#FF7700']);
+
+    x.domain(data.map(d => d.name));
+    y.domain([0, d3.max(data, d => d.created)]).nice();
+
+    const title = document.createElement('h2');
+    const graph = document.getElementsByClassName('ss-graph--newVacanciesPerCategory')[0];
+
+    title.innerHTML = 'Nieuwe vacatures per categorie';
+    graph.appendChild(title);
+
+    svg
+        .append('g')
+        .attr('class', 'ss-graph__grid ss-graph__grid--y')
+        .attr('opacity', `0.15`)
+        .call(d3.axisLeft(y).ticks(null, 's').tickFormat('').tickSize(-width));
+    
+    svg
+        .selectAll('.bar')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('class', 'ss-graph__bar')
+        .attr('x', d => x(d.name))
+        .attr('width', x.bandwidth())
+        .attr('y', d => y(d.created))
+        .attr('height', d => height - y(d.created))
+        .style('fill', d => categoryColors(d.name))
+            .on('mouseover', (d, i, nodes) => {
+            d3.select(nodes[i]).classed('active', true);
+        })
+        .on('mouseout', (d, i, nodes) => {
+            d3.select(nodes[i]).classed('active', false);
+        });
+};
+```
+
+##Bijlage 4 - Voorbeeld data voor Nieuwe vacature per categorie visualisatie
+```javascript
+[
+    {
+        "name": "Development",
+        "applications": 0,
+        "applicationViews": 33,
+        "views": 1380,
+        "created": 6
+    },
+    {
+        "name": "Content",
+        "applications": 0,
+        "applicationViews": 57,
+        "views": 1056,
+        "created": 3
+    },
+    {
+        "name": "Design",
+        "applications": 3,
+        "applicationViews": 39,
+        "views": 1046,
+        "created": 0
+    },
+    {
+        "name": "Business",
+        "applications": 0,
+        "applicationViews": 14,
+        "views": 335,
+        "created": 4
+    },
+    {
+        "name": "Motion",
+        "applications": 1,
+        "applicationViews": 17,
+        "views": 222,
+        "created": 0
+    },
+    {
+        "name": "Growth",
+        "applications": 0,
+        "applicationViews": 7,
+        "views": 150,
+        "created": 0
+    },
+    {
+        "name": "Totaal",
+        "applications": 4,
+        "applicationViews": 167,
+        "views": 4189,
+        "created": 13
+    }
+]
+```
+
+##Bijlage 5 - Concurrentieanalyse
 
 ###Google Analytics
 Google Analytics is een van de bekende voorbeelden voor het verzamelen van gegevens over gebruikersgedrag en datavisualisaties. Het is een gratis platform, dat ontzettend krachtig is, waardoor het door veel websites en online services wordt gebruikt.
@@ -1232,7 +1435,7 @@ Verder is er ook de mogelijkheid om de datum van de data aan te passen met datep
 ####Design
 Ik vind het design van Wootric op sommige pagina’s onaf ogen, zoals bijvoorbeeld de snapshot pagina. Ik vind het veel weg hebben van een standaard Bootstrap design. De kleuren in de datavisualisaties worden gebruikt om de kwaliteit van de gebruikers of hun reacties aan te geven. Verder worden kleuren ook gebruikt om te laten zien of de trend positief of negatief is, nl. groen voor positief en rood voor negatief.
 
-##Bijlage 4 - Commit historie
+##Bijlage 6 - Commit historie
 
 <table class="table table-bordered table-hover table-condensed">
 <tbody><tr>
