@@ -361,6 +361,59 @@
           </li>
           <li>
             <a href="#termen" class="toc-h1 toc-link" data-title="Termen">Termen</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api" class="toc-h2 toc-link" data-title="API">API</a>
+                  </li>
+                  <li>
+                    <a href="#laravel" class="toc-h2 toc-link" data-title="Laravel">Laravel</a>
+                  </li>
+                  <li>
+                    <a href="#bitbucket" class="toc-h2 toc-link" data-title="Bitbucket">Bitbucket</a>
+                  </li>
+                  <li>
+                    <a href="#git" class="toc-h2 toc-link" data-title="GIT">GIT</a>
+                  </li>
+                  <li>
+                    <a href="#data-model" class="toc-h2 toc-link" data-title="Data Model">Data Model</a>
+                  </li>
+                  <li>
+                    <a href="#event" class="toc-h2 toc-link" data-title="Event">Event</a>
+                  </li>
+                  <li>
+                    <a href="#listener" class="toc-h2 toc-link" data-title="Listener">Listener</a>
+                  </li>
+                  <li>
+                    <a href="#mvc-2" class="toc-h2 toc-link" data-title="MVC">MVC</a>
+                  </li>
+                  <li>
+                    <a href="#ajax" class="toc-h2 toc-link" data-title="AJAX">AJAX</a>
+                  </li>
+                  <li>
+                    <a href="#query" class="toc-h2 toc-link" data-title="Query">Query</a>
+                  </li>
+                  <li>
+                    <a href="#svg-link" class="toc-h2 toc-link" data-title="SVG (Link)">SVG (Link)</a>
+                  </li>
+                  <li>
+                    <a href="#canvas-link" class="toc-h2 toc-link" data-title="Canvas (link)">Canvas (link)</a>
+                  </li>
+                  <li>
+                    <a href="#hashen" class="toc-h2 toc-link" data-title="Hashen">Hashen</a>
+                  </li>
+                  <li>
+                    <a href="#ssh" class="toc-h2 toc-link" data-title="SSH">SSH</a>
+                  </li>
+                  <li>
+                    <a href="#root" class="toc-h2 toc-link" data-title="Root">Root</a>
+                  </li>
+                  <li>
+                    <a href="#migratie" class="toc-h2 toc-link" data-title="Migratie">Migratie</a>
+                  </li>
+                  <li>
+                    <a href="#caching" class="toc-h2 toc-link" data-title="Caching">Caching</a>
+                  </li>
+              </ul>
           </li>
       </div>
         <ul class="toc-footer">
@@ -477,7 +530,7 @@ Als laatste heb ik onderzoek gedaan naar gebruikersdata en veiligheid. De wet is
 <h2 id='doelstelling'>Doelstelling</h2>
 <p>Het doel van mijn opdracht is deze data te stroomlijnen en te combineren met onze eigen data. Het project is geslaagd als Fresh Heroes, via mijn product, nieuwe inzichten kan verzamelen over hun gebruikers en website.</p>
 
-<p>Omdat ik graag programmeer en werkende producten bouw, focus ik mij hierop. Kijkend naar het <a href="#anderson">User Experience Hierachy of Needs model van Stephen Anderson</a> (afbeelding 1), streef ik er naar het Useable niveau te bereiken.</p>
+<p>Omdat ik graag programmeer en werkende producten bouw, focus ik mij hierop. Kijkend naar het User Experience Hierachy of Needs model van Stephen Anderson (afbeelding 1), streef ik er naar het Useable niveau te bereiken.</p>
 
 <p><a href="images/orientatie/image6.png"><img src="images/orientatie/image6.png"/></a>
 <small>Afbeelding 1) User Experience Hierarchy of Needs model van Stephen Anderson</small></p>
@@ -497,8 +550,7 @@ Als laatste heb ik onderzoek gedaan naar gebruikersdata en veiligheid. De wet is
 <p>Ik heb de hoofdvraag verdeeld in meerdere deelvragen, samen geven deze antwoord op de hoofdvraag.</p>
 
 <ol>
-<li>Op welke manieren kan ik in Laravel events bijhouden?
-&lt;!---2. Welke manieren zijn er om datavisualisaties te maken en welke passen het beste bij mijn project?--&gt;</li>
+<li>Op welke manieren kan ik in Laravel events bijhouden?</li>
 <li>Welke data wil Fresh Heroes inzichtelijk krijgen?</li>
 <li>Welke soorten datavisualisaties zijn er?</li>
 <li>Welke bestaande oplossingen zijn er voor het bijhouden van gebruikersdata?</li>
@@ -564,7 +616,7 @@ Voor gebruikers met admin-rechten (medewerkers van Fresh Heroes of Lifely), is e
 
 <p>Analytics wordt ingezet voor de metrische data zoals wie wanneer de site bezoekt en hoe lang. Analytics is van Google en is erg uitgebreid in het aantal functionaliteiten. Dit is zo wel een voor- als nadeel aangezien het ook zorgt voor een leercurve. Google heeft daarom Analytics Academy gemaakt, om hun gebruikers te leren om te gaan met deze tool. </p>
 
-<p>Hotjar wordt gebruikt voor de heatmaps en de opnames van gebruikersinteractie. Een nadeel van Hotjar is dat de data alleen beschikbaar is op hun website en niet via een Application programming interface (API) of op een andere manier. </p>
+<p>Hotjar wordt gebruikt voor de heatmaps en de opnames van gebruikersinteractie. Een nadeel van Hotjar is dat de data alleen beschikbaar is op hun website en niet via een Application Programming Interface (API) of op een andere manier. </p>
 
 <p>Er wordt er al veel data bijgehouden in Fresh Heroes. Een overzicht van het huidige datamodel is te vinden in Bijlage 1. De belangrijkste data die momenteel wordt bijgehouden is de informatie over de vacatures, bedrijven en de gebruikers.</p>
 
@@ -573,7 +625,7 @@ Voor gebruikers met admin-rechten (medewerkers van Fresh Heroes of Lifely), is e
 <p><a href="images/orientatie/image16.png"><img src="images/orientatie/image16.png"/></a>
 <small>Afbeelding 12) De drie belangrijkste (bestaande) datatabellen in project</small></p>
 <h3 id='gebruikersdata-en-veiligheid'>Gebruikersdata en Veiligheid</h3>
-<p>Een groot deel van dit project gaat over het verzamelen van data om een product te verbeteren. Gebruikersdata kunnen positief gebruikt worden (zoals bij het verbeteren van producten), maar de angst bestaat dat deze data misbruikt wordt en gebruikers kunnen schaden. Een voorbeeld hiervan zijn datalekken bij sites. Laatst nog in Amerika bij Equifax, waarbij de data van zo’n 143 miljoen gebruikers buit was gemaakt door hackers<a href="#cnet">(Ng, 2017)</a>. Ook in Nederland is dit een probleem. In september 2017 werd bekend dat hackers sinds november 2016 toegang hadden tot admin accounts en het mailsysteem van Deltalloyd (Hopkins, 2017).</p>
+<p>Een groot deel van dit project gaat over het verzamelen van data om een product te verbeteren. Gebruikersdata kunnen positief gebruikt worden (zoals bij het verbeteren van producten), maar de angst bestaat dat deze data misbruikt wordt en gebruikers kunnen schaden. Een voorbeeld hiervan zijn datalekken bij sites. Laatst nog in Amerika bij Equifax, waarbij de data van zo’n 143 miljoen gebruikers buit was gemaakt door hackers (Ng, 2017). Ook in Nederland is dit een probleem. In september 2017 werd bekend dat hackers sinds november 2016 toegang hadden tot admin accounts en het mailsysteem van Deltalloyd (Hopkins, 2017).</p>
 
 <p>Over de privacy van het verzamelen van data wordt ook in de politiek veel gesproken. In februari 2017 heeft de tweede kamer de nieuwe Wet op de inlichtingen- en veiligheidsdiensten (Wiv) aangenomen. In juli 2017 kwam deze ook door de eerste kamer (“Eerste Kamer der Staten-Generaal - Wet op de inlichtingen- en veiligheidsdiensten 2017 (34.588)”, z.d.), wat betekent dat vanaf januari 2018 de inlichtingendiensten meer data mogen gaan verzamelen, bijvoorbeeld van mensen die in dezelfde straat wonen als de verdachte.</p>
 
@@ -667,6 +719,8 @@ Voor gebruikers met admin-rechten (medewerkers van Fresh Heroes of Lifely), is e
 <p>In dit hoofdstuk beschrijf ik de technische onderdelen van mijn project en wat ik gedaan heb om deze te realiseren.</p>
 <h3 id='events'>Events</h3>
 <p>Na het opstellen van mijn user requirements list werd duidelijk dat het belangrijk was dat ik  vroeg begin met de ontwikkeling. Veel van de data die mijn gebruikers willen zien werd niet opgeslagen of kon niet worden geëxporteerd uit Mixpanel. Uit mijn literatuuronderzoek werd aangeraden om vooral te werken met echte data, maar die was niet aanwezig. Daarom werd het maken van events en deze lanceren op de website een prioriteit.</p>
+
+<p><a name="wat-zijn-events"></a></p>
 <h4 id='wat-zijn-events'>Wat zijn events</h4>
 <p>Wanneer ik het heb over een event heb ik het over een gebeurtenis die wordt vastgelegd zodat de programmeur er iets mee kan (“Introduction to events”, z.d.). Simpel gezegd is een event alles wat de gebruiker bewust doet, van het klikken op een knop tot het solliciteren op een vacature.</p>
 
@@ -715,7 +769,8 @@ Voor gebruikers met admin-rechten (medewerkers van Fresh Heroes of Lifely), is e
 </code></pre><h4 id='implementatie-van-events'>Implementatie van events</h4>
 <p>Voor de events van Fresh Heroes maak ik gebruik van de events-functionaliteit in Laravel (“Events - Laravel - The PHP Framework For Web Artisans”, z.d.). In dit stuk leg ik uit hoe deze werkt en tot stand is gekomen. De nieuwe versie van het datamodel met events kun je vinden in Bijlage 3.</p>
 
-<p>Events in Laravel werken met Listeners. Deze luisteren continu of een bepaald event wordt aangeroepen.</p>
+<p><a name="wat-is-listener"></a>
+Events in Laravel werken met Listeners. Deze luisteren continu of een bepaald event wordt aangeroepen.</p>
 
 <p>Het event waar mijn Listener naar luistert heet <code>AnalyticsEventFired</code>. Hierin worden de velden die een event ontvangt, opgeslagen en doorgegeven aan de Listener. Een <code>AnalyticsEventFired</code> heeft een naam, metadata en een user. Indien er geen metadata wordt meegegeven, wordt dit opgeslagen als een lege array en als er geen user wordt meegegeven is dit <code>null</code>.</p>
 <pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
@@ -924,7 +979,9 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 </code></pre>
 <p>Uitlezen in Javascript:</p>
 <pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">newUsers</span> <span class="o">=</span> <span class="nx">fhNewUsers</span><span class="p">;</span>
-</code></pre><h5 id='waarom-niet-via-ajax'>Waarom niet via AJAX?</h5>
+</code></pre>
+<p><a name="waarom-ajax"></a></p>
+<h5 id='waarom-niet-via-ajax'>Waarom niet via AJAX?</h5>
 <p>AJAX staat voor Asynchronous Javascript and XML (“Ajax”, z.d.). Hiermee kan data worden opgevraagd in Javascript. Hierdoor hoeft er niet te worden gerefresht als er nieuwe data is en kan deze regelmatig worden geupdate. </p>
 
 <p>De manier van data ophalen die ik beschreven heb ik het vorige hoofdstuk werkt, maar is minder mooi dan met AJAX.</p>
@@ -1017,10 +1074,13 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <p>D3 heeft ook veel handige functies, zo kan aan de hand van de data worden uitgerekend hoe hoog de staven in je staafdiagram moeten zijn en wat handige stappen zijn voor de assen. Meer informatie over deze functies is te vinden in &#39;Hoe maak je een datavisualisatie in D3&#39;.</p>
 
 <p>Omdat D3 te groot is om helemaal te behandelen licht ik toe hoe ik het gebruik in mijn oplossing en het data join principe.</p>
+
+<p><a name="wat-is-svg"></a></p>
 <h3 id='svg-of-canvas'>SVG of Canvas</h3>
 <p>Bij D3 moest ik kiezen of ik Scalable Vector Graphics (SVG) of Canvas ging gebruiken. Een SVG is vergelijkbaar met een HTML document. Wat SVG is voor een afbeelding is een HTML document voor tekst. Een SVG bestaat uit tekst en heeft een eigen Document Object Model (DOM), waardoor het makkelijk kan worden doorzocht.</p>
 
-<p>Canvas is een container voor een afbeelding, die volledig getekend wordt door javascript. Het heeft geen DOM. Voor de gebruiker is het hetzelfde als een afbeelding. In browsers kan het ook worden opgeslagen als afbeelding.</p>
+<p><a name="wat-is-canvas"></a>
+Canvas is een container voor een afbeelding, die volledig getekend wordt door javascript. Het heeft geen DOM. Voor de gebruiker is het hetzelfde als een afbeelding. In browsers kan het ook worden opgeslagen als afbeelding.</p>
 <h4 id='voordelen-svg'>Voordelen SVG</h4>
 <p>Omdat SVG een eigen DOM heeft kunnen hier gemakkelijk interacties mee worden gemaakt. Event Listeners op SVG-elementen kunnen op dezelfde manier worden geplaatst als op HTML-elementen. Bij Canvas kan dit niet, deze heeft geen DOM, waardoor de locatie van de elementen zelf moet worden bijgehouden en vergeleken met waar het Event is gebeurd.</p>
 
@@ -1129,7 +1189,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <h2 id='gebruikersdata-en-veiligheid-2'>Gebruikersdata en veiligheid</h2>
 <p>In mijn project maak ik gebruik van gegevens van gebruikers, daarom is het belangrijk te onderzoeken hoe het zit met de veiligheid en of dit wel overeenkomt met de wetgeving.</p>
 <h3 id='de-huidige-situatie'>De huidige situatie</h3>
-<p>Fresh Heroes heeft een privacy policy, waarin wordt gemeld wele data worden opgeslagen:</p>
+<p>Fresh Heroes heeft een privacy policy, waarin wordt gemeld welke data worden opgeslagen:</p>
 
 <ul>
 <li>Naam</li>
@@ -1150,7 +1210,8 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 
 <p>De database is afgesloten met een username en wachtwoord, ook is er alleen toegang via de server. Er is een firewall die alle andere connecties verbreekt als deze niet lokaal zijn.</p>
 
-<p>De server heeft geen root-wachtwoord, maar gebruikt Secure Shell (SSH). SSH is een techniek om netwerken en verbindingen te beveiligen. Door middel van keys die worden gegenereerd kan het verkeer worden versleuteld en weer ontsleuteld. Dit is veiliger dan wachtwoorden omdat de sleutel niet naar de server wordt gestuurd. Ook heeft applicatie beperkte rechten.</p>
+<p><a name="ssh"></a>
+De server heeft geen root-wachtwoord, maar gebruikt Secure Shell (SSH). SSH is een techniek om netwerken en verbindingen te beveiligen. Door middel van keys die worden gegenereerd kan het verkeer worden versleuteld en weer ontsleuteld. Dit is veiliger dan wachtwoorden omdat de sleutel niet naar de server wordt gestuurd. Ook heeft applicatie beperkte rechten.</p>
 
 <p>Er zijn wel mogelijkheden om binnen te komen via social engineering, als iemand zijn wachtwoord ergens laat slingeren of doorgeeft, kunnen derden ook de data van Fresh Heroes in zien. Wanneer mensen bij Lifely (en Fresh Heroes) komen werken, krijgen zij een aantal tips om dit te voorkomen. Zo wordt er verwacht dat je op je Mac FileVault aanstaat, zodat de hard drive is versleuteld in het geval dat je laptop wordt gestolen of je deze verliest. Ook wordt er uitgelegd hoe zij verantwoordelijk om moeten gaan met keys. Als de keys gedeeld moeten worden met andere developers, wordt daarvoor Keybase gebruikt, waarmee veilig berichten naar elkaar kunnen worden gestuurd.</p>
 <h3 id='de-wet'>De wet</h3>
@@ -1304,7 +1365,7 @@ Ik kwam er achter dat als ik van een vacancy event wilde weten in welke categori
 <h1 id='aanbevelingen'>Aanbevelingen</h1>
 <p>Dit hoofdstuk gaat over mijn aanbevelingen over het product. Het zijn vooral technische verbeteringen, maar ik raad ook aan om na gebruik de oplossing te evalueren en verbeteren.</p>
 <h2 id='google-analytics-naar-backend-verplaatsen'>Google Analytics naar backend verplaatsen</h2>
-<p>Op dit moment wordt Google Analytics aangeroepen in de voorkant van de applicatie, dit is zwaarder dan wanneer het door de server wordt geregeld. Ook kunnen zo requests worden gecasht waardoor ze niet elke keer opnieuw gedaan hoeven te worden. Verder zorgt het ook voor consistentie, alle data komt dan via de Controller. Als laatste hoeft er dan niet bij elke refresh nieuwe data worden opgehaald (vanwege het cashen).</p>
+<p>Op dit moment wordt Google Analytics aangeroepen in de voorkant van de applicatie, dit is zwaarder dan wanneer het door de server wordt geregeld. Ook kunnen zo requests worden gecacht waardoor ze niet elke keer opnieuw gedaan hoeven te worden. Verder zorgt het ook voor consistentie, alle data komt dan via de Controller. Als laatste hoeft er dan niet bij elke refresh nieuwe data worden opgehaald (vanwege caching).</p>
 
 <p>Bryan heeft hiervoor een voorstel gedaan, <a href="https://github.com/spatie/laravel-analytics">Laravel Analytics</a> door de webontwikkelaars van Spatie. Met deze package wordt het ophalen van analytics data versimpeld.</p>
 <h2 id='anonimiseren-van-user_id'>Anonimiseren van user_id</h2>
@@ -2019,10 +2080,40 @@ Als laatste hebben wij gesproken over de kwaliteit van de gebruikers van Fresh H
 <li>Wootric | In-App Web &amp; Mobile, Email, SMS Net Promoter Score, CSAT, CES Survey Software, Text &amp; Sentiment Analytics. (z.d.). Geraadpleegd 17 december 2017, van <a href="https://www.wootric.com/">https://www.wootric.com/</a></li>
 <li>XenitXTD. (2014, oktober 15). New to Laravel,MVC and need a little clarity on MVC | Laravel.io. Geraadpleegd 17 december 2017, van <a href="https://laravel.io/forum/10-15-2014-new-to-laravelmvc-and-need-a-little-clarity-on-mvc">https://laravel.io/forum/10-15-2014-new-to-laravelmvc-and-need-a-little-clarity-on-mvc</a></li>
 </ul>
-<h1 id='termen'>Termen</h1>
-<ul>
-<li>TBA (To be added)</li>
-</ul>
+<h1 id='termen'>Termen</h1><h2 id='api'>API</h2>
+<p>API staat voor Application Programming Interface. Het is een term om de comminucatie tussen applicaties te beschrijven.</p>
+<h2 id='laravel'>Laravel</h2>
+<p>Laravel is een gratis PHP framework voor de ontwikkeling van webapplicaties op basis van MCV.</p>
+<h2 id='bitbucket'>Bitbucket</h2>
+<p>Bitbucket is een web-gebasseerd versiebeheer service op basis van GIT or Mecurial.</p>
+<h2 id='git'>GIT</h2>
+<p>Git is een versiebeheer systeem om veranderingen in bestanden bij te houden.</p>
+<h2 id='data-model'>Data Model</h2>
+<p>Een Data Model is een representatie van de data in de database. Hierin staan het soort waardes die je kan verwachten.</p>
+<h2 id='event'>Event</h2>
+<p>Zie onderdeel <a href="#wat-zijn-events" />Wat zijn events?</a></p>
+<h2 id='listener'>Listener</h2>
+<p>Zie onderdeel <a href="#wat-is-listener">Implementatie van events</a></p>
+<h2 id='mvc-2'>MVC</h2>
+<p>MVC staat voor Model View Controller. Dit is een patroon uit de software architectuur en wordt vaak gebruikt bij het ontwikkelen van webapplicaties.</p>
+<h2 id='ajax'>AJAX</h2>
+<p>Zie onderdeel <a href="#waarom-ajax">Waarom geen AJAX</a></p>
+<h2 id='query'>Query</h2>
+<p>Een query is een vraag. In de context van mijn project is een query een manier om data op te vragen.</p>
+<h2 id='svg-link'>SVG (Link)</h2>
+<p>Zie onderdeel <a href="#wat-is-svg">SVG of Canvas</a></p>
+<h2 id='canvas-link'>Canvas (link)</h2>
+<p>Zie onderdeel <a href="#wat-is-canvas">SVG of Canvas</a></p>
+<h2 id='hashen'>Hashen</h2>
+<p>Hashen is een manier om een stuk tekst om te vormen, het wordt vaak gebruikt bij encryptie.</p>
+<h2 id='ssh'>SSH</h2>
+<p>Zie onderdeel <a href="#ssh">Gebruikersdata en veiligheid - De huidige situatie</a></p>
+<h2 id='root'>Root</h2>
+<p>Root is de standaard gebruikers- of accountnaam van de administrator met alle rechten op Linux of Unix-achtige systemen.</p>
+<h2 id='migratie'>Migratie</h2>
+<p>In dit stuk betekent een migratie een manier om een bestaand datamodel en de data er in, in één keer aan te passen</p>
+<h2 id='caching'>Caching</h2>
+<p>Caching is het tijdelijk opslaan van data om deze later te kunnen hergebruiken.</p>
 
       </div>
       <div class="dark-box">
