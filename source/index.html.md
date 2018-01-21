@@ -1060,8 +1060,11 @@ Na de gebruikerstest is de data doorgenomen die nu beschikbaar is in mijn oploss
 
 
 #Product
-
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/6EbU-c_lYFk?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></p>
+<p>
+<video width="550" height="315" controls>
+  <source src="images/productvideo.mp4" type="video/mp4">
+</video>
+</p>
 
 #Aanbevelingen
 Dit hoofdstuk gaat over mijn aanbevelingen over het product. Het zijn vooral technische verbeteringen, maar ik raad ook aan om na gebruik de oplossing te evalueren en verbeteren.
