@@ -132,7 +132,7 @@ Als laatste is er al veel data beschikbaar, vooral op het gebied van vacatures e
 ## Doelstelling
 Het doel van mijn opdracht is deze data te stroomlijnen en te combineren met onze eigen data. Het project is geslaagd als Fresh Heroes, via mijn product, nieuwe inzichten kan verzamelen over hun gebruikers en website.
 
-Omdat ik graag programmeer en werkende producten bouw, focus ik mij hierop. Kijkend naar het [User Experience Hierachy of Needs model van Stephen Anderson](#anderson) (afbeelding 1), streef ik er naar het Useable niveau te bereiken.
+Omdat ik graag programmeer en werkende producten bouw, focus ik mij hierop. Kijkend naar het User Experience Hierachy of Needs model van Stephen Anderson (afbeelding 1), streef ik er naar het Useable niveau te bereiken.
 
 [<img src="images/orientatie/image6.png"/>](images/orientatie/image6.png)
 <small>Afbeelding 1) User Experience Hierarchy of Needs model van Stephen Anderson</small>
@@ -157,7 +157,6 @@ Na het vaststellen van het probleem en doelstelling heb ik de volgende hoofdvraa
 Ik heb de hoofdvraag verdeeld in meerdere deelvragen, samen geven deze antwoord op de hoofdvraag.
 
 1. Op welke manieren kan ik in Laravel events bijhouden?
-<!---2. Welke manieren zijn er om datavisualisaties te maken en welke passen het beste bij mijn project?-->
 2. Welke data wil Fresh Heroes inzichtelijk krijgen?
 3. Welke soorten datavisualisaties zijn er?
 4. Welke bestaande oplossingen zijn er voor het bijhouden van gebruikersdata?
@@ -225,7 +224,7 @@ Mixpanel wordt gebruikt voor acties, zoals het bekijken van bepaalde pagina’s 
 
 Analytics wordt ingezet voor de metrische data zoals wie wanneer de site bezoekt en hoe lang. Analytics is van Google en is erg uitgebreid in het aantal functionaliteiten. Dit is zo wel een voor- als nadeel aangezien het ook zorgt voor een leercurve. Google heeft daarom Analytics Academy gemaakt, om hun gebruikers te leren om te gaan met deze tool. 
 
-Hotjar wordt gebruikt voor de heatmaps en de opnames van gebruikersinteractie. Een nadeel van Hotjar is dat de data alleen beschikbaar is op hun website en niet via een Application programming interface (API) of op een andere manier. 
+Hotjar wordt gebruikt voor de heatmaps en de opnames van gebruikersinteractie. Een nadeel van Hotjar is dat de data alleen beschikbaar is op hun website en niet via een Application Programming Interface (API) of op een andere manier. 
 
 Er wordt er al veel data bijgehouden in Fresh Heroes. Een overzicht van het huidige datamodel is te vinden in Bijlage 1. De belangrijkste data die momenteel wordt bijgehouden is de informatie over de vacatures, bedrijven en de gebruikers.
 
@@ -235,7 +234,7 @@ Door te kijken naar de aantallen van deze tabellen in bepaalde periodes kunnen a
 <small>Afbeelding 12) De drie belangrijkste (bestaande) datatabellen in project</small>
 
 ###Gebruikersdata en Veiligheid
-Een groot deel van dit project gaat over het verzamelen van data om een product te verbeteren. Gebruikersdata kunnen positief gebruikt worden (zoals bij het verbeteren van producten), maar de angst bestaat dat deze data misbruikt wordt en gebruikers kunnen schaden. Een voorbeeld hiervan zijn datalekken bij sites. Laatst nog in Amerika bij Equifax, waarbij de data van zo’n 143 miljoen gebruikers buit was gemaakt door hackers[(Ng, 2017)](#cnet). Ook in Nederland is dit een probleem. In september 2017 werd bekend dat hackers sinds november 2016 toegang hadden tot admin accounts en het mailsysteem van Deltalloyd (Hopkins, 2017).
+Een groot deel van dit project gaat over het verzamelen van data om een product te verbeteren. Gebruikersdata kunnen positief gebruikt worden (zoals bij het verbeteren van producten), maar de angst bestaat dat deze data misbruikt wordt en gebruikers kunnen schaden. Een voorbeeld hiervan zijn datalekken bij sites. Laatst nog in Amerika bij Equifax, waarbij de data van zo’n 143 miljoen gebruikers buit was gemaakt door hackers (Ng, 2017). Ook in Nederland is dit een probleem. In september 2017 werd bekend dat hackers sinds november 2016 toegang hadden tot admin accounts en het mailsysteem van Deltalloyd (Hopkins, 2017).
 
 Over de privacy van het verzamelen van data wordt ook in de politiek veel gesproken. In februari 2017 heeft de tweede kamer de nieuwe Wet op de inlichtingen- en veiligheidsdiensten (Wiv) aangenomen. In juli 2017 kwam deze ook door de eerste kamer (“Eerste Kamer der Staten-Generaal - Wet op de inlichtingen- en veiligheidsdiensten 2017 (34.588)”, z.d.), wat betekent dat vanaf januari 2018 de inlichtingendiensten meer data mogen gaan verzamelen, bijvoorbeeld van mensen die in dezelfde straat wonen als de verdachte.
 
@@ -319,6 +318,7 @@ In dit hoofdstuk beschrijf ik de technische onderdelen van mijn project en wat i
 ###Events
 Na het opstellen van mijn user requirements list werd duidelijk dat het belangrijk was dat ik  vroeg begin met de ontwikkeling. Veel van de data die mijn gebruikers willen zien werd niet opgeslagen of kon niet worden geëxporteerd uit Mixpanel. Uit mijn literatuuronderzoek werd aangeraden om vooral te werken met echte data, maar die was niet aanwezig. Daarom werd het maken van events en deze lanceren op de website een prioriteit.
 
+<a name="wat-zijn-events"></a>
 ####Wat zijn events
 Wanneer ik het heb over een event heb ik het over een gebeurtenis die wordt vastgelegd zodat de programmeur er iets mee kan (“Introduction to events”, z.d.). Simpel gezegd is een event alles wat de gebruiker bewust doet, van het klikken op een knop tot het solliciteren op een vacature.
 
@@ -372,6 +372,7 @@ Voorbeeld van metadata op een vacancy.view event:
 ####Implementatie van events
 Voor de events van Fresh Heroes maak ik gebruik van de events-functionaliteit in Laravel (“Events - Laravel - The PHP Framework For Web Artisans”, z.d.). In dit stuk leg ik uit hoe deze werkt en tot stand is gekomen. De nieuwe versie van het datamodel met events kun je vinden in Bijlage 3.
 
+<a name="wat-is-listener"></a>
 Events in Laravel werken met Listeners. Deze luisteren continu of een bepaald event wordt aangeroepen.
 
 Het event waar mijn Listener naar luistert heet `AnalyticsEventFired`. Hierin worden de velden die een event ontvangt, opgeslagen en doorgegeven aan de Listener. Een `AnalyticsEventFired` heeft een naam, metadata en een user. Indien er geen metadata wordt meegegeven, wordt dit opgeslagen als een lege array en als er geen user wordt meegegeven is dit `null`.
@@ -614,7 +615,7 @@ Uitlezen in Javascript:
 const newUsers = fhNewUsers;
 ```
 
-
+<a name="waarom-ajax"></a>
 #####Waarom niet via AJAX?
 AJAX staat voor Asynchronous Javascript and XML (“Ajax”, z.d.). Hiermee kan data worden opgevraagd in Javascript. Hierdoor hoeft er niet te worden gerefresht als er nieuwe data is en kan deze regelmatig worden geupdate. 
 
@@ -729,9 +730,11 @@ D3 heeft ook veel handige functies, zo kan aan de hand van de data worden uitger
 
 Omdat D3 te groot is om helemaal te behandelen licht ik toe hoe ik het gebruik in mijn oplossing en het data join principe.
 
+<a name="wat-is-svg"></a>
 ###SVG of Canvas
 Bij D3 moest ik kiezen of ik Scalable Vector Graphics (SVG) of Canvas ging gebruiken. Een SVG is vergelijkbaar met een HTML document. Wat SVG is voor een afbeelding is een HTML document voor tekst. Een SVG bestaat uit tekst en heeft een eigen Document Object Model (DOM), waardoor het makkelijk kan worden doorzocht.
 
+<a name="wat-is-canvas"></a>
 Canvas is een container voor een afbeelding, die volledig getekend wordt door javascript. Het heeft geen DOM. Voor de gebruiker is het hetzelfde als een afbeelding. In browsers kan het ook worden opgeslagen als afbeelding.
 
 ####Voordelen SVG
@@ -875,7 +878,7 @@ Bij het voorbeeld is er alleen een *enter* selectie, er bestonden namelijk nog g
 In mijn project maak ik gebruik van gegevens van gebruikers, daarom is het belangrijk te onderzoeken hoe het zit met de veiligheid en of dit wel overeenkomt met de wetgeving.
 
 ###De huidige situatie
-Fresh Heroes heeft een privacy policy, waarin wordt gemeld wele data worden opgeslagen:
+Fresh Heroes heeft een privacy policy, waarin wordt gemeld welke data worden opgeslagen:
 
 - Naam
 - Telefoonnummer
@@ -894,6 +897,7 @@ Toen Fresh Heroes gebouwd werd is er niet expliciet rekening gehouden met veilig
 
 De database is afgesloten met een username en wachtwoord, ook is er alleen toegang via de server. Er is een firewall die alle andere connecties verbreekt als deze niet lokaal zijn.
 
+<a name="ssh"></a>
 De server heeft geen root-wachtwoord, maar gebruikt Secure Shell (SSH). SSH is een techniek om netwerken en verbindingen te beveiligen. Door middel van keys die worden gegenereerd kan het verkeer worden versleuteld en weer ontsleuteld. Dit is veiliger dan wachtwoorden omdat de sleutel niet naar de server wordt gestuurd. Ook heeft applicatie beperkte rechten.
 
 Er zijn wel mogelijkheden om binnen te komen via social engineering, als iemand zijn wachtwoord ergens laat slingeren of doorgeeft, kunnen derden ook de data van Fresh Heroes in zien. Wanneer mensen bij Lifely (en Fresh Heroes) komen werken, krijgen zij een aantal tips om dit te voorkomen. Zo wordt er verwacht dat je op je Mac FileVault aanstaat, zodat de hard drive is versleuteld in het geval dat je laptop wordt gestolen of je deze verliest. Ook wordt er uitgelegd hoe zij verantwoordelijk om moeten gaan met keys. Als de keys gedeeld moeten worden met andere developers, wordt daarvoor Keybase gebruikt, waarmee veilig berichten naar elkaar kunnen worden gestuurd.
@@ -1063,7 +1067,7 @@ Na de gebruikerstest is de data doorgenomen die nu beschikbaar is in mijn oploss
 Dit hoofdstuk gaat over mijn aanbevelingen over het product. Het zijn vooral technische verbeteringen, maar ik raad ook aan om na gebruik de oplossing te evalueren en verbeteren.
 
 ##Google Analytics naar backend verplaatsen
-Op dit moment wordt Google Analytics aangeroepen in de voorkant van de applicatie, dit is zwaarder dan wanneer het door de server wordt geregeld. Ook kunnen zo requests worden gecasht waardoor ze niet elke keer opnieuw gedaan hoeven te worden. Verder zorgt het ook voor consistentie, alle data komt dan via de Controller. Als laatste hoeft er dan niet bij elke refresh nieuwe data worden opgehaald (vanwege het cashen).
+Op dit moment wordt Google Analytics aangeroepen in de voorkant van de applicatie, dit is zwaarder dan wanneer het door de server wordt geregeld. Ook kunnen zo requests worden gecacht waardoor ze niet elke keer opnieuw gedaan hoeven te worden. Verder zorgt het ook voor consistentie, alle data komt dan via de Controller. Als laatste hoeft er dan niet bij elke refresh nieuwe data worden opgehaald (vanwege caching).
 
 Bryan heeft hiervoor een voorstel gedaan, [Laravel Analytics](https://github.com/spatie/laravel-analytics) door de webontwikkelaars van Spatie. Met deze package wordt het ophalen van analytics data versimpeld.
 
@@ -1836,4 +1840,53 @@ Ik heb hiervoor gekozen omdat je door de verhoudingen tussen de staven een idee 
 
 
 #Termen
-- TBA (To be added)
+##API
+API staat voor Application Programming Interface. Het is een term om de comminucatie tussen applicaties te beschrijven.
+
+##Laravel
+Laravel is een gratis PHP framework voor de ontwikkeling van webapplicaties op basis van MCV.
+
+##Bitbucket
+Bitbucket is een web-gebasseerd versiebeheer service op basis van GIT or Mecurial.
+
+##GIT
+Git is een versiebeheer systeem om veranderingen in bestanden bij te houden.
+
+##Data Model
+Een Data Model is een representatie van de data in de database. Hierin staan het soort waardes die je kan verwachten.
+
+##Event
+Zie onderdeel <a href="#wat-zijn-events" />Wat zijn events?</a>
+
+##Listener
+Zie onderdeel <a href="#wat-is-listener">Implementatie van events</a>
+
+##MVC
+MVC staat voor Model View Controller. Dit is een patroon uit de software architectuur en wordt vaak gebruikt bij het ontwikkelen van webapplicaties.
+
+##AJAX
+Zie onderdeel <a href="#waarom-ajax">Waarom geen AJAX</a>
+
+##Query
+Een query is een vraag. In de context van mijn project is een query een manier om data op te vragen.
+
+##SVG (Link)
+Zie onderdeel <a href="#wat-is-svg">SVG of Canvas</a>
+
+##Canvas (link)
+Zie onderdeel <a href="#wat-is-canvas">SVG of Canvas</a>
+
+##Hashen
+Hashen is een manier om een stuk tekst om te vormen, het wordt vaak gebruikt bij encryptie.
+
+##SSH
+Zie onderdeel <a href="#ssh">Gebruikersdata en veiligheid - De huidige situatie</a>
+
+##Root
+Root is de standaard gebruikers- of accountnaam van de administrator met alle rechten op Linux of Unix-achtige systemen.
+
+##Migratie
+In dit stuk betekent een migratie een manier om een bestaand datamodel en de data er in, in één keer aan te passen
+
+##Caching
+Caching is het tijdelijk opslaan van data om deze later te kunnen hergebruiken.
