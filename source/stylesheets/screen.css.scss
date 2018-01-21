@@ -333,7 +333,7 @@ html, body {
     clear: both;
   }
 
-  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl, &>.title {
     margin-right: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
@@ -368,7 +368,7 @@ html, body {
     margin-top: 0;
   }
 
-  h2 {
+  h2, .title {
     @extend %header-font;
     font-size: 19px;
     margin-top: 4em;
@@ -377,6 +377,17 @@ html, body {
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+  }
+
+  .title {
+    border-top: 0;
+    margin-top: 0;
+
+    &:first-of-type {
+      padding-top: 0.6em;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
   }
 
   // h2s right after h1s should bump right up
