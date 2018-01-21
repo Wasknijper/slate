@@ -897,7 +897,7 @@ Toen Fresh Heroes gebouwd werd is er niet expliciet rekening gehouden met veilig
 
 De database is afgesloten met een username en wachtwoord, ook is er alleen toegang via de server. Er is een firewall die alle andere connecties verbreekt als deze niet lokaal zijn.
 
-<a name="ssh"></a>
+<a name="wat-is-ssh"></a>
 De server heeft geen root-wachtwoord, maar gebruikt Secure Shell (SSH). SSH is een techniek om netwerken en verbindingen te beveiligen. Door middel van keys die worden gegenereerd kan het verkeer worden versleuteld en weer ontsleuteld. Dit is veiliger dan wachtwoorden omdat de sleutel niet naar de server wordt gestuurd. Ook heeft applicatie beperkte rechten.
 
 Er zijn wel mogelijkheden om binnen te komen via social engineering, als iemand zijn wachtwoord ergens laat slingeren of doorgeeft, kunnen derden ook de data van Fresh Heroes in zien. Wanneer mensen bij Lifely (en Fresh Heroes) komen werken, krijgen zij een aantal tips om dit te voorkomen. Zo wordt er verwacht dat je op je Mac FileVault aanstaat, zodat de hard drive is versleuteld in het geval dat je laptop wordt gestolen of je deze verliest. Ook wordt er uitgelegd hoe zij verantwoordelijk om moeten gaan met keys. Als de keys gedeeld moeten worden met andere developers, wordt daarvoor Keybase gebruikt, waarmee veilig berichten naar elkaar kunnen worden gestuurd.
@@ -1838,6 +1838,31 @@ Ik heb hiervoor gekozen omdat je door de verhoudingen tussen de staven een idee 
 - Wootric | In-App Web & Mobile, Email, SMS Net Promoter Score, CSAT, CES Survey Software, Text & Sentiment Analytics. (z.d.). Geraadpleegd 17 december 2017, van <https://www.wootric.com/>
 - XenitXTD. (2014, oktober 15). New to Laravel,MVC and need a little clarity on MVC | Laravel.io. Geraadpleegd 17 december 2017, van <https://laravel.io/forum/10-15-2014-new-to-laravelmvc-and-need-a-little-clarity-on-mvc>
 
+##Technische bronnen
+- Automatic Text Sizing. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/mbostock/1846692>
+- Axes (v4). (z.d.). Geraadpleegd 18 januari 2018, van <http://bl.ocks.org/emmasaunders/cebb1837530c876def717c0e5c61da31>
+- bP Example - Double Vertical bP with labels. (z.d.). Geraadpleegd 18 januari 2018, van <http://bl.ocks.org/NPashaP/cd80ab54c52f80c4d84cad0ba9da72c2>
+- categorical colors. (z.d.). Geraadpleegd 18 januari 2018, van <http://bl.ocks.org/aaizemberg/78bd3dade9593896a59d>
+- Conway’s Game of Life. (z.d.). Geraadpleegd 18 januari 2018, van <http://bl.ocks.org/NPashaP/f1e73faef87bee899b47>
+- D3 JS Funnel Chart. (z.d.). Geraadpleegd 18 januari 2018, van <http://bl.ocks.org/kiranml1/6872423>
+- D3 v4 - Group barChart. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/shimizu/a4c0c940b19d42cf8ebca29e20573aca>
+- d3.legend example. (z.d.). Geraadpleegd 18 januari 2018, van <http://bl.ocks.org/ZJONSSON/3918369>
+- Donut Chart. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/mbostock/3887193>
+- Histogram. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/mbostock/3048450>
+- Horizontal Bar Chart with Labels and Tooltips. (z.d.). Geraadpleegd 18 januari 2018, van <http://bl.ocks.org/juan-cb/faf62e91e3c70a99a306>
+- javascript - D3.js combining bar and line chart - Stack Overflow. (z.d.). Geraadpleegd 20 januari 2018, van <https://stackoverflow.com/questions/36435384/d3-js-combining-bar-and-line-chart>
+- Normalized Stacked Bar Chart. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/mbostock/3886394>
+- Ordinal Axis. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/mbostock/3259783>
+- Pie Chart D3 V4. (z.d.). Geraadpleegd 18 januari 2018, van <http://bl.ocks.org/ChandrakantThakkarDigiCorp/c8ce360f8bc896ffa6c16d30a4cd026b>
+- Rotated axis labels in v4. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/d3noob/3c040800ff6457717cca586ae9547dbf>
+- scaleOrdinal example. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465>
+- Simple bar graph in v4. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/d3noob/bdf28027e0ce70bd132edc64f1dd7ea4>
+- Simple line graph with v4. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/d3noob/402dd382a51a4f6eea487f9a35566de0>
+- Simple tooltips in v4. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73>
+- Tick Format. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/mbostock/9764126>
+- Trapezoid Charts. (z.d.). Geraadpleegd 18 januari 2018, van <http://bl.ocks.org/SpaceActuary/4c0c9844596a2d00938a>
+- Wrapping Long Labels. (z.d.). Geraadpleegd 18 januari 2018, van <https://bl.ocks.org/mbostock/7555321>
+
 
 #Termen
 ##API
@@ -1880,7 +1905,7 @@ Zie onderdeel <a href="#wat-is-canvas">SVG of Canvas</a>
 Hashen is een manier om een stuk tekst om te vormen, het wordt vaak gebruikt bij encryptie.
 
 ##SSH
-Zie onderdeel <a href="#ssh">Gebruikersdata en veiligheid - De huidige situatie</a>
+Zie onderdeel <a href="#wat-is-ssh">Gebruikersdata en veiligheid - De huidige situatie</a>
 
 ##Root
 Root is de standaard gebruikers- of accountnaam van de administrator met alle rechten op Linux of Unix-achtige systemen.
